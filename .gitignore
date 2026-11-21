@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
+
+# Foto pratinjau pribadi (belum ada izin publikasi) - jangan di-commit
+demo-data/img-private/
+
+# Gambar katalog hasil render
+output/

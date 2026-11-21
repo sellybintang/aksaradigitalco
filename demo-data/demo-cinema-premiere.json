@@ -1,0 +1,51 @@
+{
+  "slug": "demo-cinema-premiere",
+  "template": "08-cinema-premiere",
+  "status": "aktif",
+  "aktif_sampai": "2027-12-31",
+  "pria_nama": "Raka Pradipta, S.T.",
+  "pria_panggilan": "Raka",
+  "pria_ortu": "Bapak Hendra Wijaya & Ibu Sari Lestari",
+  "pria_ig": "raka.contoh",
+  "wanita_nama": "Nadia Kirana, S.Ds.",
+  "wanita_panggilan": "Nadia",
+  "wanita_ortu": "Bapak Agus Santoso & Ibu Rina Melati",
+  "wanita_ig": "nadia.contoh",
+  "akad_judul": "Akad Nikah",
+  "akad_mulai": "2027-02-14 08:00",
+  "akad_selesai": "2027-02-14 10:00",
+  "akad_tempat": "Masjid Al-Ikhlas",
+  "akad_alamat": "Jl. Melati No. 10, Bandung",
+  "resepsi_judul": "Resepsi",
+  "resepsi_mulai": "2027-02-14 11:00",
+  "resepsi_selesai": "2027-02-14 14:00",
+  "resepsi_tempat": "Gedung Serbaguna Cendana",
+  "resepsi_alamat": "Jl. Cendana Raya No. 25, Bandung",
+  "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
+  "kutipan_sumber": "QS. Ar-Rum: 21",
+  "cerita": "2019|Opening Scene|Dua orang asing duduk bersebelahan di bioskop dan berebut sandaran tangan yang sama.\n2021|Plot Twist|Jarak dan kesibukan menguji kami, tapi kami memilih tetap dalam satu cerita.\n2025|The Proposal|Raka melamar Nadia di hadapan kedua keluarga.\n2027|Happily Ever After|Memulai sekuel terpanjang sebagai suami dan istri.",
+  "foto_sampul": "/demo-data/img-private/cp-04.jpg",
+  "foto_berdua": "/demo-data/img-private/cp-06.jpg",
+  "galeri": "/demo-data/img-private/cp-02.jpg, /demo-data/img-private/cp-01.jpg, /demo-data/img-private/cp-05.jpg, /demo-data/img-private/cp-03.jpg, /demo-data/img-private/cp-06.jpg, /demo-data/img-private/cp-04.jpg",
+  "kredit_foto": "@maybmei",
+  "musik": "",
+  "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
+  "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
+  "_ucapan": [
+    {
+      "nama": "Dimas",
+      "kehadiran": "Hadir",
+      "ucapan": "Film romantis terbaik tahun ini! Selamat untuk kalian berdua."
+    },
+    {
+      "nama": "Laras",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Bahagia selalu, sakinah mawaddah warahmah."
+    },
+    {
+      "nama": "Om Bayu",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
+    }
+  ]
+}

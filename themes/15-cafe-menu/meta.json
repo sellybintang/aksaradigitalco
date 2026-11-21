@@ -1,0 +1,8 @@
+{
+  "nama": "Café Menu",
+  "tagline": "Undangan bertema kafe & kopi modern",
+  "demo": "demo-cafe-menu",
+  "warna": { "bg": "#3b2a20", "bg2": "#6b4a35", "kertas": "#f7f1e8", "aksen": "#e6c9a3", "teks": "#fffaf2", "teksRedup": "rgba(255,250,242,.75)" },
+  "font": { "judul": "'Fraunces', Georgia, serif", "label": "'DM Mono', monospace", "url": "https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }
+}

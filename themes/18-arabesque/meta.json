@@ -1,0 +1,8 @@
+{
+  "nama": "Arabesque",
+  "tagline": "Undangan islami bernuansa Maroko",
+  "demo": "demo-arabesque",
+  "warna": { "bg": "#0a2c29", "bg2": "#145049", "kertas": "#f6efe2", "aksen": "#c9a24a", "teks": "#f6efe2", "teksRedup": "rgba(246,239,226,.72)" },
+  "font": { "judul": "'Marcellus', Georgia, serif", "label": "'Jost', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Marcellus&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }
+}

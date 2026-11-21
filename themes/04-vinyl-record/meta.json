@@ -1,0 +1,8 @@
+{
+  "nama": "Vinyl Record",
+  "tagline": "Undangan bertema album piringan hitam retro",
+  "demo": "demo-vinyl-record",
+  "warna": { "bg": "#b9481f", "bg2": "#e07a3c", "kertas": "#f2e8d5", "aksen": "#f2e8d5", "teks": "#fff8ee", "teksRedup": "rgba(255,248,238,.8)" },
+  "font": { "judul": "'DM Serif Display', Georgia, serif", "label": "'Archivo', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }
+}

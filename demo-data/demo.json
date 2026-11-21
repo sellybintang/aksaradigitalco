@@ -1,0 +1,54 @@
+{
+  "slug": "demo",
+  "template": "01-boarding-pass",
+  "status": "aktif",
+  "aktif_sampai": "2027-12-31",
+  "pria_nama": "Raka Pradipta, S.T.",
+  "pria_panggilan": "Raka",
+  "pria_ortu": "Bapak Hendra Wijaya & Ibu Sari Lestari",
+  "pria_foto": "",
+  "pria_ig": "raka.contoh",
+  "wanita_nama": "Nadia Kirana, S.Ds.",
+  "wanita_panggilan": "Nadia",
+  "wanita_ortu": "Bapak Agus Santoso & Ibu Rina Melati",
+  "wanita_foto": "",
+  "wanita_ig": "nadia.contoh",
+  "akad_judul": "Akad Nikah",
+  "akad_mulai": "2027-02-14 08:00",
+  "akad_selesai": "2027-02-14 10:00",
+  "akad_tempat": "Masjid Al-Ikhlas",
+  "akad_alamat": "Jl. Melati No. 10, Bandung",
+  "akad_maps": "",
+  "resepsi_judul": "Resepsi",
+  "resepsi_mulai": "2027-02-14 11:00",
+  "resepsi_selesai": "2027-02-14 14:00",
+  "resepsi_tempat": "Gedung Serbaguna Cendana",
+  "resepsi_alamat": "Jl. Cendana Raya No. 25, Bandung",
+  "resepsi_maps": "",
+  "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
+  "kutipan_sumber": "QS. Ar-Rum: 21",
+  "cerita": "2019|Take Off|Pertama kali bertemu di bandara saat penerbangan kami sama-sama tertunda.\n2021|Turbulensi|Jarak dan kesibukan menguji kami, tapi kami memilih tetap satu tujuan.\n2025|Landing|Raka melamar Nadia di hadapan kedua keluarga.\n2027|Next Destination|Memulai perjalanan baru sebagai suami dan istri.",
+  "galeri": "/demo-data/img-private/bp-01.jpg, /demo-data/img-private/bp-02.jpg, /demo-data/img-private/bp-03.jpg, /demo-data/img-private/bp-04.jpg, /demo-data/img-private/bp-05.jpg, /demo-data/img-private/bp-06.jpg",
+  "foto_sampul": "/demo-data/img-private/bp-hero.jpg",
+  "musik": "",
+  "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
+  "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
+  "_ucapan": [
+    {
+      "nama": "Dimas",
+      "kehadiran": "Hadir",
+      "ucapan": "Selamat menempuh perjalanan baru! Semoga selalu satu tujuan."
+    },
+    {
+      "nama": "Laras",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Bahagia selalu kalian berdua, semoga sakinah mawaddah warahmah."
+    },
+    {
+      "nama": "Om Bayu",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
+    }
+  ],
+  "kredit_foto": "@binaryphotoworks"
+}

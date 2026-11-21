@@ -1,0 +1,65 @@
+* { box-sizing: border-box; margin: 0; }
+html, body { background: #222; }
+body { width: 1080px; height: 1080px; overflow: hidden; font-family: system-ui, sans-serif; }
+#stage { position: relative; width: 1080px; height: 1080px; overflow: hidden; color: var(--teks);
+  background: radial-gradient(120% 90% at 50% 20%, var(--bg2) 0%, var(--bg) 62%); }
+.bg-grain { position: absolute; inset: 0; background: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 14px 14px; }
+small { display: block; font-family: var(--f-label); font-size: 17px; letter-spacing: .22em; text-transform: uppercase; color: var(--aksen); }
+.brand { font-family: var(--f-label); font-size: 18px; letter-spacing: .08em; color: var(--teksRedup); }
+
+/* ---------- layar & ponsel ---------- */
+.card, .ph { position: relative; flex: none; }
+.scr { position: relative; width: calc(390px * var(--s)); height: calc(844px * var(--s)); overflow: hidden; background: var(--bg); }
+.scr iframe { width: 390px; height: 844px; border: 0; transform: scale(var(--s)); transform-origin: 0 0; pointer-events: none; display: block; }
+.card .scr { border-radius: calc(40px * var(--s)); box-shadow: 0 18px 40px rgba(0,0,0,.45); outline: 3px solid rgba(255,255,255,.12); }
+.ph { --bz: 12px; padding: var(--bz); background: linear-gradient(145deg, #3a3a3e, #0c0c0d 30%, #1b1b1d); border-radius: calc(56px * var(--s) + var(--bz));
+  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 2px #4a4a4f, inset 0 0 0 2px #000; }
+.ph .scr { border-radius: calc(56px * var(--s)); }
+.ph::after { content: ''; position: absolute; top: calc(var(--bz) + 12px * var(--s) + 4px); left: 50%; width: calc(120px * var(--s)); height: calc(34px * var(--s)); transform: translateX(-50%); background: #000; border-radius: 999px; }
+
+/* ---------- layout: utama ---------- */
+.collage { position: absolute; left: 50%; top: 50%; display: flex; gap: 30px; transform: translate(-50%, -50%) rotate(-18deg); }
+.col { display: flex; flex-direction: column; gap: 30px; transform: translateY(var(--y)); }
+.vignette { position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 55%, transparent 0%, rgba(0,0,0,.25) 60%, rgba(0,0,0,.55) 100%); }
+.is-light .vignette { background: radial-gradient(60% 55% at 50% 55%, transparent 0%, color-mix(in srgb, var(--bg) 35%, transparent) 60%, color-mix(in srgb, var(--bg) 75%, transparent) 100%); }
+.is-light .bg-grain { background-image: radial-gradient(rgba(0,0,0,.05) 1px, transparent 1px); }
+.is-light .card .scr { outline-color: rgba(0,0,0,.06); box-shadow: 0 18px 40px rgba(60,50,40,.22); }
+.head { position: absolute; z-index: 3; left: 54px; top: 50px; max-width: 440px; padding: 26px 30px 28px; background: color-mix(in srgb, var(--bg) 88%, transparent); border: 1px solid rgba(255,255,255,.14); border-radius: 22px; box-shadow: 0 20px 40px rgba(0,0,0,.35); backdrop-filter: blur(6px); }
+.head h1 { font-family: var(--f-judul); font-weight: 600; font-size: 66px; line-height: 1; margin: 12px 0 10px; }
+.head small { font-size: 15px; letter-spacing: .16em; }
+.head p { font-size: 19px; color: var(--teksRedup); line-height: 1.4; }
+.seal { position: absolute; right: 60px; top: 58px; width: 150px; height: 150px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--aksen); color: var(--bg); transform: rotate(10deg); box-shadow: 0 14px 30px rgba(0,0,0,.4), inset 0 0 0 6px var(--aksen), inset 0 0 0 8px rgba(0,0,0,.25); }
+.seal span { font-family: var(--f-label); font-size: 22px; font-weight: 500; letter-spacing: .14em; }
+.seal b { font-family: var(--f-judul); font-size: 22px; font-style: italic; font-weight: 500; }
+.hero-phone { position: absolute; z-index: 2; left: 57%; top: 236px; transform: translateX(-50%) rotate(3deg); }
+.bar { position: absolute; left: 0; right: 0; bottom: 0; height: 104px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 44px; background: var(--bg); border-top: 2px solid var(--aksen); }
+.pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pills span { font-family: var(--f-label); font-size: 16px; letter-spacing: .04em; padding: 9px 15px; border-radius: 999px; border: 1.5px solid var(--aksen); color: var(--teks); white-space: nowrap; }
+
+/* ---------- layout: fitur ---------- */
+.fitur { position: absolute; left: 64px; top: 70px; bottom: 64px; width: 470px; display: flex; flex-direction: column; justify-content: center; }
+.fitur small { font-size: 15px; letter-spacing: .16em; }
+.fitur { z-index: 3; }
+.fitur h1 { font-family: var(--f-judul); font-weight: 600; font-size: 96px; line-height: .95; margin: 18px 0 34px; }
+.fitur ul { list-style: none; padding: 0; display: grid; gap: 17px; }
+.fitur li { position: relative; padding-left: 50px; font-size: 25px; line-height: 1.3; color: var(--teks); }
+.fitur li::before { content: '✓'; position: absolute; left: 0; top: -1px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--aksen); color: var(--bg); font-size: 19px; font-weight: 700; }
+.fitur .brand { position: absolute; bottom: 0; left: 0; }
+.trio { position: absolute; right: 0; top: 0; width: 560px; height: 1080px; }
+.trio .ph { position: absolute; }
+.trio .p1 { left: -10px; top: 70px; transform: rotate(-6deg); }
+.trio .p2 { left: 150px; top: 330px; transform: rotate(2deg); z-index: 2; }
+.trio .p3 { left: 300px; top: 100px; transform: rotate(8deg); }
+
+/* ---------- layout: nama-tamu ---------- */
+.nt-head { position: absolute; left: 0; right: 0; top: 62px; text-align: center; }
+.nt-head h1 { font-family: var(--f-judul); font-weight: 600; font-size: 74px; line-height: 1; margin: 14px 0 12px; }
+.nt-head p { font-size: 24px; color: var(--teksRedup); }
+.nt-pair { position: absolute; left: 0; right: 0; top: 280px; height: 720px; }
+.nt-pair figure { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.nt-back { left: 110px; top: 60px; transform: rotate(-6deg); }
+.nt-front { right: 110px; top: 0; transform: rotate(4deg); z-index: 2; }
+.nt-pair figcaption { font-family: var(--f-label); font-size: 15px; padding: 10px 16px; border-radius: 12px; background: var(--kertas); color: #222; box-shadow: 0 10px 24px rgba(0,0,0,.35); white-space: nowrap; }
+.nt-pair figcaption b { color: #c0392b; }
+.nt-foot { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font-family: var(--f-label); font-size: 19px; letter-spacing: .06em; color: var(--teksRedup); }
+.nt-foot .brand { font-size: inherit; }

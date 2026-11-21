@@ -1,0 +1,8 @@
+{
+  "nama": "Art Gallery",
+  "tagline": "Undangan bertema pameran seni & museum",
+  "demo": "demo-art-gallery",
+  "warna": { "bg": "#1f1e1b", "bg2": "#4a463f", "kertas": "#f6f3ec", "aksen": "#c9a56a", "teks": "#f6f3ec", "teksRedup": "rgba(246,243,236,.7)" },
+  "font": { "judul": "'Bodoni Moda', Didot, Georgia, serif", "label": "'Manrope', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@400;500;600;700&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }
+}

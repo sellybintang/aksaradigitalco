@@ -1,0 +1,9 @@
+{
+  "nama": "Japandi",
+  "tagline": "Undangan minimalis bernuansa Jepang-Skandinavia",
+  "demo": "demo-japandi",
+  "terang": true,
+  "warna": { "bg": "#e9e2d5", "bg2": "#f6f2ea", "kertas": "#f4f0e8", "aksen": "#2a2926", "teks": "#2a2926", "teksRedup": "rgba(42,41,38,.65)" },
+  "font": { "judul": "'Shippori Mincho', serif", "label": "'Zen Kaku Gothic New', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["events", "hero", "gallery"] }
+}

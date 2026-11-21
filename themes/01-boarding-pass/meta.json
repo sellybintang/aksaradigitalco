@@ -1,0 +1,36 @@
+{
+  "nama": "Boarding Pass",
+  "tagline": "Undangan bertema tiket pesawat",
+  "demo": "demo",
+  "warna": {
+    "bg": "#0f2a44",
+    "bg2": "#1f4a72",
+    "kertas": "#fbf7ef",
+    "aksen": "#e8a33d",
+    "teks": "#ffffff",
+    "teksRedup": "rgba(255,255,255,.7)"
+  },
+  "font": {
+    "judul": "'Playfair Display', Georgia, serif",
+    "label": "'DM Mono', monospace",
+    "url": "https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap"
+  },
+  "layar": {
+    "utama": "cover",
+    "kolase": [
+      "hero",
+      "gallery",
+      "events",
+      "countdown",
+      "couple",
+      "rsvp",
+      "gift",
+      "wishes"
+    ],
+    "fitur": [
+      "countdown",
+      "rsvp",
+      "gallery"
+    ]
+  }
+}

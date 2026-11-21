@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@400;500;600&display=swap');
+
+/* ===== Tema 15 — Café Menu ===== */
+:root {
+  --cream: #f7f1e8;
+  --foam: #fffaf2;
+  --espresso: #3b2a20;
+  --espresso-2: #2a1d16;
+  --latte: #c8a27c;
+  --caramel: #b8763e;
+  --sage: #7d8b6a;
+  --kraft: #e6d5bc;
+  --muted: #86766a;
+  --line: rgba(59, 42, 32, .14);
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+  --sans: 'Outfit', system-ui, sans-serif;
+}
+
+body[data-theme="15-cafe-menu"] { font-family: var(--sans); color: var(--espresso); background: #d8c7af; }
+body[data-theme="15-cafe-menu"] #app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--cream); position: relative; overflow-x: hidden; box-shadow: 0 0 50px rgba(59,42,32,.2); }
+body[data-theme="15-cafe-menu"] small { font-family: var(--mono); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; }
+
+/* ---------- tombol ---------- */
+.cf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 999px; padding: 14px 26px; font: 600 .8rem var(--sans); letter-spacing: .08em; text-decoration: none; transition: transform .15s, background .2s, color .2s; }
+.cf-btn:active { transform: scale(.97); }
+.cf-btn svg { width: 16px; height: 16px; }
+.cf-btn--dark { background: var(--espresso); color: var(--foam); box-shadow: 0 8px 20px rgba(59,42,32,.25); }
+.cf-btn--line { background: transparent; color: var(--espresso); border: 1.5px solid var(--line); padding: 9px 16px; font-size: .72rem; }
+.cf-btn--line.is-copied { background: var(--espresso); border-color: var(--espresso); color: var(--foam); }
+
+/* ---------- sampul ---------- */
+.cf-cover { position: fixed; inset: 0; z-index: 20; max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 22px 22px 18px; overflow: hidden; background: var(--cream); transition: opacity .5s, visibility .5s, transform .8s cubic-bezier(.6,0,.3,1); }
+.cf-cover.is-leaving { transform: translateY(-6%); opacity: 0; }
+.cf-cover.is-gone { visibility: hidden; pointer-events: none; }
+.cf-window { position: relative; width: 250px; height: 240px; border-radius: 125px 125px 10px 10px; overflow: hidden; border: 8px solid var(--espresso); box-shadow: 0 14px 30px rgba(59,42,32,.25); }
+.cf-window__img { width: 100%; height: 100%; object-fit: cover; }
+.cf-window .u-ph { width: 100%; height: 100%; font: 400 3rem var(--serif); color: var(--foam); background: linear-gradient(160deg, var(--latte), var(--caramel)); }
+.cf-window::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(42,29,22,.75)); }
+.cf-sign { position: absolute; z-index: 1; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; font: italic 400 1.9rem var(--serif); color: var(--foam); text-shadow: 0 0 12px rgba(255,220,170,.7); }
+.cf-sign span { color: var(--latte); }
+.cf-printer { width: 230px; height: 12px; margin-top: 16px; border-radius: 6px; background: var(--espresso); box-shadow: inset 0 -3px 0 rgba(0,0,0,.35); position: relative; z-index: 2; }
+.cf-receipt-wrap { width: 210px; overflow: hidden; margin-top: -4px; }
+.cf-receipt { padding: 14px 16px 18px; background: var(--foam); font: 400 .66rem/1.6 var(--mono); color: var(--espresso); box-shadow: 0 6px 14px rgba(59,42,32,.15);
+  -webkit-mask: radial-gradient(5px 6px at 50% 100%, transparent 98%, #000) 0 0 / 10px 100% repeat-x;
+  mask: radial-gradient(5px 6px at 50% 100%, transparent 98%, #000) 0 0 / 10px 100% repeat-x;
+  animation: cf-print 1.6s .4s steps(14) both; }
+@keyframes cf-print { from { transform: translateY(-100%); } }
+.cf-receipt p { margin: 0; }
+.cf-receipt__brand { text-align: center; font: 600 .82rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.cf-receipt__center { text-align: center; color: var(--muted); margin-bottom: 8px !important; }
+.cf-receipt__guest { display: grid; text-align: center; padding: 6px 0 8px; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); margin-bottom: 6px; }
+.cf-receipt__guest small { font-size: .52rem !important; color: var(--muted); }
+.cf-receipt__guest b { font: italic 400 1.2rem var(--serif); }
+.cf-receipt__row { display: flex; justify-content: space-between; gap: 8px; }
+.cf-receipt__total { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); font-weight: 500; }
+.cf-receipt__bar { height: 22px; margin-top: 10px; background: repeating-linear-gradient(90deg, var(--espresso) 0 2px, transparent 2px 4px, var(--espresso) 4px 5px, transparent 5px 8px); }
+.cf-cover .cf-btn--dark { margin-top: 18px; }
+.cf-cover__note { margin: 10px 0 0; font-size: .6rem; color: var(--muted); text-align: center; }
+
+/* ---------- hero ---------- */
+.cf-hero { padding: 56px 26px 50px; text-align: center; }
+.cf-hero__kicker { margin: 0; font: 500 .7rem var(--mono); letter-spacing: .3em; text-transform: uppercase; color: var(--caramel); }
+.cf-hero h1 { margin: 10px 0 6px; font: 400 clamp(2.7rem, 12vw, 3.4rem)/1.05 var(--serif); }
+.cf-hero h1 em { color: var(--caramel); }
+.cf-hero__sub { margin: 0 0 30px; font: italic 400 1.05rem var(--serif); color: var(--muted); }
+.cf-hero__photo { position: relative; border-radius: 24px; overflow: visible; }
+.cf-hero__photo img, .cf-hero__photo .u-ph { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 24px; box-shadow: 0 18px 36px rgba(59,42,32,.22); }
+.cf-hero__photo .u-ph { font: 400 3rem var(--serif); color: var(--foam); background: linear-gradient(160deg, var(--latte), var(--caramel)); }
+.cf-badge { position: absolute; right: -10px; top: -14px; width: 78px; height: 78px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--sage); color: var(--foam); font: italic 400 .95rem/1.1 var(--serif); transform: rotate(10deg); box-shadow: 0 6px 14px rgba(59,42,32,.25); }
+.cf-hero__date { margin: 28px 0 0; display: inline-block; padding: 9px 18px; border-radius: 999px; background: var(--kraft); font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+
+/* ---------- catatan barista ---------- */
+.cf-note { margin: 0 22px; padding: 28px 26px; text-align: center; background: var(--kraft); border-radius: 4px; position: relative; box-shadow: 0 6px 16px rgba(59,42,32,.12); transform: rotate(-.8deg); }
+.cf-note::before { content: ''; position: absolute; top: -10px; left: 50%; width: 80px; height: 22px; margin-left: -40px; background: rgba(255,250,242,.7); transform: rotate(2deg); }
+.cf-note small { color: var(--caramel); }
+.cf-note p { margin: 12px 0; font: italic 400 1.05rem/1.7 var(--serif); }
+.cf-note cite { font: 500 .66rem var(--mono); font-style: normal; letter-spacing: .14em; color: var(--muted); }
+
+/* ---------- section ---------- */
+.cf-sec { padding: 60px 22px; }
+.cf-sec--dark { background: var(--espresso); color: var(--foam); }
+.cf-sec--board { background: var(--espresso-2); color: var(--foam); }
+.cf-sec--kraft { background: var(--kraft); }
+.cf-sec--soft { background: #efe5d6; }
+.cf-title { margin: 0 0 30px; text-align: center; font: 400 2.1rem/1.1 var(--serif); }
+.cf-title small { display: block; margin-bottom: 10px; color: var(--caramel); }
+.cf-sec--dark .cf-title small, .cf-sec--board .cf-title small { color: var(--latte); }
+.cf-lead { margin: -14px 0 22px; text-align: center; font-size: .88rem; line-height: 1.7; color: var(--muted); }
+
+/* ---------- mempelai (menu item) ---------- */
+.cf-item { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; padding: 14px; margin-bottom: 14px; background: var(--foam); border-radius: 20px; box-shadow: 0 6px 16px rgba(59,42,32,.08); }
+.cf-item__photo { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 4px var(--kraft); }
+.cf-item__photo img, .cf-item__photo .u-ph { width: 100%; height: 100%; object-fit: cover; }
+.cf-item__photo .u-ph { font: 400 1.6rem var(--serif); color: var(--foam); background: linear-gradient(160deg, var(--latte), var(--caramel)); }
+.cf-item__head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cf-item h3 { margin: 0; font: 600 1.1rem/1.25 var(--serif); }
+.cf-item__head span { font: 400 1.3rem var(--serif); color: var(--caramel); }
+.cf-item__flavor { margin: 4px 0 6px !important; font: italic 400 .9rem var(--serif) !important; color: var(--caramel) !important; }
+.cf-item p { margin: 0 0 4px; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.cf-item a { font: 500 .72rem var(--mono); color: var(--sage); text-decoration: none; }
+
+/* ---------- cangkir (hitung mundur) ---------- */
+.cf-brew { display: grid; justify-items: center; gap: 20px; }
+.cf-cup { --fill: 50%; position: relative; width: 150px; height: 150px; }
+.cf-cup__body { position: absolute; left: 15px; top: 26px; width: 104px; height: 96px; border-radius: 6px 6px 48px 48px; background: var(--foam); overflow: hidden; box-shadow: inset 0 -6px 0 rgba(0,0,0,.06); }
+.cf-cup__coffee { position: absolute; left: 6px; right: 6px; bottom: 6px; height: calc(var(--fill) * .82); border-radius: 4px 4px 42px 42px; background: linear-gradient(180deg, var(--latte), var(--caramel) 30%, #6b4128); transition: height 1.5s ease; }
+.cf-cup__art { position: absolute; left: 50%; bottom: calc(var(--fill) * .82 - 6px); width: 26px; height: 22px; margin-left: -13px; opacity: .85;
+  background: radial-gradient(circle at 30% 35%, var(--foam) 0 6px, transparent 6.5px), radial-gradient(circle at 70% 35%, var(--foam) 0 6px, transparent 6.5px), conic-gradient(from 135deg at 50% 92%, var(--foam) 0 90deg, transparent 90deg); }
+.cf-cup__handle { position: absolute; left: 112px; top: 46px; width: 30px; height: 40px; border: 8px solid var(--foam); border-left: 0; border-radius: 0 22px 22px 0; }
+.cf-cup__plate { position: absolute; left: 0; right: 10px; bottom: 16px; height: 12px; border-radius: 50%; background: var(--latte); }
+.cf-cup__steam { position: absolute; left: 30px; top: -6px; width: 74px; height: 30px; display: flex; justify-content: space-around; }
+.cf-cup__steam i { width: 6px; height: 28px; border-radius: 6px; background: linear-gradient(180deg, transparent, rgba(255,250,242,.6)); animation: cf-steam 2.6s ease-in-out infinite; }
+.cf-cup__steam i:nth-child(2) { animation-delay: -.9s; } .cf-cup__steam i:nth-child(3) { animation-delay: -1.7s; }
+@keyframes cf-steam { 0% { transform: translateY(8px) scaleY(.6); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-14px) scaleY(1.1) skewX(10deg); opacity: 0; } }
+.cf-count { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; }
+.cf-count > div { display: grid; gap: 4px; padding: 14px 4px; text-align: center; background: rgba(255,250,242,.08); border-radius: 14px; }
+.cf-count span { font: 400 2.2rem/1 var(--serif); }
+.cf-count small { color: var(--latte); font-size: .52rem !important; }
+.cf-count span.u-tick { animation: cf-tick .35s; }
+@keyframes cf-tick { from { opacity: .4; } }
+.cf-brew__note { margin: 0; font: italic 400 .95rem var(--serif); color: rgba(255,250,242,.7); }
+
+/* ---------- menu acara ---------- */
+.cf-menu { padding: 18px 4px 20px; border-bottom: 1px dashed rgba(255,250,242,.25); }
+.cf-menu:last-child { border-bottom: 0; }
+.cf-menu__line { display: flex; align-items: baseline; gap: 10px; }
+.cf-menu__line h3 { margin: 0; font: 400 1.6rem var(--serif); white-space: nowrap; }
+.cf-menu__line i { flex: 1; border-bottom: 2px dotted rgba(255,250,242,.35); transform: translateY(-5px); }
+.cf-menu__line b { font: 500 1rem var(--mono); color: var(--latte); }
+.cf-menu p { margin: 6px 0 0; font-size: .86rem; line-height: 1.6; color: rgba(255,250,242,.75); }
+.cf-menu__place b { color: var(--foam); font-weight: 500; }
+.cf-menu__btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.cf-sec--board .cf-btn--line { color: var(--foam); border-color: rgba(255,250,242,.35); }
+.cf-sec--board .cf-btn--line:hover { background: var(--foam); color: var(--espresso); }
+
+/* ---------- kisah ---------- */
+.cf-story { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.cf-story li { display: grid; grid-template-columns: 48px 1fr; gap: 14px; padding: 16px; background: var(--foam); border-radius: 18px; }
+.cf-story__no { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--kraft); font: 500 .9rem var(--mono); color: var(--caramel); }
+.cf-story small { color: var(--caramel); }
+.cf-story h3 { margin: 4px 0; font: 600 1.15rem var(--serif); }
+.cf-story p { margin: 0; font-size: .85rem; line-height: 1.65; color: var(--muted); }
+
+/* ---------- galeri ---------- */
+.cf-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px; }
+.cf-photo { display: block; padding: 8px 8px 26px; border: 0; background: var(--foam); box-shadow: 0 8px 18px rgba(59,42,32,.18); transform: rotate(var(--r)); cursor: zoom-in; }
+.cf-photo[data-reveal].is-in { transform: rotate(var(--r)); }
+.cf-photo img, .cf-photo .u-ph { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+
+.cf-lightbox { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; background: rgba(42,29,22,.94); }
+.cf-lightbox img { max-height: 86vh; width: auto; max-width: 100%; border-radius: 14px; }
+.cf-lightbox__close { position: absolute; top: 12px; right: 16px; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--foam); color: var(--espresso); font-size: 1.6rem; line-height: 1; }
+
+/* ---------- form ---------- */
+.cf-form { display: grid; gap: 16px; padding: 22px 18px; background: var(--foam); border-radius: 22px; box-shadow: 0 8px 20px rgba(59,42,32,.08); }
+.cf-form > label, .cf-choice legend { display: grid; gap: 6px; font: 500 .6rem var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.cf-form input:not([type=radio]), .cf-form select, .cf-form textarea { width: 100%; padding: 12px 14px; font: 400 .95rem var(--sans); color: var(--espresso); text-transform: none; letter-spacing: 0; background: var(--cream); border: 1.5px solid var(--line); border-radius: 14px; }
+.cf-form textarea { resize: vertical; }
+.cf-form :focus-visible { outline: 2px solid var(--caramel); outline-offset: 1px; }
+.cf-choice { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.cf-choice legend { margin-bottom: 6px; padding: 0; }
+.cf-choice label { position: relative; }
+.cf-choice input { position: absolute; opacity: 0; }
+.cf-choice span { display: block; text-align: center; padding: 10px 4px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--cream); font: 500 .78rem var(--sans); cursor: pointer; }
+.cf-choice input:checked + span { background: var(--espresso); border-color: var(--espresso); color: var(--foam); }
+.cf-choice input:focus-visible + span { outline: 2px solid var(--caramel); }
+.cf-form .cf-btn--dark { margin-top: 4px; }
+.cf-form__done { margin: 0; text-align: center; font: italic 400 1rem var(--serif); color: var(--sage); }
+
+/* ---------- hadiah ---------- */
+.cf-gift { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px; margin-bottom: 12px; background: var(--foam); border-radius: 20px; }
+.cf-gift > div { display: grid; gap: 4px; min-width: 0; }
+.cf-gift small { color: var(--caramel); }
+.cf-gift b { font: 500 1.15rem var(--mono); letter-spacing: .04em; }
+.cf-gift span { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+
+/* ---------- ucapan ---------- */
+.cf-wishes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-height: 480px; overflow-y: auto; padding: 4px; }
+.cf-wish { padding: 14px 14px 12px; background: #fdf3c9; box-shadow: 0 4px 10px rgba(59,42,32,.12); }
+.cf-wish:nth-child(3n+2) { background: #f6dccb; transform: rotate(1deg); }
+.cf-wish:nth-child(3n) { background: #dfe8d3; transform: rotate(-1deg); }
+.cf-wish p { margin: 0 0 8px; font: italic 400 .92rem/1.5 var(--serif); overflow-wrap: anywhere; }
+.cf-wish footer { font: 500 .68rem var(--mono); }
+.cf-wish footer span { display: block; margin-top: 2px; color: var(--muted); font-size: .6rem; }
+body[data-theme="15-cafe-menu"] .u-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-size: .85rem; }
+
+/* ---------- footer & musik ---------- */
+.cf-footer { padding: 50px 22px 90px; background: var(--espresso); }
+.cf-footer__receipt { max-width: 280px; margin: 0 auto; padding: 22px 20px 26px; display: grid; gap: 10px; text-align: center; background: var(--foam); font: 400 .74rem/1.7 var(--mono);
+  -webkit-mask: radial-gradient(5px 6px at 50% 100%, transparent 98%, #000) 0 0 / 10px 100% repeat-x;
+  mask: radial-gradient(5px 6px at 50% 100%, transparent 98%, #000) 0 0 / 10px 100% repeat-x; }
+.cf-footer__receipt p { margin: 0; }
+.cf-footer small { color: var(--muted); font-size: .54rem !important; }
+
+.cf-music { position: fixed; z-index: 30; right: max(16px, calc(50% - 240px + 16px)); bottom: 18px; width: 46px; height: 46px; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--espresso); color: var(--foam); box-shadow: 0 6px 16px rgba(59,42,32,.3); opacity: 0; pointer-events: none; transition: opacity .4s; }
+.u-opened .cf-music { opacity: 1; pointer-events: auto; }
+.cf-music svg { width: 18px; }
+.cf-music.is-playing svg { animation: u-spin 3s linear infinite; }
+
+@media (max-width: 360px) {
+  .cf-window { width: 220px; height: 210px; }
+  .cf-wishes { grid-template-columns: 1fr; }
+}
