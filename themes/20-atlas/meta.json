@@ -1,0 +1,9 @@
+{
+  "nama": "Atlas",
+  "tagline": "Undangan bertema peta perjalanan & petualangan",
+  "demo": "demo-atlas",
+  "terang": true,
+  "warna": { "bg": "#e7e0cf", "bg2": "#f4efe3", "kertas": "#f1ece0", "aksen": "#c4552f", "teks": "#23302a", "teksRedup": "rgba(35,48,42,.68)" },
+  "font": { "judul": "'Young Serif', Georgia, serif", "label": "'Space Mono', monospace", "url": "https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Young+Serif&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }
+}

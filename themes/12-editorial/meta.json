@@ -1,0 +1,9 @@
+{
+  "nama": "Editorial",
+  "tagline": "Undangan bergaya sampul majalah fashion",
+  "demo": "demo-editorial",
+  "terang": true,
+  "warna": { "bg": "#efece6", "bg2": "#ffffff", "kertas": "#ffffff", "aksen": "#d7263d", "teks": "#0d0d0d", "teksRedup": "rgba(13,13,13,.65)" },
+  "font": { "judul": "'Bodoni Moda', Didot, Georgia, serif", "label": "'Inter', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400&family=Inter:wght@400;600;700&display=swap" },
+  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }
+}

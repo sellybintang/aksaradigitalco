@@ -29,4 +29,6 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | `rekening` | `BCA\|1234567890\|Raka Pradipta` | Satu rekening per baris |
 | `alamat_kado` | alamat lengkap | Opsional |
 
-Sheet **"Ucapan"** dibuat otomatis oleh Apps Script saat ada RSVP pertama.
+| `_no_pesanan`, `_kontak`, `_paket`, `_catatan` | bebas | **Catatan admin, privat.** Semua kolom berawalan `_` tidak pernah dikirim ke website |
+
+Sheet **"Klien"** dan **"Ucapan"** dibuat otomatis dengan fungsi `siapkanSheet()` — lihat `docs/panduan-google-sheets.md`.

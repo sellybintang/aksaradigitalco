@@ -22,6 +22,10 @@ tools/dev-server.js   server pratinjau lokal
 | 01 Boarding Pass | Dipakai | `/demo` |
 | 03 Analog Story | Dipakai | `/demo-analog-story` |
 | 08 Cinema Premiere | Dipakai | `/demo-cinema-premiere` |
+| 09 Celestial | Baru | `/demo-celestial` |
+| 20 Atlas | Disimpan (tidak dipilih) | `/demo-atlas` |
+| 12 Editorial | Disimpan (tidak dipilih) | `/demo-editorial` |
+| 19 Nusantara (adat) | Baru | `/demo-nusantara` |
 | 13 Japandi | Dipakai | `/demo-japandi` |
 | 15 Café Menu | Dipakai | `/demo-cafe-menu` |
 | 18 Arabesque | Dipakai | `/demo-arabesque` |
@@ -56,10 +60,32 @@ Buka `http://localhost:5173/demo?to=Budi`. Ganti tema demo dengan `&theme=01-boa
 
 ## Gambar katalog Shopee (otomatis)
 ```
-node tools/render-mockups.js                  # semua tema
+node tools/render-mockups.js pilihan           # tema yang dijual + foto gabungan (paling sering dipakai)
+node tools/render-mockups.js                   # semua tema + foto gabungan
 node tools/render-mockups.js 03-analog-story   # satu tema
+node tools/render-mockups.js koleksi           # foto gabungan saja
 ```
-Hasil: `output/katalog/<tema>/1-utama.png`, `2-nama-tamu.png`, `3-fitur.png` (1080×1080).
+Per tema (1 produk Shopee = 1 tema), di `output/katalog/<tema>/`:
+`1-utama` (foto utama) · `2-nama-tamu` · `3-fitur` · `4-tampilan` · `5-cara-order`
+
+Foto gabungan untuk produk bundel, di `output/katalog/_koleksi/`:
+`1-kipas` · `2-grid` · `3-deret` (3 variasi foto utama)
+
+Daftar tema yang dijual/digabung, lama proses, revisi, dan masa aktif diatur di `config.js` → `katalog`.
+
+Video pembuka (MP4 vertikal 1080×1920, ±30 detik, untuk video produk Shopee / Reels / TikTok):
+```
+node tools/render-video.js                 # semua tema di config.js → katalog.koleksi
+node tools/render-video.js 19-nusantara    # satu tema
+```
+Hasil di `output/video/<tema>.mp4`. Butuh ffmpeg (`winget install Gyan.FFmpeg`).
+
+Siapkan folder produk Shopee per tema (`D:\undangan digital\foto1` … `foto7`):
+```
+node tools/export-produk.js
+```
+Mengisi `1.png`–`5.png` (urutan upload) + `deskripsi.txt` (judul & deskripsi siap tempel).
+Pemetaan folder → tema ada di bagian atas `tools/export-produk.js`.
 Gambar diambil dari undangan demo asli, jadi selalu sama dengan tampilan terbaru.
 Warna, font, dan bagian yang ditampilkan diatur di `themes/<tema>/meta.json`.
 Nama toko & domain contoh diambil dari `config.js`. Butuh Chrome atau Edge terpasang.

@@ -1,0 +1,53 @@
+{
+  "slug": "demo-nusantara",
+  "template": "19-nusantara",
+  "status": "aktif",
+  "aktif_sampai": "2027-12-31",
+  "pria_nama": "Raden Raka Pradipta, S.T.",
+  "pria_panggilan": "Raka",
+  "pria_ortu": "Bapak Hendra Wijaya & Ibu Sari Lestari",
+  "pria_ig": "raka.contoh",
+  "wanita_nama": "Nadia Kirana Ayu, S.Ds.",
+  "wanita_panggilan": "Nadia",
+  "wanita_ortu": "Bapak Agus Santoso & Ibu Rina Melati",
+  "wanita_ig": "nadia.contoh",
+  "akad_judul": "Akad Nikah",
+  "akad_mulai": "2027-02-14 08:00",
+  "akad_selesai": "2027-02-14 10:00",
+  "akad_tempat": "Pendopo Agung Kencana",
+  "akad_alamat": "Jl. Malioboro No. 10, Yogyakarta",
+  "resepsi_judul": "Panggih & Resepsi",
+  "resepsi_mulai": "2027-02-14 11:00",
+  "resepsi_selesai": "2027-02-14 14:00",
+  "resepsi_tempat": "Pendopo Agung Kencana",
+  "resepsi_alamat": "Jl. Malioboro No. 10, Yogyakarta",
+  "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
+  "kutipan_sumber": "QS. Ar-Rum: 21",
+  "cerita": "2019|Tepangan|Kami dipertemukan di sebuah acara keluarga di Yogyakarta.\n2021|Tresna|Waktu dan jarak menumbuhkan rasa yang semakin kuat.\n2025|Lamaran|Keluarga Raka datang melamar Nadia dengan restu kedua orang tua.\n2027|Pawiwahan|Mengikat janji suci dalam balutan adat dan doa.",
+  "foto_sampul": "/demo-data/img-private/fr-3.jpg",
+  "foto_berdua": "/demo-data/img-private/fr-3.jpg",
+  "galeri": "/demo-data/img-private/fr-4.jpg, /demo-data/img-private/fr-2.jpg, /demo-data/img-private/fr-5.jpg, /demo-data/img-private/fr-1.jpg, /demo-data/img-private/fr-3.jpg",
+  "kredit_foto": "@studiofoto_gresik · FR Studio",
+  "musik": "/assets/music/srie-wedding.mp3",
+  "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
+  "alamat_kado": "Jl. Malioboro No. 10, Yogyakarta 55271",
+  "_ucapan": [
+    {
+      "nama": "Dimas",
+      "kehadiran": "Hadir",
+      "ucapan": "Sugeng nindakaken ibadah, mugi dados keluarga ingkang sakinah."
+    },
+    {
+      "nama": "Laras",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Selamat menempuh hidup baru, bahagia selalu."
+    },
+    {
+      "nama": "Om Bayu",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
+    }
+  ],
+  "pria_foto": "/demo-data/img-private/fr-pria.jpg",
+  "wanita_foto": "/demo-data/img-private/fr-wanita.jpg"
+}

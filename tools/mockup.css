@@ -63,3 +63,75 @@ small { display: block; font-family: var(--f-label); font-size: 17px; letter-spa
 .nt-pair figcaption b { color: #c0392b; }
 .nt-foot { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font-family: var(--f-label); font-size: 19px; letter-spacing: .06em; color: var(--teksRedup); }
 .nt-foot .brand { font-size: inherit; }
+
+/* ---------- layout: tampilan lengkap ---------- */
+.tp-head { position: absolute; left: 0; right: 0; top: 58px; text-align: center; }
+.tp-head h1 { font-family: var(--f-judul); font-weight: 600; font-size: 72px; line-height: 1; margin: 14px 0 12px; }
+.tp-head p { font-size: 23px; color: var(--teksRedup); }
+.tp-row { position: absolute; left: 0; right: 0; top: 262px; display: flex; justify-content: center; gap: 18px; }
+.tp-row figure { display: flex; flex-direction: column; align-items: center; gap: 18px; transform: translateY(var(--y)); }
+.tp-row figcaption { font-family: var(--f-label); font-size: 17px; letter-spacing: .14em; text-transform: uppercase; color: var(--aksen); }
+.tp-foot { position: absolute; left: 0; right: 0; bottom: 46px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.tp-foot span { font-family: var(--f-label); font-size: 16px; padding: 9px 15px; border-radius: 999px; border: 1.5px solid var(--aksen); }
+
+/* ---------- layout: cara order ---------- */
+.co-list { position: absolute; z-index: 2; left: 64px; top: 0; bottom: 0; width: 520px; display: flex; flex-direction: column; justify-content: center; }
+.co-list small { font-size: 15px; letter-spacing: .16em; }
+.co-list h1 { font-family: var(--f-judul); font-weight: 600; font-size: 92px; line-height: 1; margin: 16px 0 34px; }
+.co-list ol { list-style: none; padding: 0; display: grid; gap: 22px; }
+.co-list li { display: grid; grid-template-columns: 58px 1fr; gap: 18px; align-items: start; }
+.co-list li > b { width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: var(--aksen); color: var(--bg); font-family: var(--f-judul); font-size: 28px; }
+.co-list h3 { font-family: var(--f-judul); font-weight: 600; font-size: 29px; margin: 2px 0 4px; }
+.co-list p { font-size: 20px; line-height: 1.4; color: var(--teksRedup); }
+.co-list .brand { margin-top: 34px; }
+.co-phone { position: absolute; right: 40px; top: 96px; transform: rotate(4deg); }
+.co-badge { position: absolute; left: -64px; bottom: 90px; width: 150px; height: 150px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--aksen); color: var(--bg); font-family: var(--f-label); font-size: 17px; line-height: 1.2; transform: rotate(-10deg); box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+.co-badge b { font-family: var(--f-judul); font-size: 28px; }
+
+/* ---------- gabungan (bundel) ---------- */
+#stage[class*="l-koleksi"] { --kl-bg: #f4efe7; --kl-bg2: #fffaf2; --kl-ink: #1f1d1b; --kl-muted: #6e665d; --kl-gold: #b8925a;
+  color: var(--kl-ink); background: radial-gradient(120% 90% at 50% 15%, var(--kl-bg2), var(--kl-bg) 65%); }
+[class*="l-koleksi"] small { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: .24em; color: var(--kl-gold); }
+[class*="l-koleksi"] .brand { font-family: 'Inter', sans-serif; color: var(--kl-muted); }
+.is-koleksi-light .bg-grain { background-image: radial-gradient(rgba(0,0,0,.045) 1px, transparent 1px); }
+.kl-name { display: block; margin-top: 14px; text-align: center; font: 600 17px 'Inter', sans-serif; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+
+/* kipas */
+.kl-head { position: absolute; left: 0; right: 0; top: 56px; text-align: center; }
+.kl-head h1 { font: 800 84px/1 'Playfair Display', serif; margin: 14px 0 12px; }
+.kl-head p { font: 400 23px 'Inter', sans-serif; color: var(--kl-muted); }
+.kl-fan { position: absolute; left: 50%; top: 290px; width: 0; height: 0; }
+.kl-fan figure { position: absolute; left: -106px; top: 0; transform-origin: 50% 1150px; transform: rotate(var(--a)); }
+.kl-fan .kl-name { font-size: 14px; color: var(--kl-ink); }
+.kl-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 104px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 44px; background: var(--kl-ink); color: #fff; }
+.kl-bar .pills span { font: 500 16px 'Inter', sans-serif; border-color: var(--kl-gold); color: #fff; }
+.kl-bar .brand { color: rgba(255,255,255,.7); }
+
+/* grid gelap */
+#stage.l-koleksi-grid { --kl-bg: #141312; --kl-bg2: #2a2622; color: #f6f1e8; }
+.l-koleksi-grid .kl-name { color: #f6f1e8; font-size: 14px; }
+.kl-grid-head { position: absolute; left: 60px; right: 60px; top: 44px; display: flex; justify-content: space-between; align-items: center; }
+.kl-grid-head h1 { font: 800 66px/.98 'Playfair Display', serif; margin-top: 12px; color: #f6f1e8; }
+.kl-seal { width: 150px; height: 150px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--kl-gold); color: #141312; transform: rotate(8deg); }
+.kl-seal b { font: 800 58px/1 'Playfair Display', serif; }
+.kl-seal span { font: 600 14px/1.2 'Inter', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.kl-grid { position: absolute; left: 0; right: 0; top: 250px; display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 34px; padding: 0 200px; }
+.kl-grid figure { display: flex; flex-direction: column; align-items: center; }
+.kl-grid .ph { --bz: 8px; }
+.kl-grid-foot { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font: 500 18px 'Inter', sans-serif; letter-spacing: .06em; color: rgba(246,241,232,.65); }
+
+/* deret / cascade */
+.kl-cascade { position: absolute; inset: 0; }
+.kl-cascade figure { position: absolute; left: var(--x); top: var(--y); transform: rotate(-4deg); }
+.kl-cascade .kl-name { font-size: 15px; }
+.kl-deret-head { position: absolute; left: 60px; top: 56px; }
+.kl-deret-head h1 { font: 800 92px/.95 'Playfair Display', serif; margin: 14px 0 14px; }
+.kl-deret-head p { font: 500 26px 'Inter', sans-serif; color: var(--kl-muted); }
+.kl-deret-seal { position: absolute; right: 64px; top: 70px; width: 160px; height: 160px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--kl-ink); color: #fff; transform: rotate(10deg); box-shadow: 0 14px 30px rgba(0,0,0,.25); }
+.kl-deret-seal span { font: 600 15px 'Inter', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--kl-gold); }
+.kl-deret-seal b { font: italic 500 30px 'Playfair Display', serif; }
+.kl-deret-foot { position: absolute; right: 60px; bottom: 34px; }
+/* label nama hanya di grid; kipas & deret terlalu rapat */
+.kl-fan .kl-name, .kl-cascade .kl-name { display: none; }
+.kl-fan-names { position: absolute; left: 60px; right: 60px; bottom: 140px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font: 600 17px 'Inter', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--kl-muted); }
+.kl-fan-names span + span::before { content: '·'; margin-right: 22px; color: var(--kl-gold); }
