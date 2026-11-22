@@ -181,14 +181,25 @@
         ${ungChips('kl-ung--grid')}
         <footer class="kl-grid-foot">${LBL.map(esc).join(' · ')} ${brand ? '· ' + brand : ''}</footer>`,
       // sampul toko Shopee 1200×518: latar suasana (bagian atas & bawah tertutup UI Shopee)
+      // sampul toko Shopee 1200×518 — versi ramai: dinding layar semua tema + 3 ponsel + chip fitur + kilau emas
       'toko-sampul': () => {
-        const mid = (n - 1) / 2;
+        const shots = ['cover', 'hero', 'events', 'gallery', 'couple'];
+        const cols = Array.from({ length: 9 }, (_, c) => {
+          const items = Array.from({ length: 3 }, (_, r) => { const m = metas[(c * 3 + r) % n]; return screen(m, shots[(c + r * 2) % shots.length], .3); }).join('');
+          return `<div class="ts-col" style="--y:${[-120, 30, -60, 60, -100, 10, -40, 70, -20][c]}px">${items}</div>`;
+        }).join('');
+        const depan = [metas[3], metas[5], metas[1]].filter(Boolean);
+        const chip = (t, k, x, y, r) => `<span class="ts-chip" style="left:${x}px;top:${y}px;--r:${r}deg"><i>${ikonU(k)}</i>${esc(t)}</span>`;
+        const kilau = Array.from({ length: 34 }, (_, i) => { const x = (i * 137) % 1200, y = (i * 89) % 518, z = 3 + (i % 4) * 2; return `<i class="ts-spark" style="left:${x}px;top:${y}px;--z:${z}px;--d:${(i % 7) * .3}"></i>`; }).join('');
         return `
-        <div class="ts-bg"></div>
-        <div class="ts-fan">${metas.map((m, i) => { const a = (i - mid) * 8, z = 10 - Math.round(Math.abs(i - mid) * 2);
-          return `<figure style="--a:${a}deg;z-index:${z}">${screen(m, 'cover', .36, { phone: true })}</figure>`; }).join('')}</div>
-        <div class="ts-veil"></div>
-        <div class="ts-gold"></div>
+        <div class="ts-wall">${cols}</div>
+        <div class="ts-veil2"></div>
+        <div class="ts-front">${depan.map((m, i) => `<figure class="ts-f${i}">${screen(m, 'cover', .42, { phone: true })}</figure>`).join('')}</div>
+        ${kilau}
+        ${chip('Nama Tamu Otomatis', 'tamu', 40, 232, -3)}
+        ${chip('Bebas Revisi', 'revisi', 345, 240, 3)}
+        ${chip('Musik & Maps', 'musik', 975, 175, 4)}
+        ${chip('Proses Cepat', 'kilat', 975, 56, -3)}
         <div class="ts-line ts-line--t"></div><div class="ts-line ts-line--b"></div>`;
       },
       'koleksi-deret': () => `

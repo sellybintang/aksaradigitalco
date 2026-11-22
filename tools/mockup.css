@@ -226,3 +226,26 @@ small { display: block; font-family: var(--f-label); font-size: 17px; letter-spa
   linear-gradient(180deg, rgba(10,18,42,.6) 0%, rgba(10,18,42,.1) 30%, rgba(10,18,42,.15) 50%, rgba(10,18,42,.8) 100%); }
 .ts-mono { position: absolute; left: 70px; top: 50%; width: 300px; height: 300px; transform: translateY(-50%); opacity: .14; }
 .ts-veil::after { content: ''; position: absolute; inset: 0; background: radial-gradient(28% 45% at 87% 70%, rgba(10,18,42,.72), transparent 100%); }
+
+/* ---------- sampul toko v2 (ramai) ---------- */
+#stage.l-toko-sampul { background: #0e1730; }
+.ts-wall { position: absolute; left: 50%; top: 50%; display: flex; gap: 18px; transform: translate(-50%, -50%) rotate(-14deg) scale(1.05); }
+.ts-col { display: flex; flex-direction: column; gap: 18px; transform: translateY(var(--y)); }
+.ts-col .card .scr { border-radius: 14px; box-shadow: 0 10px 24px rgba(0,0,0,.5); }
+.ts-veil2 { position: absolute; inset: 0;
+  background: radial-gradient(60% 90% at 50% 50%, rgba(14,23,48,.35), rgba(14,23,48,.75) 100%),
+    linear-gradient(180deg, rgba(10,18,42,.55) 0%, rgba(10,18,42,.2) 35%, rgba(10,18,42,.35) 55%, rgba(10,18,42,.85) 100%); }
+.ts-front { position: absolute; inset: 0; }
+.ts-front figure { position: absolute; margin: 0; }
+.ts-front .ph { --bz: 8px; box-shadow: 0 30px 60px rgba(0,0,0,.65), 0 0 0 2px #4a4a4f, 0 0 40px rgba(229,201,139,.25); }
+.ts-f0 { left: 690px; top: 40px; transform: rotate(-9deg); z-index: 2; }
+.ts-f1 { left: 800px; top: 18px; transform: rotate(2deg); z-index: 3; }
+.ts-f2 { left: 905px; top: 52px; transform: rotate(11deg); z-index: 1; }
+.ts-chip { position: absolute; z-index: 5; display: flex; align-items: center; gap: 9px; padding: 6px 16px 6px 6px; border-radius: 999px; transform: rotate(var(--r));
+  font: 600 19px 'Inter', system-ui, sans-serif; color: #1d2b4f; background: linear-gradient(135deg, #f8ecc8, #e5c98b); box-shadow: 0 8px 22px rgba(0,0,0,.45), 0 0 0 2px rgba(255,255,255,.35); white-space: nowrap; }
+.ts-chip i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #1d2b4f; color: #e5c98b; }
+.ts-chip svg { width: 17px; height: 17px; }
+.ts-spark { position: absolute; z-index: 4; width: var(--z); height: var(--z); transform: translate(-50%, -50%) rotate(45deg); background: #f3dea0; opacity: calc(.35 + var(--d));
+  box-shadow: 0 0 10px 2px rgba(243,222,160,.7); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.ts-f0 { left: 560px; top: 42px; } .ts-f1 { left: 668px; top: 18px; } .ts-f2 { left: 772px; top: 50px; }
+.ts-veil2::after { content: ''; position: absolute; inset: 0; background: radial-gradient(22% 42% at 86% 74%, rgba(10,18,42,.85), transparent 100%), linear-gradient(180deg, transparent 72%, rgba(10,18,42,.55)); }
