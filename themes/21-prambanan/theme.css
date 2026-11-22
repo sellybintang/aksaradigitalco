@@ -490,3 +490,16 @@ body[data-theme="21-prambanan"] .u-empty { text-align: center; color: var(--mute
   background: url('/assets/prambanan/pilar-kiri.webp') left top / 10.5% auto repeat-y, url('/assets/prambanan/pilar-kanan.webp') right top / 10.5% auto repeat-y; }
 .nu-hero__top, .nu-hero__bottom { z-index: 1; }
 .nu-kayon--mini { filter: grayscale(1) sepia(1) saturate(1.5) brightness(.95) drop-shadow(0 2px 3px rgba(0,0,0,.25)); }
+/* opening: jaga proporsi gambar (seperti object-fit: cover), titik tengah gambar = garis belah */
+.has-opening .pr-panel__in, .has-opening .nu-panel--r .pr-panel__in { background: #1f3d2b; }
+.has-opening .nu-panel--r .pr-panel__in { background: #f6efdc; }
+.has-opening .pr-panel__in::before { content: ''; position: absolute; top: 0; height: 100%; aspect-ratio: 572 / 1024; min-width: 200%;
+  background: url('/assets/prambanan/opening.webp') center / cover no-repeat; }
+.has-opening .nu-panel--l .pr-panel__in::before { right: 0; transform: translateX(50%); }
+.has-opening .nu-panel--r .pr-panel__in::before { left: 0; transform: translateX(-50%); }
+.has-opening .nu-panel--l .pr-panel__in::before { left: auto; width: auto; border: 0; opacity: 1; }
+/* tahan segel ~1,2 dtk sebelum tersibak */
+.nu-cover .nu-panel--l.pr-panel { animation-delay: 1.2s; }
+.nu-cover .nu-panel--r.pr-panel { animation-delay: 1.2s; }
+.nu-cover.is-closing .pr-panel, .nu-cover.is-open .pr-panel { animation-delay: 0s; }
+.nu-cover.is-open .pr-panel { animation-delay: .1s; }
