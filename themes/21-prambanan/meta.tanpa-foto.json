@@ -1,0 +1,7 @@
+{
+  "nama": "Prambanan Tanpa Foto",
+  "tagline": "Hijau zamrud & emas, foto diganti ilustrasi pasangan beranimasi",
+  "demo": "demo-prambanan-tanpa-foto",
+  "fiturGaleri": "Ilustrasi pasangan beranimasi pengganti foto",
+  "layar": { "kolase": ["hero", "couple", "events", "story", "rsvp", "gift", "wishes", "hero"], "tampilan": [["hero", "Pembuka"], ["couple", "Mempelai"], ["events", "Acara"], ["story", "Kisah"]], "fitur": ["events", "hero", "couple"] }
+}
