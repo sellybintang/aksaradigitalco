@@ -16,3 +16,19 @@ ffmpeg -i src/Srie_Wedding_Invitation.mp3 -i src/Srie_Wedding_Invitation.mp3 -fi
 ```
 
 Simpan link sumber atau bukti lisensinya di sini kalau suatu saat ada klaim.
+
+## Musik video produk premium
+
+File-file ini tidak ada di repositori. Masing-masing tersimpan di folder `D:\undangan digital\premium\<n>\`. Menurut pemilik toko, semuanya bebas royalti (dikonfirmasi 22-11-2026).
+
+| Folder | Tema | File musik |
+|---|---|---|
+| 1 | Analog Story | Undangan_Digital_mp3.mp3 |
+| 2 | Boarding Pass | Wcc_Pasuruan_-_Sidoarjo_mp3.mp3 |
+| 3 | Cinema Premiere | atenaproject_mp3.mp3 |
+| 4 | Japandi | haaa_mp3.mp3 (isinya sama dengan folder 3) |
+| 5 | Café Menu | cipaa_mp3.mp3 |
+| 6 | Arabesque | WEDDING_CONTENTCREATOR_LAMPUNG_mp3.mp3 |
+| 7 | Celestial | Rona_Cinta_WCC_Bogor_mp3.mp3 |
+
+Musik dipasang ke `1.mp4` tanpa merekam ulang video. Lagu yang lebih pendek dari video disambung dengan transisi silang 2 detik. Volume diratakan dengan loudnorm I=-16, musik muncul pelan 1 detik di awal dan memudar 2,5 detik di akhir.
