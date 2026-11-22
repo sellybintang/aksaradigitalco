@@ -53,22 +53,36 @@
   };
   const ikon = (t) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${IKON[t] || '<path d="M5 12l4 4 10-10"/>'}</svg>`;
 
+  // ikon keunggulan (gambar utama)
+  const IKON_U = {
+    jam: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    revisi: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>',
+    bintang: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>',
+    kilat: '<path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/>',
+    tamu: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.5-5.5 6.5-5.5s5.7 2 6.5 5.5"/>',
+    musik: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+  };
+  const ikonU = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IKON_U[k] || IKON_U.bintang}</svg>`;
+
   /* ---------------- layout per tema ---------------- */
   const perTema = (meta) => ({
     utama: () => {
       const cols = [0, 1, 2, 3].map((c) => `<div class="col" style="--y:${[-150, 40, -70, 120][c]}px">${screen(meta, meta.layar.kolase[c * 2], .46)}${screen(meta, meta.layar.kolase[c * 2 + 1], .46)}</div>`).join('');
+      const UNG = KAT.keunggulan || [['jam', 'Aktif ' + KAT.aktif], ['revisi', KAT.revisi], ['kilat', 'Proses Cepat']];
+      const LBL = KAT.label || PILL;
+      const panjang = meta.nama.length > 11;
       return `
         <div class="bg-grain"></div>
-        <div class="collage">${cols}</div>
-        <div class="vignette"></div>
-        <header class="head">
+        <div class="u-kolase"><div class="collage">${cols}</div></div>
+        <section class="u-kiri">
           <small>Undangan Digital · Website</small>
-          <h1>${esc(meta.nama)}</h1>
-          <p>${esc(meta.tagline)}</p>
-        </header>
-        <div class="seal"><span>PREMIUM</span><b>EDITION</b></div>
-        ${screen(meta, meta.layar.utama, .74, { phone: true, cls: 'hero-phone' })}
-        <footer class="bar"><div class="pills">${PILL.map((p) => `<span>${esc(p)}</span>`).join('')}</div>${brand}</footer>`;
+          <h1 class="${panjang ? 'is-panjang' : ''}">${esc(meta.nama)}</h1>
+          <p class="u-tagline">${esc(meta.tagline)}</p>
+          <ul class="u-ung">${UNG.map(([k, t]) => `<li><i>${ikonU(k)}</i><span>${esc(t)}</span></li>`).join('')}</ul>
+        </section>
+        ${screen(meta, meta.layar.utama, .7, { phone: true, cls: 'u-phone' })}
+        <div class="u-seal"><span>PREMIUM</span><b>EDITION</b></div>
+        <footer class="bar u-bar"><div class="pills">${LBL.map((p) => `<span>${esc(p)}</span>`).join('')}</div>${brand}</footer>`;
     },
     fitur: () => `
       <div class="bg-grain"></div>

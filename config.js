@@ -14,6 +14,9 @@ window.UNDANGAN_CONFIG = {
     proses: '1×24 jam',   // lama pengerjaan maksimal, tampil di gambar "Cara Order"
     revisi: 'Revisi gratis maks. 3×',
     aktif: '1 tahun',     // masa aktif undangan
+    // gambar utama: 4 keunggulan (ikon: jam|revisi|bintang|kilat|tamu|musik) & label fitur di bawah
+    keunggulan: [['jam', 'Aktif 1 Tahun'], ['revisi', 'Revisi Gratis 3×'], ['bintang', 'Gratis Foto Animasi'], ['kilat', 'Proses Cepat']],
+    label: ['Unlimited Tamu', 'Nama Tamu Otomatis', 'RSVP & Ucapan', 'Amplop Digital', 'Musik & Maps'],
     // fasilitas / bonus (gambar katalog "Fasilitas" & deskripsi Shopee): [judul, keterangan]
     fasilitas: [
       ['Request Musik', 'Pakai lagu favorit kalian sendiri, tanpa biaya tambahan'],

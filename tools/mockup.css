@@ -149,3 +149,37 @@ small { display: block; font-family: var(--f-label); font-size: 17px; letter-spa
 .fs-card h3 { margin: 0 0 5px; font-family: var(--f-judul); font-weight: 600; font-size: 25px; line-height: 1.15; color: var(--teks); }
 .fs-card p { margin: 0; font-size: 17.5px; line-height: 1.35; color: var(--teksRedup); }
 .fs-foot { position: absolute; z-index: 2; left: 0; right: 0; bottom: 48px; text-align: center; }
+
+/* ---------- layout: utama v2 — panel kiri bersih, kolase hanya di kanan ---------- */
+.u-kolase { position: absolute; left: 400px; right: 0; top: 0; bottom: 104px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 150px); mask-image: linear-gradient(90deg, transparent 0, #000 150px); }
+.u-kolase .collage { left: 52%; top: 48%; }
+.u-kolase::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 55%, transparent), transparent 45%), radial-gradient(70% 60% at 55% 50%, transparent 40%, color-mix(in srgb, var(--bg) 55%, transparent)); }
+.u-kiri { position: absolute; z-index: 3; left: 64px; top: 76px; width: 430px; }
+.u-kiri small { font-size: 15px; letter-spacing: .18em; }
+.u-kiri h1 { font-family: var(--f-judul); font-weight: 600; font-size: 74px; line-height: .98; margin: 16px 0 14px; }
+.u-kiri h1.is-panjang { font-size: 60px; }
+.u-tagline { font-size: 21px; line-height: 1.45; color: var(--teksRedup); max-width: 380px; }
+.u-ung { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 14px; }
+.u-ung li { display: flex; align-items: center; gap: 18px; padding: 12px 22px 12px 12px; width: max-content; min-width: 300px; border-radius: 999px;
+  background: color-mix(in srgb, var(--kertas) 7%, var(--bg)); border: 1.5px solid color-mix(in srgb, var(--aksen) 55%, transparent); box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+.is-light .u-ung li { background: color-mix(in srgb, white 70%, var(--bg)); box-shadow: 0 10px 24px rgba(60,50,40,.12); }
+.u-ung i { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--aksen); color: var(--bg); }
+.u-ung svg { width: 26px; height: 26px; }
+.u-ung span { font-family: var(--f-label); font-size: 27px; font-weight: 500; color: var(--teks); }
+.u-phone { position: absolute; z-index: 2; left: 735px; top: 150px; transform: translateX(-50%) rotate(3deg); }
+.u-seal { position: absolute; z-index: 4; left: 860px; top: 92px; width: 132px; height: 132px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--aksen); color: var(--bg); transform: rotate(12deg);
+  box-shadow: 0 14px 30px rgba(0,0,0,.4), inset 0 0 0 5px var(--aksen), inset 0 0 0 7px rgba(0,0,0,.22); }
+.u-seal span { font-family: var(--f-label); font-size: 19px; font-weight: 600; letter-spacing: .14em; }
+.u-seal b { font-family: var(--f-judul); font-size: 20px; font-style: italic; font-weight: 500; }
+.u-bar .pills { gap: 9px; flex-wrap: nowrap; }
+.u-bar .pills span { font-size: 16px; padding: 9px 14px; }
+.u-kiri { top: 0; bottom: 104px; display: flex; flex-direction: column; justify-content: center; }
+.u-ung { gap: 18px; margin-top: 44px; }
+.u-ung li { width: 350px; min-width: 0; }
+.u-ung li { width: auto; min-width: 350px; }
+.u-ung span { white-space: nowrap; font-size: 26px; }
+.bar .brand, .u-bar .brand { white-space: nowrap; }
+.u-bar { padding: 0 36px; }
+.u-bar .pills { gap: 8px; min-width: 0; }
+.u-bar .pills span { font-size: 14.5px; padding: 8px 12px; letter-spacing: 0; }
