@@ -80,11 +80,16 @@ node tools/render-video.js 19-nusantara    # satu tema
 ```
 Hasil di `output/video/<tema>.mp4`. Butuh ffmpeg (`winget install Gyan.FFmpeg`).
 
-Siapkan folder produk Shopee per tema (`D:\undangan digital\foto1` … `foto7`):
+Siapkan folder produk Shopee per tema:
+- 7 tema premium: `D:\undangan digital\premium\1` … `7` (video `1.mp4` di folder yang sama)
+- tema baru: `D:\undangan digital\<kategori>\<warna>\df` (dengan foto) & `tf` (tanpa foto), video `1.mp4` / `2.mp4` di folder warna
 ```
-node tools/export-produk.js
+node tools/export-produk.js            # semua
+node tools/export-produk.js premium    # hanya premium
+node tools/export-produk.js jawa/biru  # hanya satu kategori/warna
 ```
-Mengisi `1.png`–`5.png` (urutan upload) + `deskripsi.txt` (judul & deskripsi siap tempel).
+Mengisi `1.png`–`6.png` (urutan upload) + `deskripsi.txt` (judul & deskripsi siap tempel) + video bila sudah dirender.
+Foto lama yang berbeda diarsipkan ke `lama/<tanggal-jam>/`.
 Pemetaan folder → tema ada di bagian atas `tools/export-produk.js`.
 Gambar diambil dari undangan demo asli, jadi selalu sama dengan tampilan terbaru.
 Warna, font, dan bagian yang ditampilkan diatur di `themes/<tema>/meta.json`.
