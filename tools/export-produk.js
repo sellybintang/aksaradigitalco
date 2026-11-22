@@ -8,6 +8,36 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const TUJUAN = path.resolve(ROOT, '..'); // D:\undangan digital
 const URUTAN = ['1-utama', '6-fasilitas', '4-tampilan', '2-nama-tamu', '3-fitur', '5-cara-order'];
+const { execFileSync } = require('child_process');
+let ff = null;
+const ffmpeg = () => (ff = ff || require('./ffmpeg-path')());
+const dur = (f) => {
+  let s = '';
+  try { execFileSync(ffmpeg(), ['-hide_banner', '-i', f], { stdio: ['ignore', 'pipe', 'pipe'] }); } catch (e) { s = String(e.stderr || ''); }
+  const m = s.match(/Duration: (\d+):(\d+):([\d.]+)/);
+  return m ? (+m[1]) * 3600 + (+m[2]) * 60 + parseFloat(m[3]) : 0;
+};
+
+// pasang musik ke video (gambar tidak dirender ulang): lagu pendek disambung dgn transisi 2 dtk,
+// volume diratakan, fade in 1 dtk & fade out 2,5 dtk
+function pasangMusik(video, musik, keluar) {
+  const vd = dur(video), md = dur(musik);
+  const n = Math.max(1, Math.ceil((vd + 1) / Math.max(1, md - 2)));
+  const ins = []; for (let i = 0; i < n; i++) ins.push('-i', musik);
+  let fc = '', prev = '[1:a]';
+  for (let k = 1; k < n; k++) { fc += `${prev}[${k + 1}:a]acrossfade=d=2:c1=tri:c2=tri[a${k}];`; prev = `[a${k}]`; }
+  fc += `${prev}loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=in:d=1,afade=t=out:st=${Math.max(0, vd - 2.5).toFixed(2)}:d=2.5[aud]`;
+  const tmp = keluar + '.tmp.mp4';
+  execFileSync(ffmpeg(), ['-v', 'error', '-y', '-i', video, ...ins, '-filter_complex', fc, '-map', '0:v', '-map', '[aud]',
+    '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', tmp]);
+  fs.renameSync(tmp, keluar);
+}
+// versi upload Shopee: 720×1280
+function versiShopee(video) {
+  const out = video.replace(/\.mp4$/, '-shopee.mp4');
+  execFileSync(ffmpeg(), ['-v', 'error', '-y', '-i', video, '-vf', 'scale=720:1280:flags=lanczos', '-c:v', 'libx264', '-preset', 'slow',
+    '-crf', '23', '-maxrate', '3M', '-bufsize', '6M', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out]);
+}
 
 // folder produk → tema
 const PRODUK = {
@@ -118,6 +148,14 @@ for (const [folder, tema] of Object.entries(PRODUK)) {
   // video produk (bila sudah dirender) ikut disalin
   const vid = path.join(ROOT, 'output', 'video', tema.replace('~', '-') + '.mp4');
   const vidDst = /(^|\/)(df|tf)$/.test(folder) ? path.join(path.dirname(dst), folder.endsWith('/tf') ? '2.mp4' : '1.mp4') : path.join(dst, '1.mp4');
-  if (fs.existsSync(vid)) fs.copyFileSync(vid, vidDst);
-  console.log(`✓ ${folder} ← ${meta.nama}: ${URUTAN.length} foto + deskripsi.txt${fs.existsSync(vid) ? ' + ' + path.basename(vidDst) : ''}`);
+  let infoVid = '';
+  if (fs.existsSync(vid)) {
+    // musik pilihan: file .mp3 di folder tempat video berada (mis. premium\1\lagu.mp3) dipasang otomatis
+    const mp3 = fs.readdirSync(path.dirname(vidDst)).find((f) => /\.mp3$/i.test(f));
+    if (mp3) { pasangMusik(vid, path.join(path.dirname(vidDst), mp3), vidDst); infoVid = ` + ${path.basename(vidDst)} (musik: ${mp3})`; }
+    else { fs.copyFileSync(vid, vidDst); infoVid = ` + ${path.basename(vidDst)}`; }
+    versiShopee(vidDst);   // 720×1280 untuk upload Shopee (maks. 1280 px)
+    infoVid += ` + ${path.basename(vidDst, '.mp4')}-shopee.mp4`;
+  }
+  console.log(`✓ ${folder} ← ${meta.nama}: ${URUTAN.length} foto + deskripsi.txt${infoVid}`);
 }
