@@ -144,6 +144,9 @@
   });
 
   /* ---------------- layout gabungan (bundel) ---------------- */
+  const UNG = KAT.keunggulan || [];
+  const LBL = KAT.label || PILL;
+  const ungChips = (cls) => `<ul class="kl-ung ${cls || ''}">${UNG.map(([k, t]) => `<li><i>${ikonU(k)}</i>${esc(t)}</li>`).join('')}</ul>`;
   const koleksi = (metas) => {
     const n = metas.length;
     const judul = `${n} Tema Premium`;
@@ -157,13 +160,14 @@
           <small>Undangan Digital · Website</small>
           <h1>${judul}</h1>
           <p>Pilih satu tema, nama tamu otomatis di setiap link.</p>
+          ${ungChips()}
         </header>
         <div class="kl-fan">${metas.map((m, i) => {
           const a = (i - mid) * 7, z = 10 - Math.round(Math.abs(i - mid) * 2);
           return `<figure style="--a:${a}deg;z-index:${z}">${screen(m, 'cover', .48, { phone: true })}${label(m)}</figure>`;
         }).join('')}</div>
         <div class="kl-fan-names">${metas.map((m) => `<span>${esc(m.nama)}</span>`).join('')}</div>
-        <footer class="kl-bar"><div class="pills">${PILL.map((p) => `<span>${esc(p)}</span>`).join('')}</div>${brand}</footer>`;
+        <footer class="kl-bar"><div class="pills">${LBL.map((p) => `<span>${esc(p)}</span>`).join('')}</div>${brand}</footer>`;
       },
       'koleksi-grid': () => `
         <div class="bg-grain"></div>
@@ -174,7 +178,8 @@
         <div class="kl-grid">${metas.map((m, i) => `
           <figure class="${i >= 4 ? 'kl-r2' : ''}">${screen(m, 'cover', .3, { phone: true })}${label(m)}</figure>`).join('')}
         </div>
-        <footer class="kl-grid-foot">Nama tamu otomatis · RSVP · Amplop digital · Galeri · Musik ${brand ? '· ' + brand : ''}</footer>`,
+        ${ungChips('kl-ung--grid')}
+        <footer class="kl-grid-foot">${LBL.map(esc).join(' · ')} ${brand ? '· ' + brand : ''}</footer>`,
       'koleksi-deret': () => `
         <div class="bg-grain"></div>
         <div class="kl-cascade">${metas.map((m, i) => `
@@ -184,9 +189,10 @@
           <small>Undangan Digital · Website</small>
           <h1>Undangan<br>Premium</h1>
           <p>${n} pilihan tema eksklusif</p>
+          ${ungChips('kl-ung--kolom')}
         </header>
         <div class="kl-deret-seal"><span>Nama Tamu</span><b>Otomatis</b></div>
-        <footer class="kl-deret-foot">${brand}</footer>`,
+        <footer class="kl-deret-foot"><span class="kl-deret-lbl">${LBL.map(esc).join(' · ')}</span>${brand}</footer>`,
     };
   };
 

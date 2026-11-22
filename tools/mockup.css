@@ -183,3 +183,23 @@ small { display: block; font-family: var(--f-label); font-size: 17px; letter-spa
 .u-bar { padding: 0 36px; }
 .u-bar .pills { gap: 8px; min-width: 0; }
 .u-bar .pills span { font-size: 14.5px; padding: 8px 12px; letter-spacing: 0; }
+
+/* ---------- bundel: chip keunggulan & label baru ---------- */
+.kl-ung { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.kl-ung li { display: flex; align-items: center; gap: 9px; padding: 7px 16px 7px 7px; border-radius: 999px; font: 600 18px 'Inter', sans-serif; color: var(--kl-ink);
+  background: #fff; border: 1.5px solid color-mix(in srgb, var(--kl-gold) 60%, transparent); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+.kl-ung i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--kl-gold); color: #fff; }
+.kl-ung svg { width: 17px; height: 17px; }
+.kl-head + .kl-fan, .kl-fan { top: 330px; }
+.kl-ung--grid { position: absolute; left: 60px; right: 60px; bottom: 82px; }
+.kl-ung--grid li { background: rgba(255,255,255,.08); color: #f6f1e8; border-color: rgba(201,161,74,.6); box-shadow: none; }
+.kl-grid-foot { font-size: 16px; }
+.kl-ung--kolom { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 26px; }
+.kl-deret-foot { left: 60px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.kl-deret-lbl { font: 600 15px 'Inter', sans-serif; letter-spacing: .04em; color: var(--kl-muted); }
+.kl-bar .pills { flex-wrap: nowrap; gap: 8px; }
+.kl-bar .pills span { font-size: 15px; padding: 8px 12px; letter-spacing: 0; }
+.kl-bar .brand { white-space: nowrap; }
+.kl-ung--kolom { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 9px; margin-top: 22px; }
+.kl-ung--kolom li { font-size: 16px; padding: 6px 14px 6px 6px; }
+.kl-ung--kolom i { width: 28px; height: 28px; }
