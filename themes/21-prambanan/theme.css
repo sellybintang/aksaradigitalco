@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,700&family=Jost:wght@400;500&family=Pinyon+Script&display=swap');
 
 /* ===== Tema 19 — Nusantara · Royal Navy & Antique Gold ===== */
 :root {
@@ -503,3 +503,25 @@ body[data-theme="21-prambanan"] .u-empty { text-align: center; color: var(--mute
 .nu-cover .nu-panel--r.pr-panel { animation-delay: 1.2s; }
 .nu-cover.is-closing .pr-panel, .nu-cover.is-open .pr-panel { animation-delay: 0s; }
 .nu-cover.is-open .pr-panel { animation-delay: .1s; }
+
+/* ===== tipografi sampul ala contoh: nama kapital dekoratif + "&" & judul sambung ===== */
+.nu-cover__text { top: 25%; }
+.nu-cover__sub { position: relative; display: inline-flex; align-items: center; gap: 2.2cqw; font: 400 6.4cqw/1.1 var(--script) !important; font-style: normal !important; color: var(--navy-t) !important; }
+.nu-cover__sub::before, .nu-cover__sub::after { content: ''; width: 9cqw; height: 1.4cqw;
+  background: radial-gradient(circle at 50% 50%, var(--gold-d) 0 .45cqw, transparent .5cqw) center / 1.4cqw 1.4cqw no-repeat, linear-gradient(var(--gold-d), var(--gold-d)) center / 100% 1px no-repeat; }
+.nu-cover__names { margin-top: 1cqw; font: 900 12.6cqw/.98 var(--deco) !important; letter-spacing: .01em; color: #163223 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.6), 0 2px 6px rgba(22,50,35,.18); text-transform: uppercase; }
+.nu-cover__names em { font: 400 10cqw/.8 var(--script) !important; color: #b8954c !important; margin: -1cqw 0 -.6cqw !important; text-transform: none; }
+.nu-cover__date { margin-top: 2.4cqw; }
+.nu-cover__guest { margin: 1.8cqw 0 2.4cqw; }
+.nu-cover__note { display: none; }
+/* hero & penutup memakai gaya nama yang sama */
+.nu-hero h1 { font: 900 11cqw/.98 var(--deco); color: #163223; text-transform: uppercase; letter-spacing: .01em; }
+.nu-hero h1 span { font: 400 .8em/.8 var(--script); color: #b8954c; text-transform: none; margin: -.5cqw 0; }
+.nu-footer__text h2 { font: 900 9cqw/.98 var(--deco); color: #163223; text-transform: uppercase; }
+.nu-footer__text h2 em { font: 400 .85em/.8 var(--script); color: #b8954c; text-transform: none; }
+.nu-cover__names { font-size: 14cqw !important; }
+.nu-cover__names em { font-size: 15cqw !important; line-height: .7 !important; margin: -.5cqw 0 -1.5cqw !important; }
+.nu-hero h1 span { font-size: 1.1em; }
+.nu-cover__names em { font: italic 700 12cqw/.8 var(--serif) !important; margin: .4cqw 0 -.4cqw !important; }
+.nu-hero h1 span, .nu-footer__text h2 em { font-family: var(--serif); font-style: italic; font-weight: 700; }
