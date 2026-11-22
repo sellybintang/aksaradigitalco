@@ -1,6 +1,6 @@
 // Menyalin foto produk (hasil render-mockups) ke folder produk Shopee per tema,
 // dengan nama 1.png, 2.png, ... dan membuat deskripsi.txt (judul + deskripsi siap tempel).
-// Jalankan setelah render:  node tools/export-produk.js   (atau: node tools/export-produk.js foto8)
+// Jalankan setelah render:  node tools/export-produk.js   (atau: node tools/export-produk.js premium / jawa/biru)
 // File 1.png dst. yang sudah ada dipindah dulu ke subfolder "lama" (tidak dihapus).
 const fs = require('fs');
 const path = require('path');
@@ -11,13 +11,13 @@ const URUTAN = ['1-utama', '6-fasilitas', '4-tampilan', '2-nama-tamu', '3-fitur'
 
 // folder produk → tema
 const PRODUK = {
-  foto1: '03-analog-story',
-  foto2: '01-boarding-pass',
-  foto3: '08-cinema-premiere',
-  foto4: '13-japandi',
-  foto5: '15-cafe-menu',
-  foto6: '18-arabesque',
-  foto7: '09-celestial',
+  'premium/1': '03-analog-story',
+  'premium/2': '01-boarding-pass',
+  'premium/3': '08-cinema-premiere',
+  'premium/4': '13-japandi',
+  'premium/5': '15-cafe-menu',
+  'premium/6': '18-arabesque',
+  'premium/7': '09-celestial',
   // format baru: <kategori>/<warna>/df (dengan foto) & /tf (tanpa foto); video di folder warna: 1.mp4 = df, 2.mp4 = tf
   'jawa/biru/df': '19-nusantara',
   'jawa/biru/tf': '19-nusantara~tanpa-foto',
@@ -99,10 +99,13 @@ for (const [folder, tema] of Object.entries(PRODUK)) {
   if (!fs.existsSync(src)) { console.log(`⚠ ${tema}: belum dirender, jalankan render-mockups.js dulu`); continue; }
   fs.mkdirSync(dst, { recursive: true });
 
-  // pindahkan nomor lama ke subfolder "lama"
-  const lama = fs.readdirSync(dst).filter((f) => /^\d+\.png$/.test(f));
+  // arsipkan foto lama yang BERBEDA dari versi baru ke lama/<tanggal-jam>/ (tidak pernah menimpa arsip)
+  const baru = new Map(URUTAN.map((nama, i) => [`${i + 1}.png`, path.join(src, nama + '.png')]));
+  const sama = (a, b) => fs.existsSync(b) && fs.readFileSync(a).equals(fs.readFileSync(b));
+  const lama = fs.readdirSync(dst).filter((f) => /^\d+\.png$/.test(f) && !(baru.has(f) && sama(path.join(dst, f), baru.get(f))));
   if (lama.length) {
-    const arsip = path.join(dst, 'lama');
+    const cap = new Date().toISOString().slice(0, 16).replace(/[-:T]/g, '').replace(/^(\d{8})/, '$1-');
+    const arsip = path.join(dst, 'lama', cap);
     fs.mkdirSync(arsip, { recursive: true });
     lama.forEach((f) => fs.renameSync(path.join(dst, f), path.join(arsip, f)));
   }
@@ -114,7 +117,7 @@ for (const [folder, tema] of Object.entries(PRODUK)) {
   fs.writeFileSync(path.join(dst, 'deskripsi.txt'), deskripsi(meta, tema, kat), 'utf8');
   // video produk (bila sudah dirender) ikut disalin
   const vid = path.join(ROOT, 'output', 'video', tema.replace('~', '-') + '.mp4');
-  const vidDst = /(^|\/)(df|tf)$/.test(folder) ? path.join(path.dirname(dst), folder.endsWith('/tf') ? '2.mp4' : '1.mp4') : path.join(dst, 'video.mp4');
+  const vidDst = /(^|\/)(df|tf)$/.test(folder) ? path.join(path.dirname(dst), folder.endsWith('/tf') ? '2.mp4' : '1.mp4') : path.join(dst, '1.mp4');
   if (fs.existsSync(vid)) fs.copyFileSync(vid, vidDst);
   console.log(`✓ ${folder} ← ${meta.nama}: ${URUTAN.length} foto + deskripsi.txt${fs.existsSync(vid) ? ' + ' + path.basename(vidDst) : ''}`);
 }
