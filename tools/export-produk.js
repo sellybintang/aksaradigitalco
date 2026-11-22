@@ -74,7 +74,7 @@ FITUR LENGKAP
 
 PROSES & KETENTUAN
 - Pengerjaan maksimal ${kat.proses} setelah data lengkap
-- ${kat.revisi} untuk perubahan data / teks
+- ${kat.revisi} untuk perubahan data / teks sampai cocok
 - Masa aktif undangan ${kat.aktif}
 
 CARA ORDER
