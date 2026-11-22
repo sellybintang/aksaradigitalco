@@ -15,7 +15,7 @@ window.UNDANGAN_CONFIG = {
     revisi: 'Revisi gratis maks. 3×',
     aktif: '1 tahun',     // masa aktif undangan
     // gambar utama: 4 keunggulan (ikon: jam|revisi|bintang|kilat|tamu|musik) & label fitur di bawah
-    keunggulan: [['jam', 'Aktif 1 Tahun'], ['revisi', 'Revisi Gratis 3×'], ['bintang', 'Gratis Foto Animasi'], ['kilat', 'Proses Cepat']],
+    keunggulan: [['jam', 'Aktif 1 Tahun'], ['revisi', 'Bebas Revisi'], ['bintang', 'Gratis Foto Animasi'], ['kilat', 'Proses Cepat']],
     label: ['Unlimited Tamu', 'Nama Tamu Otomatis', 'RSVP & Ucapan', 'Amplop Digital', 'Musik & Maps'],
     // fasilitas / bonus (gambar katalog "Fasilitas" & deskripsi Shopee): [judul, keterangan]
     fasilitas: [
