@@ -203,3 +203,26 @@ small { display: block; font-family: var(--f-label); font-size: 17px; letter-spa
 .kl-ung--kolom { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 9px; margin-top: 22px; }
 .kl-ung--kolom li { font-size: 16px; padding: 6px 14px 6px 6px; }
 .kl-ung--kolom i { width: 28px; height: 28px; }
+
+/* ---------- sampul toko Shopee 1200×518 ---------- */
+#stage.l-toko-sampul { width: 1200px; height: 518px; color: #fff;
+  background: radial-gradient(70% 120% at 78% 45%, #2d3f6b 0%, #18254a 45%, #0c1430 100%); }
+.ts-bg { position: absolute; inset: 0; opacity: .5;
+  background: radial-gradient(circle, rgba(220,190,120,.35) 1px, transparent 1.6px) 0 0 / 22px 22px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Cg fill='none' stroke='%23c9a14a' stroke-width='1' opacity='.35'%3E%3Cellipse cx='44' cy='22' rx='10' ry='16'/%3E%3Cellipse cx='44' cy='66' rx='10' ry='16'/%3E%3Cellipse cx='22' cy='44' rx='16' ry='10'/%3E%3Cellipse cx='66' cy='44' rx='16' ry='10'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 88px 88px;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.4) 50%, transparent 75%); mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.4) 50%, transparent 75%); }
+.ts-fan { position: absolute; left: 860px; top: 70px; width: 0; height: 0; }
+.ts-fan figure { position: absolute; left: -76px; top: 0; transform-origin: 50% 900px; transform: rotate(var(--a)); margin: 0; }
+.ts-fan .ph { --bz: 7px; }
+.ts-veil { position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,18,42,.92) 0%, rgba(10,18,42,.55) 40%, rgba(10,18,42,.18) 70%, rgba(10,18,42,.35) 100%),
+    linear-gradient(180deg, rgba(10,18,42,.55) 0%, transparent 30%, transparent 55%, rgba(10,18,42,.75) 100%); }
+.ts-gold { position: absolute; left: 860px; top: 200px; width: 700px; height: 420px; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(230,196,120,.28), transparent); mix-blend-mode: screen; }
+.ts-line { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #c9a14a 30%, #ecd394 50%, #c9a14a 70%, transparent); opacity: .7; }
+.ts-line--t { top: 8px; } .ts-line--b { bottom: 8px; }
+.ts-fan { opacity: .78; filter: saturate(.85); }
+.ts-veil { background: linear-gradient(90deg, rgba(10,18,42,.92) 0%, rgba(10,18,42,.55) 40%, rgba(10,18,42,.25) 70%, rgba(10,18,42,.4) 100%),
+  linear-gradient(180deg, rgba(10,18,42,.6) 0%, rgba(10,18,42,.1) 30%, rgba(10,18,42,.15) 50%, rgba(10,18,42,.8) 100%); }
+.ts-mono { position: absolute; left: 70px; top: 50%; width: 300px; height: 300px; transform: translateY(-50%); opacity: .14; }
+.ts-veil::after { content: ''; position: absolute; inset: 0; background: radial-gradient(28% 45% at 87% 70%, rgba(10,18,42,.72), transparent 100%); }

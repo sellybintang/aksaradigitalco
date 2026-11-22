@@ -39,6 +39,7 @@ const temaJobs = (list) => list.forEach((t) => LAYOUTS.forEach((l, i) => jobs.pu
 const koleksiJobs = () => KOLEKSI.forEach((l, i) => jobs.push({ dir: '_koleksi', file: `${i + 1}-${l.replace('koleksi-', '')}.png`, url: `layout=${l}` }));
 if (!arg) { temaJobs(semua); koleksiJobs(); }
 else if (arg === 'koleksi') koleksiJobs();
+else if (arg === 'toko') jobs.push({ dir: '_toko', file: 'sampul-toko-1200x518.png', url: 'layout=toko-sampul', w: 1200, h: 518 });
 else if (arg === 'pilihan') { temaJobs(pilihan); koleksiJobs(); }
 else temaJobs([arg]);
 
@@ -71,14 +72,15 @@ async function cdpConnect() {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'undangan-render-'));
   const chrome = spawn(browserPath, [
     '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--mute-audio',
-    `--remote-debugging-port=${DEBUG_PORT}`, `--user-data-dir=${profile}`, '--window-size=1080,1080', 'about:blank',
+    `--remote-debugging-port=${DEBUG_PORT}`, `--user-data-dir=${profile}`, '--window-size=1200,1080', 'about:blank',
   ], { stdio: 'ignore' });
 
   try {
     await sleep(600);
     const cdp = await cdpConnect();
-    await cdp.send('Emulation.setDeviceMetricsOverride', { width: 1080, height: 1080, deviceScaleFactor: 1, mobile: false });
     for (const job of jobs) {
+      const W = job.w || 1080, H = job.h || 1080;
+      await cdp.send('Emulation.setDeviceMetricsOverride', { width: W, height: Math.max(H, 600), deviceScaleFactor: 1, mobile: false });
       const outDir = path.join(ROOT, 'output', 'katalog', job.dir);
       fs.mkdirSync(outDir, { recursive: true });
       await cdp.send('Page.navigate', { url: `http://localhost:${PORT}/tools/mockup.html?${job.url}` });
@@ -89,7 +91,7 @@ async function cdpConnect() {
         const r = await cdp.send('Runtime.evaluate', { expression: 'document.body && document.body.dataset.ready === "1"', returnByValue: true }).catch(() => null);
         ready = !!(r && r.result && r.result.value);
       }
-      const shot = await cdp.send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width: 1080, height: 1080, scale: 1 } });
+      const shot = await cdp.send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width: W, height: H, scale: 1 } });
       const file = path.join(outDir, job.file);
       fs.writeFileSync(file, Buffer.from(shot.data, 'base64'));
       console.log(ready ? '✓' : '⚠ (waktu habis, cek hasilnya)', path.relative(ROOT, file));

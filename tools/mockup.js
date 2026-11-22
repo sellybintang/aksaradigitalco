@@ -180,6 +180,17 @@
         </div>
         ${ungChips('kl-ung--grid')}
         <footer class="kl-grid-foot">${LBL.map(esc).join(' · ')} ${brand ? '· ' + brand : ''}</footer>`,
+      // sampul toko Shopee 1200×518: latar suasana (bagian atas & bawah tertutup UI Shopee)
+      'toko-sampul': () => {
+        const mid = (n - 1) / 2;
+        return `
+        <div class="ts-bg"></div>
+        <div class="ts-fan">${metas.map((m, i) => { const a = (i - mid) * 8, z = 10 - Math.round(Math.abs(i - mid) * 2);
+          return `<figure style="--a:${a}deg;z-index:${z}">${screen(m, 'cover', .36, { phone: true })}</figure>`; }).join('')}</div>
+        <div class="ts-veil"></div>
+        <div class="ts-gold"></div>
+        <div class="ts-line ts-line--t"></div><div class="ts-line ts-line--b"></div>`;
+      },
       'koleksi-deret': () => `
         <div class="bg-grain"></div>
         <div class="kl-cascade">${metas.map((m, i) => `
@@ -198,11 +209,12 @@
 
   /* ---------------- jalankan ---------------- */
   let html;
-  if (layout.startsWith('koleksi')) {
+  if (layout.startsWith('koleksi') || layout === 'toko-sampul') {
     const list = (qs.get('themes') ? qs.get('themes').split(',') : KAT.koleksi).map((t) => t.replace(/[^a-z0-9-]/gi, ''));
     const metas = await Promise.all(list.map(getMeta));
     loadFont('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Inter:wght@400;500;600&display=swap');
     stage.className = 'l-' + layout + (layout === 'koleksi-grid' ? '' : ' is-koleksi-light');
+    if (layout === 'toko-sampul') { document.body.style.width = '1200px'; document.body.style.height = '518px'; }
     const L = koleksi(metas);
     html = (L[layout] || L['koleksi-kipas'])();
   } else {
