@@ -14,7 +14,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const PORT = 5199;
 const DEBUG_PORT = 9333;
-const LAYOUTS = ['utama', 'nama-tamu', 'fitur', 'tampilan', 'cara-order'];
+const LAYOUTS = ['utama', 'nama-tamu', 'fitur', 'tampilan', 'cara-order', 'fasilitas'];
 const KOLEKSI = ['koleksi-kipas', 'koleksi-grid', 'koleksi-deret'];
 const BROWSERS = [
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -35,7 +35,7 @@ const semua = fs.readdirSync(path.join(ROOT, 'themes')).filter((t) => fs.existsS
 
 const arg = process.argv[2];
 const jobs = [];
-const temaJobs = (list) => list.forEach((t) => LAYOUTS.forEach((l, i) => jobs.push({ dir: t, file: `${i + 1}-${l}.png`, url: `theme=${t}&layout=${l}` })));
+const temaJobs = (list) => list.forEach((t) => LAYOUTS.forEach((l, i) => jobs.push({ dir: t.replace('~', '-'), file: `${i + 1}-${l}.png`, url: `theme=${encodeURIComponent(t)}&layout=${l}` })));
 const koleksiJobs = () => KOLEKSI.forEach((l, i) => jobs.push({ dir: '_koleksi', file: `${i + 1}-${l.replace('koleksi-', '')}.png`, url: `layout=${l}` }));
 if (!arg) { temaJobs(semua); koleksiJobs(); }
 else if (arg === 'koleksi') koleksiJobs();

@@ -79,6 +79,7 @@
       photoCredit: r.kredit_foto || '',
       quote: r.kutipan || '', quoteSource: r.kutipan_sumber || '',
       showStats: String(r.tampilkan_jumlah_tamu || '').toLowerCase() === 'ya',
+      noPhoto: String(r.tanpa_foto || '').toLowerCase() === 'ya',   // versi tanpa foto (ilustrasi)
     };
   }
 

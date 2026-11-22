@@ -91,6 +91,14 @@
       const stamp = dt ? `${pad(dt.getDate())} . ${pad(dt.getMonth() + 1)} . ${dt.getFullYear()}` : '';
       const guest = h.guest || 'Tamu Undangan';
       const ini = h.initials(g.nick, b.nick);
+      // versi tanpa foto: diminta lewat kolom tanpa_foto, atau otomatis bila tidak ada foto sama sekali
+      const ilus = d.noPhoto || (!d.couplephoto && !d.cover && !g.photo && !b.photo);
+      const wy = (k) => `<img class="nu-wy nu-wy--${k}" src="${ASSET}${k === 'pria' ? 'pria' : 'wanita'}.webp" alt="" aria-hidden="true">`;
+      const panggung = () => `<div class="nu-frame nu-frame--hero nu-frame--ilus">${corners}<div class="nu-frame__in nu-ilus">
+        <i class="nu-ilus__glow"></i>${gunungan('nu-ilus__kayon')}<img class="nu-pasangan" src="${ASSET}pasangan.webp" alt="Ilustrasi ${h.esc(g.nick)} & ${h.esc(b.nick)}"><i class="nu-ilus__lantai"></i></div></div>`;
+      const oval = (p, k) => (ilus || !p.photo)
+        ? `<div class="nu-oval nu-oval--${k === 'pria' ? 'l' : 'r'} nu-oval--ilus"><img class="nu-potret" src="${ASSET}pasangan-${k}.webp" alt=""></div>`
+        : `<div class="nu-oval nu-oval--${k === 'pria' ? 'l' : 'r'}">${h.img(p.photo, p.name, '', h.initials(p.nick))}</div>`;
       tears = 0;
 
       const person = (p, role) => `
@@ -144,7 +152,7 @@
 <main id="main">
   <section class="nu-hero" data-shot="hero">
     <div class="nu-hero__top">${strip('top')}</div>
-    <div class="nu-hero__arch" data-reveal>${frame(h, d.couplephoto || d.cover, `${g.nick} & ${b.nick}`, 'nu-frame--hero', ini)}</div>
+    <div class="nu-hero__arch" data-reveal>${ilus ? panggung() : frame(h, d.couplephoto || d.cover, `${g.nick} & ${b.nick}`, 'nu-frame--hero', ini)}</div>
     <p class="nu-hero__kicker" data-reveal>Pawiwahan Ageng</p>
     <h1 data-reveal>${h.esc(g.nick)}<span>&amp;</span>${h.esc(b.nick)}</h1>
     ${ornament()}
@@ -156,8 +164,8 @@
   <section class="nu-page nu-page--mempelai" data-shot="couple">
     <img class="nu-page__art" src="${PAGE}page-1-mempelai.webp" alt="" aria-hidden="true">
     <div class="nu-page__fx" aria-hidden="true">${butterflies()}</div>
-    <div class="nu-oval nu-oval--l">${h.img(g.photo, g.name, '', h.initials(g.nick))}</div>
-    <div class="nu-oval nu-oval--r">${h.img(b.photo, b.name, '', h.initials(b.nick))}</div>
+    ${oval(g, 'pria')}
+    ${oval(b, 'wanita')}
     <div class="nu-who nu-who--l" data-reveal>${who(g, 'pria')}</div>
     <div class="nu-who nu-who--r" data-reveal>${who(b, 'wanita')}</div>
     ${d.quote ? `<blockquote class="nu-page__quote" data-reveal><p>${h.esc(d.quote)}</p>${d.quoteSource ? `<cite>${h.esc(d.quoteSource)}</cite>` : ''}</blockquote>` : ''}
@@ -180,7 +188,7 @@
     </article>`).join('')}
   </section>
 
-  ${d.gallery.length ? `
+  ${d.gallery.length && !d.noPhoto ? `
   <!-- Halaman 3 · Galeri (terang, tiga bingkai) -->
   <section class="nu-page nu-page--galeri" data-shot="gallery">
     <img class="nu-page__art" src="${PAGE}page-3-galeri.webp" alt="" aria-hidden="true">

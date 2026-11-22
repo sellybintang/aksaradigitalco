@@ -4,6 +4,6 @@
   "demo": "demo-nusantara",
   "warna": { "bg": "#121c36", "bg2": "#2d3f6b", "kertas": "#f8f2e2", "aksen": "#b08d4a", "teks": "#f8f2e2", "teksRedup": "rgba(248,242,226,.75)" },
   "font": { "judul": "'Cinzel', Georgia, serif", "label": "'Jost', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Jost:wght@400;500&display=swap" },
-  "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] },
+  "layar": { "utama": "cover", "kolase": ["hero", "couple", "events", "gallery", "story", "rsvp", "gift", "wishes"], "tampilan": [["hero", "Pembuka"], ["couple", "Mempelai"], ["events", "Acara"], ["gallery", "Galeri"]], "fitur": ["events", "hero", "couple"] },
   "video": { "sampul": 6800 }
 }

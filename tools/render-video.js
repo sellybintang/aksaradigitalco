@@ -91,7 +91,9 @@ const SCROLL_FN = `window.__scrollTo = (sel, ms) => new Promise((done) => {
 });`;
 
 async function record(cdp, theme, outFile) {
-  const meta = JSON.parse(fs.readFileSync(path.join(ROOT, 'themes', theme, 'meta.json'), 'utf8'));
+  const [id, varian] = theme.split('~');
+  const meta = Object.assign(JSON.parse(fs.readFileSync(path.join(ROOT, 'themes', id, 'meta.json'), 'utf8')),
+    varian ? JSON.parse(fs.readFileSync(path.join(ROOT, 'themes', id, `meta.${varian}.json`), 'utf8')) : {});
   const frameDir = fs.mkdtempSync(path.join(os.tmpdir(), 'undangan-frames-'));
   const frames = [];
   cdp.on('Page.screencastFrame', async (p) => {
@@ -101,7 +103,7 @@ async function record(cdp, theme, outFile) {
     cdp.send('Page.screencastFrameAck', { sessionId: p.sessionId }).catch(() => {});
   });
 
-  await cdp.send('Page.navigate', { url: `http://localhost:${PORT}/${meta.demo}?theme=${theme}&to=${encodeURIComponent('Budi Santoso')}` });
+  await cdp.send('Page.navigate', { url: `http://localhost:${PORT}/${meta.demo}?theme=${id}&to=${encodeURIComponent('Budi Santoso')}` });
   // tunggu halaman & gambar siap
   for (let i = 0; i < 60; i++) {
     await sleep(300);
@@ -164,7 +166,7 @@ async function record(cdp, theme, outFile) {
     const outDir = path.join(ROOT, 'output', 'video');
     fs.mkdirSync(outDir, { recursive: true });
     for (const theme of themes) {
-      const out = path.join(outDir, `${theme}.mp4`);
+      const out = path.join(outDir, `${theme.replace('~', '-')}.mp4`);
       const info = await record(cdp, theme, out);
       console.log(`✓ ${path.relative(ROOT, out)}  (${info.seconds} dtk, ${info.frames} frame, ${info.mb} MB, ${info.musik})`);
     }

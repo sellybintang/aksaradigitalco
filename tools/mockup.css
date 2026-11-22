@@ -135,3 +135,17 @@ small { display: block; font-family: var(--f-label); font-size: 17px; letter-spa
 .kl-fan .kl-name, .kl-cascade .kl-name { display: none; }
 .kl-fan-names { position: absolute; left: 60px; right: 60px; bottom: 140px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font: 600 17px 'Inter', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--kl-muted); }
 .kl-fan-names span + span::before { content: '·'; margin-right: 22px; color: var(--kl-gold); }
+
+/* ---------- layout: fasilitas & bonus ---------- */
+.fs-head { position: absolute; z-index: 2; left: 0; right: 0; top: 62px; text-align: center; }
+.fs-head small { font-size: 15px; letter-spacing: .16em; }
+.fs-head h1 { margin: 14px 0 10px; font-family: var(--f-judul); font-weight: 600; font-size: 76px; line-height: 1; }
+.fs-head p { margin: 0; font-size: 24px; color: var(--teksRedup); }
+.fs-grid { position: absolute; z-index: 2; left: 60px; right: 60px; top: 300px; bottom: 120px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+.fs-card { display: flex; gap: 20px; align-items: center; padding: 18px 24px; border-radius: 22px; background: color-mix(in srgb, var(--kertas) 9%, transparent); border: 1.5px solid color-mix(in srgb, var(--aksen) 45%, transparent); }
+.is-light .fs-card { background: color-mix(in srgb, var(--bg2) 10%, white); }
+.fs-card i { flex: none; width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center; background: var(--aksen); color: var(--bg); }
+.fs-card i svg { width: 36px; height: 36px; }
+.fs-card h3 { margin: 0 0 5px; font-family: var(--f-judul); font-weight: 600; font-size: 25px; line-height: 1.15; color: var(--teks); }
+.fs-card p { margin: 0; font-size: 17.5px; line-height: 1.35; color: var(--teksRedup); }
+.fs-foot { position: absolute; z-index: 2; left: 0; right: 0; bottom: 48px; text-align: center; }

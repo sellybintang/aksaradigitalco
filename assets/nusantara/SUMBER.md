@@ -35,3 +35,13 @@ node tools/cutout.js layer/src/<file> <nama>.png --line --keep --tol 30 --step 2
 ```
 
 - **Lapisan kertas dan gunung:** dibuat dengan CSS/SVG langsung di dalam tema, jadi tidak ada file gambarnya.
+
+## Ilustrasi pasangan (versi tanpa foto)
+
+| File | Isi |
+|---|---|
+| `pasangan.webp` | Pasangan utuh, latar transparan |
+| `pasangan-pria.webp` | Potongan wajah pria untuk bingkai oval |
+| `pasangan-wanita.webp` | Potongan wajah wanita untuk bingkai oval |
+
+Sumber: ilustrasi yang disediakan pemilik toko. File aslinya ada di `src/pasangan-ilustrasi.webp`.

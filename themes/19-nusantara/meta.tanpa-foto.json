@@ -1,0 +1,41 @@
+{
+  "nama": "Nusantara Tanpa Foto",
+  "tagline": "Keraton Jawa navy & emas, foto diganti ilustrasi pasangan beranimasi",
+  "demo": "demo-nusantara-tanpa-foto",
+  "layar": {
+    "kolase": [
+      "hero",
+      "couple",
+      "events",
+      "story",
+      "rsvp",
+      "gift",
+      "wishes",
+      "hero"
+    ],
+    "tampilan": [
+      [
+        "hero",
+        "Pembuka"
+      ],
+      [
+        "couple",
+        "Mempelai"
+      ],
+      [
+        "events",
+        "Acara"
+      ],
+      [
+        "story",
+        "Kisah"
+      ]
+    ],
+    "fitur": [
+      "events",
+      "hero",
+      "couple"
+    ]
+  },
+  "fiturGaleri": "Ilustrasi pasangan beranimasi pengganti foto"
+}

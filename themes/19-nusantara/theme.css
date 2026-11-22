@@ -135,7 +135,8 @@ body[data-theme="19-nusantara"] small { font-family: var(--sans); font-size: .6r
 .nu-cover__text { position: absolute; z-index: 4; left: 25%; right: 25%; top: 14.5%; text-align: center; color: var(--navy); }
 .nu-cover__text > * { animation: nu-t-in 1s both; }
 .nu-cover__sub { margin: 0; font: italic 500 4.2cqw var(--serif); color: var(--navy-3); animation-delay: 3.7s !important; }
-.nu-cover__names { margin: .5cqw 0 0; font: 400 12.5cqw/1 var(--script); color: var(--navy); display: flex; flex-direction: column; align-items: center; animation: nu-blur-in 1.4s 4.1s both !important; }
+.nu-cover__names { margin: .5cqw 0 0; font: 400 12.5cqw/1 var(--script); color: var(--navy); display: flex; flex-direction: column; align-items: center; }
+.nu-cover .nu-cover__text > .nu-cover__names { animation: nu-blur-in 1.4s 4.1s both; }
 .nu-cover__names span { display: block; }
 .nu-cover__names em { font: italic 500 .5em/1 var(--serif); color: var(--gold); margin: -1cqw 0 -1cqw 22cqw; }
 .nu-cover__date { margin: 2cqw 0 0; font: 500 3.1cqw var(--sans); letter-spacing: .38em; color: var(--gold-d); animation-delay: 4.7s !important; }
@@ -426,3 +427,34 @@ body[data-theme="19-nusantara"] .u-empty { text-align: center; color: var(--mute
 /* gunung sketsa (menggantikan garis lurus): di belakang joglo, tepi memudar */
 .nu-lay__gunung { position: absolute; left: 11%; top: 40.5%; width: 78%; height: auto; opacity: .85;
   -webkit-mask-image: radial-gradient(70% 75% at 50% 58%, #000 55%, transparent 100%); mask-image: radial-gradient(70% 75% at 50% 58%, #000 55%, transparent 100%); }
+
+/* ---------- versi tanpa foto: panggung wayang beranimasi ---------- */
+.nu-ilus { position: relative; overflow: hidden; aspect-ratio: 3 / 4.3; border-radius: 999px 999px 0 0;
+  background: radial-gradient(circle, rgba(176,141,74,.35) .8px, transparent 1.3px) 0 0 / 11px 11px, linear-gradient(#fbf6e8, #efe4c8); }
+.nu-ilus__glow { position: absolute; left: 50%; top: 30%; width: 120%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(229,201,139,.55), transparent 62%); animation: nu-glow 6s ease-in-out infinite; }
+@keyframes nu-glow { 50% { opacity: .55; transform: translate(-50%, -50%) scale(1.08); } }
+.nu-ilus .nu-ilus__kayon { position: absolute; left: 50%; bottom: 14%; height: 56%; width: auto; translate: -50% 0; opacity: .9; }
+.nu-ilus__lantai { position: absolute; left: 0; right: 0; bottom: 0; height: 16%; background: linear-gradient(transparent, rgba(20,35,60,.12)), repeating-linear-gradient(90deg, rgba(176,141,74,.25) 0 1px, transparent 1px 14px); border-top: 1.5px solid rgba(176,141,74,.55); }
+.nu-wy { position: absolute; bottom: 7%; height: 76%; width: auto; transform-origin: 50% 96%; filter: sepia(.18) saturate(.9) drop-shadow(0 6px 8px rgba(20,35,60,.25)); }
+.nu-ilus .nu-wy--pria { left: -16%; height: 70%; scale: -1 1; animation: nu-wy-l 5s ease-in-out infinite; }
+.nu-ilus .nu-wy--wanita { right: -10%; height: 66%; animation: nu-wy-r 5.6s ease-in-out infinite; }
+@keyframes nu-wy-l { 0%, 100% { rotate: 2deg; translate: 0 0; } 50% { rotate: -1.5deg; translate: 3% -1.5%; } }
+@keyframes nu-wy-r { 0%, 100% { rotate: -2deg; translate: 0 0; } 50% { rotate: 1.5deg; translate: -3% -1.5%; } }
+/* oval berisi wayang */
+.nu-oval--ilus { background: radial-gradient(circle at 50% 40%, #fbf6e8, #eadcb8); }
+.nu-oval--ilus .nu-wy { position: absolute; left: 50%; bottom: auto; top: 6%; height: 170%; translate: -50% 0; animation: nu-wy-oval 5s ease-in-out infinite; transform-origin: 50% 20%; }
+.nu-oval--l.nu-oval--ilus .nu-wy { scale: -1 1; }
+.nu-oval--r.nu-oval--ilus .nu-wy { animation-delay: -2.5s; }
+@keyframes nu-wy-oval { 50% { rotate: 1.5deg; } }
+.nu-frame__in.nu-ilus img { width: auto; aspect-ratio: auto; object-fit: contain; border-radius: 0; }
+
+/* ilustrasi pasangan (pengganti foto) */
+.nu-ilus .nu-pasangan { position: absolute; left: 50%; bottom: 4%; height: 90%; width: auto; translate: -50% 0; transform-origin: 50% 100%;
+  filter: drop-shadow(0 8px 10px rgba(20,35,60,.22)); animation: nu-napas 5s ease-in-out infinite; }
+@keyframes nu-napas { 0%, 100% { transform: none; } 50% { transform: translateY(-1.2%) scale(1.012); } }
+.nu-ilus .nu-ilus__kayon { height: 62%; bottom: 22%; opacity: .55; }
+.nu-oval--ilus { background: #f9ecd5; }
+.nu-oval--ilus .nu-potret { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; animation: nu-potret 8s ease-in-out infinite; }
+.nu-oval--r.nu-oval--ilus .nu-potret { animation-delay: -4s; }
+@keyframes nu-potret { 50% { transform: scale(1.06) translateY(-1.5%); } }
