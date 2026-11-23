@@ -24,9 +24,9 @@
   "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
   "kutipan_sumber": "QS. Ar-Rum: 21",
   "cerita": "2019|Tepangan|Kami dipertemukan di sebuah acara keluarga di Yogyakarta.\n2021|Tresna|Waktu dan jarak menumbuhkan rasa yang semakin kuat.\n2025|Lamaran|Keluarga Raka datang melamar Nadia dengan restu kedua orang tua.\n2027|Pawiwahan|Mengikat janji suci dalam balutan adat dan doa.",
-  "foto_sampul": "/demo-data/img-private/fr-3.jpg",
-  "foto_berdua": "/demo-data/img-private/fr-3.jpg",
-  "galeri": "/demo-data/img-private/fr-4.jpg, /demo-data/img-private/fr-2.jpg, /demo-data/img-private/fr-5.jpg, /demo-data/img-private/fr-1.jpg, /demo-data/img-private/fr-3.jpg",
+  "foto_sampul": "/demo-data/img-private/pb-4.jpg",
+  "foto_berdua": "/demo-data/img-private/pb-1.jpg",
+  "galeri": "/demo-data/img-private/pb-4.jpg, /demo-data/img-private/pb-2.jpg, /demo-data/img-private/pb-1.jpg, /demo-data/img-private/pb-3.jpg, /demo-data/img-private/pb-5.jpg",
   "kredit_foto": "@studiofoto_gresik · FR Studio",
   "musik": "/assets/music/srie-wedding.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
@@ -48,6 +48,6 @@
       "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
     }
   ],
-  "pria_foto": "/demo-data/img-private/fr-pria.jpg",
-  "wanita_foto": "/demo-data/img-private/fr-wanita.jpg"
+  "pria_foto": "/demo-data/img-private/pb-pria.jpg",
+  "wanita_foto": "/demo-data/img-private/pb-wanita.jpg"
 }

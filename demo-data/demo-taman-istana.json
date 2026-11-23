@@ -1,0 +1,53 @@
+{
+  "slug": "demo-taman-istana",
+  "template": "22-taman-istana",
+  "status": "aktif",
+  "aktif_sampai": "2027-12-31",
+  "pria_nama": "Raka Pratama Wijaya, S.T.",
+  "pria_panggilan": "Raka",
+  "pria_ortu": "Bapak Hendra Wijaya & Ibu Ratna Sari",
+  "pria_ig": "raka.contoh",
+  "wanita_nama": "Nadia Putri Kusuma, S.Ds.",
+  "wanita_panggilan": "Nadia",
+  "wanita_ortu": "Bapak Bambang Kusuma & Ibu Sri Wahyuni",
+  "wanita_ig": "nadia.contoh",
+  "akad_judul": "Akad Nikah",
+  "akad_mulai": "2027-02-14 08:00",
+  "akad_selesai": "2027-02-14 10:00",
+  "akad_tempat": "Pendopo Utama Taman Istana",
+  "akad_alamat": "Jl. Malioboro No. 10, Yogyakarta",
+  "resepsi_judul": "Resepsi Pernikahan",
+  "resepsi_mulai": "2027-02-14 11:00",
+  "resepsi_selesai": "2027-02-14 14:00",
+  "resepsi_tempat": "Ballroom & Taman Mawar",
+  "resepsi_alamat": "Jl. Laksda Adisucipto No. 81, Yogyakarta",
+  "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
+  "kutipan_sumber": "QS. Ar-Rum: 21",
+  "cerita": "2019|Awal Pertemuan|Dipertemukan tanpa sengaja di sebuah pameran seni taman kota; percakapan singkat yang menjadi awal cerita panjang kami.\n2021|Menumbuhkan Rasa|Melewati berbagai musim dan jarak bersama, keyakinan tumbuh perlahan hingga kami sepakat saling menjaga.\n2025|Khidmat Lamaran|Dengan penuh hormat, keluarga Raka datang meminang Nadia dan menyatukan niat baik kedua keluarga besar.\n2027|Ikatan Janji Suci|Memulai babak baru sebagai suami istri dengan doa dan restu orang-orang terkasih.",
+  "foto_sampul": "/demo-data/img-private/pb-4.jpg",
+  "foto_berdua": "/demo-data/img-private/pb-1.jpg",
+  "galeri": "/demo-data/img-private/pb-4.jpg, /demo-data/img-private/pb-2.jpg, /demo-data/img-private/pb-1.jpg, /demo-data/img-private/pb-3.jpg, /demo-data/img-private/pb-5.jpg",
+  "kredit_foto": "@studiofoto_gresik · FR Studio",
+  "musik": "/assets/music/princess-draft.mp3",
+  "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
+  "alamat_kado": "Jl. Malioboro No. 10, Yogyakarta 55271",
+  "_ucapan": [
+    {
+      "nama": "Dimas & Keluarga",
+      "kehadiran": "Hadir",
+      "ucapan": "Selamat menempuh hidup baru Raka & Nadia! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah."
+    },
+    {
+      "nama": "Laras",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Selamat menempuh hidup baru, bahagia selalu."
+    },
+    {
+      "nama": "Om Bayu",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
+    }
+  ],
+  "pria_foto": "/demo-data/img-private/pb-pria.jpg",
+  "wanita_foto": "/demo-data/img-private/pb-wanita.jpg"
+}

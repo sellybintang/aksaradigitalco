@@ -4,6 +4,7 @@
 |---|---|---|
 | `srie-wedding.mp3` | "Srie Wedding Invitation" (`src/Srie_Wedding_Invitation.mp3`), disediakan pemilik toko | Bebas royalti (menurut pemilik toko) |
 | `gending-manten.mp3` | Dibuat sendiri dengan `tools/make-music.js` | Orisinal, bebas dipakai |
+| `princess-draft.mp3` | "Princess Draft" (`D:/undangan digital/istana/Princess_draft_mp3.mp3`), disediakan pemilik toko, musik tema Taman Istana | Dari pemilik toko |
 
 Pengolahan `srie-wedding.mp3`:
 - Lagu asli (23 detik) disambung 2× dengan transisi silang 3 detik, sehingga panjangnya menjadi 43 detik.

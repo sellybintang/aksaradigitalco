@@ -53,6 +53,7 @@ const PRODUK = {
   'jawa/biru/tf': '19-nusantara~tanpa-foto',
   'jawa/hijau/df': '21-prambanan',
   'jawa/hijau/tf': '21-prambanan~tanpa-foto',
+  'istana/hijau/df': '22-taman-istana',
 };
 
 // keunikan tiap tema (untuk deskripsi)
@@ -66,6 +67,7 @@ const KHAS = {
   '19-nusantara': ['Nuansa keraton Jawa: biru dongker, emas antik & krem', 'Sampul ilustrasi 3D berlapis: joglo, gebyok, ronce melati & merak yang bergerak', 'Kertas batik bersobek dengan gunungan tersibak saat undangan dibuka', 'Bingkai foto mempelai, acara & galeri berukir emas ala engraving klasik'],
   '19-nusantara~tanpa-foto': ['Versi TANPA FOTO: cocok untuk mempelai yang tidak ingin memajang foto', 'Foto diganti ilustrasi pasangan berbusana adat Jawa yang bergerak halus', 'Ilustrasi berdiri di depan gunungan dalam bingkai lengkung emas', 'Tetap mewah: keraton navy & emas antik, sampul ilustrasi 3D berlapis'],
   '21-prambanan': ['Nuansa keraton Jawa: hijau zamrud, emas & krem', 'Opening segel lilin di gunungan yang terbelah saat dibuka', 'Sampul ilustrasi 3D berlapis: candi Prambanan, gebyok, kuluk & ronce melati yang bergerak', 'Bingkai gebyok emas dengan anggrek & pakis bergaya ukiran klasik'],
+  '22-taman-istana': ['Nuansa taman istana: hijau botani, krem & mawar merah muda', 'Opening tirai belah dua dengan segel lilin mawar', 'Sampul ilustrasi 3D berlapis: gapura berukir, istana, bunga gantung & rumpun mawar yang bergerak', 'Halaman isi selang-seling terang & gelap berbingkai gapura dan taman istana'],
   '21-prambanan~tanpa-foto': ['Versi TANPA FOTO: cocok untuk mempelai yang tidak ingin memajang foto', 'Foto diganti ilustrasi pasangan berbusana adat Jawa yang bergerak halus', 'Opening segel lilin di gunungan yang terbelah saat dibuka', 'Tetap mewah: hijau zamrud & emas, sampul candi Prambanan 3D berlapis'],
   '09-celestial': ['Langit malam berbintang yang berkelip', 'Peta bintang berbentuk hati, unik untuk setiap pasangan', 'Fase bulan asli pada malam pernikahan Anda', 'Efek melesat ke bintang saat undangan dibuka'],
 };

@@ -13,7 +13,7 @@ const ROOT = path.resolve(__dirname, '..');
 const PORT = 5198;
 const DEBUG_PORT = 9334;
 const VIEW = { w: 360, h: 640, scale: 3 };      // -> 1080x1920
-const SECTIONS = ['hero', 'couple', 'countdown', 'events', 'gallery', 'story', 'rsvp', 'gift', 'wishes'];
+const SECTIONS = ['hero', 'couple', 'countdown', 'events', 'maps', 'gallery', 'story', 'rsvp', 'gift', 'wishes'];
 
 const BROWSERS = [
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -119,7 +119,9 @@ async function record(cdp, theme, outFile) {
   await sleep((meta.video && meta.video.sampul) || 3000);              // sampul (bisa diatur per tema di meta.json -> video.sampul)
   await evalJs(cdp, `document.querySelector('[data-open]').click(), true`);
   await sleep(3200);                                                    // animasi pembuka
-  for (const s of SECTIONS) {
+  // urutan mengikuti posisi bagian di halaman (tiap tema bisa menyusun bagian berbeda)
+  const urut = await evalJs(cdp, `JSON.stringify([...document.querySelectorAll('[data-shot]')].map((e) => e.dataset.shot).filter((s, i, a) => ${JSON.stringify(SECTIONS)}.includes(s) && a.indexOf(s) === i))`);
+  for (const s of JSON.parse(urut || '[]')) {
     // hanya gulir ke bawah (lewati bagian yang sudah terlewat / ada di atas)
     const moved = await evalJs(cdp, `(() => { const el = document.querySelector('[data-shot="${s}"]'); return el && el.getBoundingClientRect().top > 60 ? window.__scrollTo('[data-shot="${s}"]', 1100) : false; })()`);
     if (moved) await sleep(1500);
