@@ -33,3 +33,6 @@ File-file ini tidak ada di repositori. Masing-masing tersimpan di folder `D:\und
 | 7 | Celestial | Rona_Cinta_WCC_Bogor_mp3.mp3 |
 
 Musik dipasang ke `1.mp4` tanpa merekam ulang video. Lagu yang lebih pendek dari video disambung dengan transisi silang 2 detik. Volume diratakan dengan loudnorm I=-16, musik muncul pelan 1 detik di awal dan memudar 2,5 detik di akhir.
+
+Tambahan:
+- `pasuruan-sidoarjo.mp3` — "Wcc Pasuruan - Sidoarjo" (`src/Wcc_Pasuruan_-_Sidoarjo.mp3`, dari `D:/undangan digital/premium/2`), disediakan pemilik toko, musik demo tema Boarding Pass. Diolah sama seperti `srie-wedding.mp3` (disambung 2× transisi 3 dtk, loudnorm I=-16 LUFS).

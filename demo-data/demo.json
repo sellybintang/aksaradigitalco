@@ -30,7 +30,7 @@
   "cerita": "2019|Take Off|Pertama kali bertemu di bandara saat penerbangan kami sama-sama tertunda.\n2021|Turbulensi|Jarak dan kesibukan menguji kami, tapi kami memilih tetap satu tujuan.\n2025|Landing|Raka melamar Nadia di hadapan kedua keluarga.\n2027|Next Destination|Memulai perjalanan baru sebagai suami dan istri.",
   "galeri": "/demo-data/img-private/bp-01.jpg, /demo-data/img-private/bp-02.jpg, /demo-data/img-private/bp-03.jpg, /demo-data/img-private/bp-04.jpg, /demo-data/img-private/bp-05.jpg, /demo-data/img-private/bp-06.jpg",
   "foto_sampul": "/demo-data/img-private/bp-hero.jpg",
-  "musik": "",
+  "musik": "/assets/music/pasuruan-sidoarjo.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
   "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
   "_ucapan": [
