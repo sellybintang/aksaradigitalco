@@ -28,12 +28,24 @@
   "foto_berdua": "/demo-data/img-private/kg-hero.jpg",
   "galeri": "/demo-data/img-private/kg-berdua.jpg, /demo-data/img-private/kg-01.jpg, /demo-data/img-private/kg-02.jpg, /demo-data/img-private/kg-03.jpg, /demo-data/img-private/kg-05.jpg, /demo-data/img-private/kg-06.jpg",
   "kredit_foto": "@rahmadphotography",
-  "musik": "",
+  "musik": "/assets/music/undangan-digital.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
   "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
   "_ucapan": [
-    { "nama": "Dimas", "kehadiran": "Hadir", "ucapan": "Selamat! Semoga setiap bingkai hidup kalian selalu hangat." },
-    { "nama": "Laras", "kehadiran": "Masih Ragu", "ucapan": "Bahagia selalu, sakinah mawaddah warahmah." },
-    { "nama": "Om Bayu", "kehadiran": "Tidak Hadir", "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian." }
+    {
+      "nama": "Dimas",
+      "kehadiran": "Hadir",
+      "ucapan": "Selamat! Semoga setiap bingkai hidup kalian selalu hangat."
+    },
+    {
+      "nama": "Laras",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Bahagia selalu, sakinah mawaddah warahmah."
+    },
+    {
+      "nama": "Om Bayu",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
+    }
   ]
 }

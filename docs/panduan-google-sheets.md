@@ -81,7 +81,7 @@ Coba kirim ucapan → muncul baris baru di tab **Ucapan**.
 
 - **Tanggal:** tulis `2027-02-14 08:00`. Kalau Sheets terlanjur mengubahnya jadi format tanggal, tidak apa-apa — skrip sudah menanganinya.
 - **Teks berbaris** (`cerita`, `rekening`): tekan **Alt+Enter** di dalam sel untuk baris baru.
-- **Foto:** isi dengan link gambar langsung (mis. dari Cloudinary). Link Google Drive biasa **tidak bisa** langsung dipakai.
+- **Foto & musik:** boleh link share Google Drive (akses *Siapa saja yang memiliki link*), link gambar langsung (Cloudinary, dll.), atau alamat file di situs. Lihat `docs/kolom-sheets.md`.
 - **Ucapan tidak pantas:** cukup hapus barisnya di tab **Ucapan**.
 - **Mengubah kode Apps Script nanti:** setelah menyimpan, buka **Terapkan → Kelola deployment → ✏ Edit →
   Versi: Versi baru → Terapkan**. Tanpa ini, website tetap memakai kode lama. URL tidak berubah.

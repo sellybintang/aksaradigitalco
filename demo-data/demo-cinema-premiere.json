@@ -28,7 +28,7 @@
   "foto_berdua": "/demo-data/img-private/cp-06.jpg",
   "galeri": "/demo-data/img-private/cp-02.jpg, /demo-data/img-private/cp-01.jpg, /demo-data/img-private/cp-05.jpg, /demo-data/img-private/cp-03.jpg, /demo-data/img-private/cp-06.jpg, /demo-data/img-private/cp-04.jpg",
   "kredit_foto": "@maybmei",
-  "musik": "",
+  "musik": "/assets/music/atenaproject.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
   "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
   "_ucapan": [

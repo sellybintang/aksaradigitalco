@@ -26,10 +26,36 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | `foto_berdua` | URL | Foto pasangan di bagian pembuka (opsional, dipakai sebagian tema) |
 | `kredit_foto` | `@namafotografer` | Kredit fotografer di footer (opsional) |
 | `tanpa_foto` | `ya` / kosong | Versi tanpa foto: foto diganti ilustrasi beranimasi (tema Nusantara: wayang). Otomatis aktif juga bila tidak ada foto sama sekali |
-| `musik` | URL file .mp3 | Opsional |
+| `musik` | URL file .mp3 / link Google Drive / `/assets/music/nama.mp3` | Opsional |
 | `rekening` | `BCA\|1234567890\|Raka Pradipta` | Satu rekening per baris |
 | `alamat_kado` | alamat lengkap | Opsional |
 
 | `_no_pesanan`, `_kontak`, `_paket`, `_catatan` | bebas | **Catatan admin, privat.** Semua kolom berawalan `_` tidak pernah dikirim ke website |
 
 Sheet **"Klien"** dan **"Ucapan"** dibuat otomatis dengan fungsi `siapkanSheet()` — lihat `docs/panduan-google-sheets.md`.
+
+## Foto & musik dari Google Drive
+
+Kolom foto (, , , , ) dan  boleh diisi **link share Google Drive**
+(klik kanan file → Bagikan → Akses umum: *Siapa saja yang memiliki link* → Salin link). Website mengubahnya otomatis
+menjadi gambar/audio. Link langsung lain (Cloudinary, dll.) dan alamat pendek file di situs (,
+) juga bisa.
+
+## Baris demo katalog (ad001 … ad011)
+
+Demo per produk juga berupa baris di sheet Klien: slug = kode SKU huruf kecil (), template = SKU (),
+ = . Link demo: . Foto, musik, nama & ucapan contoh cukup diubah di Sheets.
+RSVP di link demo tidak dicatat. Baris demo diisi sekali dengan fungsi  di Apps Script
+(sumber: , dibuat AD001  Analog Story      /ad001  musik: /assets/music/undangan-digital.mp3
+AD002  Boarding Pass     /ad002  musik: /assets/music/pasuruan-sidoarjo.mp3
+AD003  Cinema Premiere   /ad003  musik: /assets/music/atenaproject.mp3
+AD004  Japandi           /ad004  musik: /assets/music/atenaproject.mp3
+AD005  Café Menu         /ad005  musik: /assets/music/cipaa.mp3
+AD006  Arabesque         /ad006  musik: /assets/music/wcc-lampung.mp3
+AD007  Celestial         /ad007  musik: /assets/music/rona-cinta.mp3
+AD008  Nusantara         /ad008  musik: /assets/music/srie-wedding.mp3
+AD009  Prambanan         /ad009  musik: /assets/music/senarai-vite.mp3
+AD010  Taman Istana      /ad010  musik: /assets/music/princess-draft.mp3
+AD011  Lembah Wisteria   /ad011  musik: /assets/music/srie-wedding.mp3
+✓ demo-data/sheet-demo.json: 11 baris demo, 33 ucapan contoh); fungsi ini hanya menambah slug yang belum ada.
+Bila baris demo belum ada / Sheets gagal dimuat, website memakai data demo bawaan tema.

@@ -28,7 +28,7 @@
   "foto_berdua": "/demo-data/img-private/cf-sofa.jpg",
   "galeri": "/demo-data/img-private/cf-pintu.jpg, /demo-data/img-private/cf-lorong.jpg, /demo-data/img-private/cf-bata.jpg, /demo-data/img-private/cf-meja.jpg",
   "kredit_foto": "@ceritaku.c0",
-  "musik": "",
+  "musik": "/assets/music/cipaa.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
   "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
   "_ucapan": [

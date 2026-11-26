@@ -28,7 +28,7 @@
   "foto_berdua": "/demo-data/img-private/cl-hero.jpg",
   "galeri": "/demo-data/img-private/cl-01.jpg, /demo-data/img-private/cl-02.jpg, /demo-data/img-private/cl-03.jpg, /demo-data/img-private/cl-hero.jpg",
   "kredit_foto": "@sabda.bromo_",
-  "musik": "",
+  "musik": "/assets/music/rona-cinta.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
   "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
   "_ucapan": [

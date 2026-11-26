@@ -28,7 +28,23 @@
   const split = (s, sep) => String(s || '').split(sep).map((x) => x.trim()).filter(Boolean);
   const fmt = (s, opt) => { const d = parseDate(s); return d ? new Intl.DateTimeFormat('id-ID', opt).format(d) : ''; };
   const pad = (n) => String(n).padStart(2, '0');
-  const isDemo = (slug) => slug === 'demo' || slug.startsWith('demo-');
+  // demo = data contoh (RSVP tidak dikirim ke Sheets). "ad001" dst. = demo per SKU yang datanya di Google Sheets.
+  const isSkuDemo = (slug) => /^ad\d+$/i.test(slug);
+  const isDemo = (slug) => slug === 'demo' || slug.startsWith('demo-') || isSkuDemo(slug);
+  const BASE = String(CFG.base || '').replace(/\/+$/, '');
+  // kode SKU (mis. AD002, tidak peka huruf besar/kecil) → nama folder tema (lihat config.js → sku)
+  const skuTheme = (v) => { const k = Object.keys(CFG.sku || {}).find((x) => x.toLowerCase() === String(v || '').trim().toLowerCase()); return k ? CFG.sku[k] : ''; };
+
+  // Alamat foto/musik dari data: link Google Drive (dibagikan "siapa saja yang memiliki link") diubah jadi
+  // gambar/audio langsung; alamat pendek "/assets/..." diberi awalan subfolder situs bila perlu.
+  function media(url, kind) {
+    const u = String(url || '').trim();
+    if (!u) return '';
+    const m = u.match(/(?:drive|docs)\.google\.com\/(?:file\/d\/|open\?(?:[^#]*&)?id=|uc\?(?:[^#]*&)?id=)([\w-]{20,})/);
+    if (m) return kind === 'audio' ? `https://drive.google.com/uc?export=download&id=${m[1]}` : `https://lh3.googleusercontent.com/d/${m[1]}=w1600`;
+    if (BASE && u.startsWith('/') && !u.startsWith('//') && !u.startsWith(BASE + '/')) return BASE + u;
+    return u;
+  }
 
   function getSlug() {
     if (qs.get('id')) return qs.get('id');
@@ -69,17 +85,17 @@
   // Data klien berbentuk "satu baris Google Sheets" (kolom datar) lalu dirapikan di sini,
   // jadi file demo JSON dan Google Sheets memakai format yang sama persis.
   function normalize(r) {
-    const person = (p) => ({ name: r[p + '_nama'] || '', nick: r[p + '_panggilan'] || (r[p + '_nama'] || '').split(' ')[0], parents: r[p + '_ortu'] || '', photo: r[p + '_foto'] || '', ig: (r[p + '_ig'] || '').replace(/^@/, '') });
+    const person = (p) => ({ name: r[p + '_nama'] || '', nick: r[p + '_panggilan'] || (r[p + '_nama'] || '').split(' ')[0], parents: r[p + '_ortu'] || '', photo: media(r[p + '_foto']), ig: (r[p + '_ig'] || '').replace(/^@/, '') });
     const event = (k, def) => ({ key: k, title: r[k + '_judul'] || def, start: r[k + '_mulai'], end: r[k + '_selesai'], place: r[k + '_tempat'] || '', address: r[k + '_alamat'] || '', maps: r[k + '_maps'] || '' });
     return {
       slug: r.slug, theme: r.template, until: r.aktif_sampai,
       groom: person('pria'), bride: person('wanita'),
       events: [event('akad', 'Akad Nikah'), event('resepsi', 'Resepsi')].filter((e) => parseDate(e.start)),
       story: split(r.cerita, /\r?\n/).map((l) => { const [date, title, text] = l.split('|').map((s) => (s || '').trim()); return { date, title, text }; }),
-      gallery: split(r.galeri, /[\r\n,]+/),
+      gallery: split(r.galeri, /[\r\n,]+/).map((u) => media(u)),
       gifts: split(r.rekening, /\r?\n/).map((l) => { const [bank, number, name] = l.split('|').map((s) => (s || '').trim()); return { bank, number, name }; }).filter((g) => g.number),
       giftAddress: r.alamat_kado || '',
-      cover: r.foto_sampul || '', couplephoto: r.foto_berdua || '', music: r.musik || '',
+      cover: media(r.foto_sampul), couplephoto: media(r.foto_berdua), music: media(r.musik, 'audio'),
       photoCredit: r.kredit_foto || '',
       quote: r.kutipan || '', quoteSource: r.kutipan_sumber || '',
       showStats: String(r.tampilkan_jumlah_tamu || '').toLowerCase() === 'ya',
@@ -87,18 +103,30 @@
     };
   }
 
+  async function loadFile(name) {
+    const res = await fetch('/demo-data/' + encodeURIComponent(name) + '.json');
+    if (!res.ok) throw new Error('notfound');
+    const row = await res.json();
+    return { data: normalize(row), wishes: row._ucapan || [] };
+  }
+
   async function loadData(slug) {
-    let res;
-    if (isDemo(slug) || !CFG.apiUrl) {
-      res = await fetch('/demo-data/' + encodeURIComponent(slug) + '.json');
-      if (!res.ok) throw new Error('notfound');
-      const row = await res.json();
-      return { data: normalize(row), wishes: row._ucapan || [] };
-    }
-    res = await fetch(CFG.apiUrl + '?action=get&slug=' + encodeURIComponent(slug));
-    const j = await res.json();
-    if (!j.ok) throw new Error(j.error || 'notfound');
-    return { data: normalize(j.data), wishes: j.wishes || [] };
+    const fromSheet = slug !== 'demo' && !slug.startsWith('demo-') && CFG.apiUrl;
+    if (fromSheet) {
+      try {
+        const res = await fetch(CFG.apiUrl + '?action=get&slug=' + encodeURIComponent(slug));
+        const j = await res.json();
+        if (j.ok) return { data: normalize(j.data), wishes: j.wishes || [] };
+        if (!isSkuDemo(slug)) throw new Error(j.error || 'notfound');
+      } catch (e) { if (!isSkuDemo(slug)) throw e; }
+    } else if (!isSkuDemo(slug)) return loadFile(slug);
+    // demo SKU (mis. /ad011) belum ada di Sheets / Sheets gagal dimuat → pakai data demo bawaan tema
+    const theme = skuTheme(slug);
+    if (!theme) throw new Error('notfound');
+    const meta = await (await fetch(`/themes/${theme}/meta.json`)).json();
+    const pack = await loadFile(meta.demo);
+    pack.data.theme = theme;
+    return pack;
   }
 
   /* ---------- tampilan pesan ---------- */
@@ -221,10 +249,7 @@
 
     // Di demo, tema bisa diganti lewat ?theme= agar satu data contoh dipakai semua katalog.
     let theme = String((isDemo(slug) && qs.get('theme')) || d.theme || CFG.defaultTheme).trim();
-    // kode SKU (mis. AD002, tidak peka huruf besar/kecil) → nama folder tema (lihat config.js → sku)
-    const SKU = CFG.sku || {};
-    const kode = Object.keys(SKU).find((k) => k.toLowerCase() === theme.toLowerCase());
-    if (kode) theme = SKU[kode];
+    if (skuTheme(theme)) theme = skuTheme(theme);
     else if (/^ad\d+$/i.test(theme)) return message('Tema tidak ditemukan', `Kode tema "${theme.toUpperCase()}" belum terdaftar.`);
     theme = theme.replace(/[^a-z0-9-]/gi, '');
     try {

@@ -61,6 +61,37 @@ function siapkanSheet() {
   Logger.log('Sheet siap. Cek tab "Klien" dan "Ucapan".');
 }
 
+/**
+ * Mengisi baris demo katalog per SKU (ad001, ad002, ...) + ucapan contoh dari repo GitHub.
+ * Hanya MENAMBAH slug yang belum ada — baris demo yang sudah kamu ubah di Sheets tidak ditimpa.
+ * Sumber: demo-data/sheet-demo.json (dibuat dengan node tools/sheet-demo.js).
+ */
+const SUMBER_DEMO = 'https://raw.githubusercontent.com/sellybintang/aksaradigitalco/main/demo-data/sheet-demo.json';
+function imporDemo() {
+  const src = JSON.parse(UrlFetchApp.fetch(SUMBER_DEMO).getContentText());
+  const sh = sheet_(SHEET_KLIEN);
+  let head = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0].map((h) => String(h).trim());
+  // kolom yang belum ada di sheet → ditambahkan di ujung kanan
+  const baru = [];
+  src.rows.forEach((r) => Object.keys(r).forEach((k) => { if (head.indexOf(k) < 0 && baru.indexOf(k) < 0) baru.push(k); }));
+  if (baru.length) { sh.getRange(1, head.length + 1, 1, baru.length).setValues([baru]).setFontWeight('bold'); head = head.concat(baru); }
+  const iSlug = head.indexOf('slug');
+  const ada = sh.getLastRow() > 1 ? sh.getRange(2, iSlug + 1, sh.getLastRow() - 1, 1).getDisplayValues().map((x) => String(x[0]).toLowerCase().trim()) : [];
+  const tambah = src.rows.filter((r) => ada.indexOf(String(r.slug).toLowerCase()) < 0);
+  if (tambah.length) {
+    const rg = sh.getRange(sh.getLastRow() + 1, 1, tambah.length, head.length);
+    rg.setNumberFormat('@');   // semua teks biasa: tanggal, nomor rekening, dll. tidak diubah otomatis
+    rg.setValues(tambah.map((r) => head.map((h) => (r[h] == null ? '' : String(r[h])))));
+  }
+  // ucapan contoh: hanya untuk slug yang belum punya ucapan sama sekali
+  const uc = sheet_(SHEET_UCAPAN, ['waktu', 'slug', 'nama', 'kehadiran', 'jumlah', 'ucapan']);
+  const punya = uc.getLastRow() > 1 ? uc.getRange(2, 2, uc.getLastRow() - 1, 1).getValues().map((x) => String(x[0]).toLowerCase()) : [];
+  const ucapan = src.wishes.filter((w) => punya.indexOf(w.slug) < 0).reverse()
+    .map((w) => [new Date(), w.slug, w.nama, w.kehadiran, w.jumlah, w.ucapan]);
+  if (ucapan.length) uc.getRange(uc.getLastRow() + 1, 1, ucapan.length, 6).setValues(ucapan);
+  Logger.log('Demo: %s baris ditambahkan, %s sudah ada. Ucapan contoh: %s.', tambah.length, src.rows.length - tambah.length, ucapan.length);
+}
+
 /** Cek data yang akan diterima website untuk satu slug (lihat hasilnya di Log eksekusi). */
 function tesKlien() {
   Logger.log(JSON.stringify(getKlien_('raka-nadia'), null, 2));

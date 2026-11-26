@@ -36,3 +36,10 @@ Musik dipasang ke `1.mp4` tanpa merekam ulang video. Lagu yang lebih pendek dari
 
 Tambahan:
 - `pasuruan-sidoarjo.mp3` — "Wcc Pasuruan - Sidoarjo" (`src/Wcc_Pasuruan_-_Sidoarjo.mp3`, dari `D:/undangan digital/premium/2`), disediakan pemilik toko, musik demo tema Boarding Pass. Diolah sama seperti `srie-wedding.mp3` (disambung 2× transisi 3 dtk, loudnorm I=-16 LUFS).
+- Musik demo per produk (dari folder produk pemilik toko, disediakan pemilik toko). Diratakan loudnorm I=-16 LUFS; yang < 30 dtk disambung 2× seperti di atas.
+  - `undangan-digital.mp3` ← `premium/1/Undangan_Digital_mp3.mp3` (AD001 Analog Story)
+  - `atenaproject.mp3` ← `premium/3/atenaproject_mp3.mp3` (AD003 Cinema Premiere; file sama persis dengan `premium/4/haaa_mp3.mp3`, AD004 Japandi)
+  - `cipaa.mp3` ← `premium/5/cipaa_mp3.mp3` (AD005 Café Menu)
+  - `wcc-lampung.mp3` ← `premium/6/WEDDING_CONTENTCREATOR_LAMPUNG_mp3.mp3` (AD006 Arabesque)
+  - `rona-cinta.mp3` ← `premium/7/Rona_Cinta_WCC_Bogor_mp3.mp3` (AD007 Celestial)
+  - `senarai-vite.mp3` ← `jawa/hijau/senarai_vite_mp3.mp3` (AD009 Prambanan)

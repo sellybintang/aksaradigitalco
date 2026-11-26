@@ -28,7 +28,7 @@
   "foto_berdua": "/demo-data/img-private/ar-hero.jpg",
   "galeri": "/demo-data/img-private/ar-01.jpg, /demo-data/img-private/ar-02.jpg, /demo-data/img-private/ar-03.jpg, /demo-data/img-private/ar-04.jpg, /demo-data/img-private/ar-05.jpg, /demo-data/img-private/ar-06.jpg",
   "kredit_foto": "@syrltaa_",
-  "musik": "",
+  "musik": "/assets/music/wcc-lampung.mp3",
   "rekening": "BCA|1234567890|Raka Pradipta\nMandiri|0987654321|Nadia Kirana",
   "alamat_kado": "Jl. Melati No. 10, Bandung 40115",
   "_ucapan": [

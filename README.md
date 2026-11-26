@@ -18,7 +18,7 @@ tools/dev-server.js   server pratinjau lokal
 ## Daftar tema
 
 Kolom `template` di Sheets diisi **kode SKU** (sama dengan produk Shopee); daftarnya di `config.js` → `sku`.
-Demo bisa ganti tema dengan `?theme=AD004`. Tema baru = kode berikutnya (AD012, dst.).
+Link demo per produk: `/ad001` … `/ad011` (data di Google Sheets, lihat `docs/kolom-sheets.md`); demo lama `/demo-…` tetap jalan. Tema baru = kode berikutnya (AD012, dst.).
 Nama folder lama (`01-boarding-pass`) tetap bisa dipakai. Versi tanpa foto: kolom `tanpa_foto` = ya.
 
 | SKU | Tema | Folder | Demo |
