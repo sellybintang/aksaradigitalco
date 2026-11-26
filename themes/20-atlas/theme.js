@@ -74,7 +74,7 @@
               <div><dt>Lokasi</dt><dd><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</dd></div>
             </dl>
             <div class="at-check__btns">
-              <a class="at-btn at-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Buka Rute</a>
+              ${e.maps ? `<a class="at-btn at-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Buka Rute</a>` : ''}
               <a class="at-btn at-btn--line" href="${h.esc(h.calendarUrl(e, d))}" target="_blank" rel="noopener">Simpan Tanggal</a>
             </div>
           </div>

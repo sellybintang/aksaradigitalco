@@ -144,7 +144,7 @@ Undangan aktif sampai: [tanggal]
 | Link live streaming, zona waktu WITA/WIT | `_catatan` | Belum ada kolomnya di website — lihat catatan di bawah |
 | Nama acara akad | `akad_judul` | Kosong = "Akad Nikah" |
 | Tanggal + jam akad | `akad_mulai`, `akad_selesai` | Format `2027-02-14 08:00` (kolom teks biasa) |
-| Tempat, alamat, maps akad | `akad_tempat`, `akad_alamat`, `akad_maps` | Maps kosong = dibuat otomatis dari alamat |
+| Tempat, alamat, maps akad | `akad_tempat`, `akad_alamat`, `akad_maps` | Maps kosong = tombol "Lihat Peta" disembunyikan |
 | Data resepsi | `resepsi_*` | Kosongkan `resepsi_mulai` bila tidak ada resepsi |
 | Versi tanpa foto | `tanpa_foto` | `ya` bila tanpa foto |
 | Foto sampul / pria / wanita / galeri | `foto_sampul`, `pria_foto`, `wanita_foto`, `galeri` | Upload dulu, isi URL-nya; galeri dipisah koma |

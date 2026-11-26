@@ -40,7 +40,7 @@
               <div class="cp-span"><small>Lokasi</small><b>${h.esc(e.place)}</b>${e.address ? `<span>${h.esc(e.address)}</span>` : ''}</div>
             </div>
             <div class="cp-ticket__btns">
-              <a class="cp-btn cp-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>
+              ${e.maps ? `<a class="cp-btn cp-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}
               <a class="cp-btn cp-btn--line" href="${h.esc(h.calendarUrl(e, d))}" target="_blank" rel="noopener">Simpan Tanggal</a>
             </div>
           </div>

@@ -42,7 +42,7 @@
             <div class="bp-span"><small>TEMPAT</small><b>${h.esc(e.place)}</b>${e.address ? `<p>${h.esc(e.address)}</p>` : ''}</div>
           </div>
           <footer>
-            <a class="bp-btn bp-btn--ghost" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>
+            ${e.maps ? `<a class="bp-btn bp-btn--ghost" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}
             <a class="bp-btn bp-btn--ghost" href="${h.esc(h.calendarUrl(e, d))}" target="_blank" rel="noopener">Simpan ke Kalender</a>
           </footer>
         </article>`;

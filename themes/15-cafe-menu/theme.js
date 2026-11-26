@@ -40,7 +40,7 @@
           <p class="cf-menu__desc">${h.esc(h.date(e.start))} · ${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</p>
           <p class="cf-menu__place"><b>${h.esc(e.place)}</b>${e.address ? ` — ${h.esc(e.address)}` : ''}</p>
           <div class="cf-menu__btns">
-            <a class="cf-btn cf-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>
+            ${e.maps ? `<a class="cf-btn cf-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}
             <a class="cf-btn cf-btn--line" href="${h.esc(h.calendarUrl(e, d))}" target="_blank" rel="noopener">Simpan Tanggal</a>
           </div>
         </article>`;

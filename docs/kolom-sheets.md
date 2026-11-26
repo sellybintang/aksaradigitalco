@@ -17,7 +17,7 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | `akad_judul` | `Akad Nikah` / `Pemberkatan` | Opsional, default "Akad Nikah" |
 | `akad_mulai`, `akad_selesai` | `2027-02-14 08:00` | |
 | `akad_tempat`, `akad_alamat` | | |
-| `akad_maps` | link Google Maps | Opsional; kalau kosong dibuat otomatis dari alamat |
+| `akad_maps` | link Google Maps | Opsional; kalau kosong tombol "Lihat Peta" di kartu acara disembunyikan (bagian peta tema Taman Istana & Lembah Wisteria tetap memakai alamat) |
 | `resepsi_*` | sama seperti akad | Kosongkan `resepsi_mulai` bila tidak ada resepsi |
 | `kutipan`, `kutipan_sumber` | ayat / kutipan | Opsional |
 | `cerita` | `2019\|Judul\|Isi cerita` | Satu momen per baris (Alt+Enter di sel) |

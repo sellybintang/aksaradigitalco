@@ -40,7 +40,7 @@
             <div><dt>Tempat</dt><dd><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</dd></div>
           </dl>
           <footer>
-            <a class="kg-btn kg-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>
+            ${e.maps ? `<a class="kg-btn kg-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}
             <a class="kg-btn kg-btn--line" href="${h.esc(h.calendarUrl(e, d))}" target="_blank" rel="noopener">Simpan Tanggal</a>
           </footer>
           <span class="kg-env__stamp">${h.esc(stamp)}</span>
