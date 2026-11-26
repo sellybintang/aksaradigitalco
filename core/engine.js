@@ -333,11 +333,11 @@
     go(0);
     if (auto) setupAutoSlide();
 
-    /* Slide otomatis: tiap halaman tampil ±7 detik (+ waktu tambahan untuk halaman yang lebih panjang dari
+    /* Slide otomatis: tiap halaman tampil ±3 detik (config.slideDetik) (+ waktu tambahan untuk halaman yang lebih panjang dari
      * layar; halaman panjang digulir pelan ke bawah), lalu pindah sendiri. Berhenti di halaman terakhir.
      * Jeda bila tamu sedang berinteraksi: menggulir, mengisi form, membuka foto, atau tab tidak aktif. */
     function setupAutoSlide() {
-      const BASE = (Number(CFG.slideDetik) || 7) * 1000;
+      const BASE = (Number(CFG.slideDetik) || 3) * 1000;
       const bar = document.createElement('div');
       bar.className = 'u-progress';
       const w = meta.warna || {}; bar.style.setProperty('--dock-ac', w.aksen || '#fff');
@@ -362,7 +362,7 @@
         const opened = document.body.classList.contains('u-opened');
         const lastSlide = cur >= slides.length - 1;
         const extra = Math.max(0, s.offsetHeight - innerHeight);
-        const dur = BASE + (extra / innerHeight) * 5000;
+        const dur = BASE + (extra / innerHeight) * BASE;   // +1× waktu dasar per layar tambahan
         const paused = !opened || document.hidden || busy() || now < holdUntil;
         if (!paused && !lastSlide) elapsed += dt;
         const p = Math.min(1, elapsed / dur);
