@@ -258,19 +258,33 @@
     const prev = nav.querySelector('[data-dir="-1"]'), next = nav.querySelector('[data-dir="1"]');
     let cur = -1;
     let markDock = null;
+    // Transisi halus dua tahap: halaman lama memudar keluar (OUT ms), lalu halaman baru masuk pelan.
+    const OUT = 380;
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let leaving = null;   // { timer, finish } selama halaman lama sedang memudar
+    const swap = (i, dir) => {
+      const s = slides[i];
+      slides.forEach((el, k) => { el.classList.toggle('u-slide-on', k === i); el.classList.remove('u-slide-out-next', 'u-slide-out-prev'); });
+      s.classList.remove('u-slide-in-next', 'u-slide-in-prev'); void s.offsetWidth; s.classList.add('u-slide-in-' + dir);
+      s.querySelectorAll('[data-reveal]').forEach((e) => e.classList.add('is-in'));
+      if (document.body.classList.contains('u-opened')) window.scrollTo({ top: main.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
+    };
     const go = (i) => {
       i = Math.max(0, Math.min(slides.length - 1, i));
       if (i === cur) return;
-      const s = slides[i], dir = i > cur ? 'next' : 'prev';
-      slides.forEach((el, k) => el.classList.toggle('u-slide-on', k === i));
-      s.classList.remove('u-slide-in-next', 'u-slide-in-prev'); void s.offsetWidth; s.classList.add('u-slide-in-' + dir);
-      s.querySelectorAll('[data-reveal]').forEach((e) => e.classList.add('is-in'));
+      const dir = i > cur ? 'next' : 'prev', old = slides[cur];
+      if (leaving) { clearTimeout(leaving.timer); leaving.finish(); }   // ketuk beruntun: selesaikan transisi sebelumnya
       cur = i;
       dots.forEach((dt, k) => dt.classList.toggle('is-on', k === i));
       if (markDock) markDock(i);
       prev.disabled = i === 0; next.disabled = i === slides.length - 1;
-      if (document.body.classList.contains('u-opened')) window.scrollTo({ top: main.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
-      elapsed = 0; userScrolled = false;   // slide otomatis mulai dari awal untuk halaman ini
+      userScrolled = false;
+      const animate = old && !calm && document.body.classList.contains('u-opened');
+      elapsed = animate ? -(OUT + 700) : 0;   // slide otomatis mulai menghitung setelah transisi masuk hampir selesai
+      if (!animate) return swap(i, dir);
+      old.classList.add('u-slide-out-' + dir);
+      const finish = () => { leaving = null; swap(i, dir); };
+      leaving = { timer: setTimeout(finish, OUT), finish };
     };
     let elapsed = 0, userScrolled = false, holdUntil = 0;
     nav.addEventListener('click', (e) => {
@@ -365,7 +379,7 @@
         const dur = BASE + (extra / innerHeight) * BASE;   // +1× waktu dasar per layar tambahan
         const paused = !opened || document.hidden || busy() || now < holdUntil;
         if (!paused && !lastSlide) elapsed += dt;
-        const p = Math.min(1, elapsed / dur);
+        const p = Math.max(0, Math.min(1, elapsed / dur));
         bar.classList.toggle('is-on', opened && !lastSlide);
         bar.classList.toggle('is-paused', paused);
         fill.style.transform = `scaleX(${p})`;
