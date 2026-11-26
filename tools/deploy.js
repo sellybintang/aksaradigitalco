@@ -1,6 +1,6 @@
-// Deploy situs ke Cloudflare Pages lewat Wrangler (upload langsung, tanpa GitHub).
+// Menyiapkan folder publik .dist/ (dipakai Netlify saat build, lihat netlify.toml) dan opsional deploy ke Cloudflare Pages lewat Wrangler.
 // Jalankan:  node tools/deploy.js            (siapkan .dist/ lalu upload)
-//            node tools/deploy.js --cek      (hanya siapkan .dist/, tanpa upload)
+//            node tools/deploy.js --cek      (hanya siapkan .dist/, tanpa upload; perintah build Netlify)
 // Sekali di awal: npx wrangler login  (login akun Cloudflare di browser)
 // Catatan: foto demo di demo-data/img-private/ IKUT terunggah (tidak ikut git, tapi tampil di demo online).
 const { execSync } = require('child_process');

@@ -50,7 +50,13 @@ Buka `http://localhost:5173/demo?to=Budi`. Ganti tema demo dengan `&theme=01-boa
 2. Isi `slug`, `template`, `aktif_sampai`, set `status` = `draft`, lalu cek.
 3. Ubah `status` jadi `aktif` → kirim link ke pembeli. Tanpa perlu upload ulang website.
 
-## Deploy ke Cloudflare Pages
+## Deploy ke Netlify (dipakai sekarang)
+1. Repo: github.com/sellybintang/aksaradigitalco (private).
+2. Netlify → Add new site → Import from GitHub → pilih repo. Pengaturan build dibaca otomatis dari `netlify.toml`
+   (build: `node tools/deploy.js --cek`, publish: `.dist`, semua alamat diarahkan ke `index.html`).
+3. Setiap `git push` ke `main` otomatis ter-deploy. Link: `aksaradigitalco.netlify.app/<slug>`.
+
+## Deploy ke Cloudflare Pages (alternatif)
 1. Push repository ini ke GitHub (private).
 2. Cloudflare → Workers & Pages → Create → Pages → hubungkan repo.
    Build command: *(kosong)* · Output directory: `/`

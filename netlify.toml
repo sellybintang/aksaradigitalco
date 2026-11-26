@@ -1,0 +1,10 @@
+# Netlify: tanpa framework. Build hanya menyalin file publik ke .dist (lihat tools/deploy.js).
+[build]
+  command = "node tools/deploy.js --cek"
+  publish = ".dist"
+
+# alamat seperti /demo atau /raka-nadia diarahkan ke index.html (file yang ada tetap disajikan apa adanya)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
