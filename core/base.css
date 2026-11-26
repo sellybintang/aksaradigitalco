@@ -20,7 +20,16 @@ button { font: inherit; cursor: pointer; }
 
 /* mode slide: satu section = satu halaman (core/engine.js → setupSlides) */
 body.u-slide #main > :not(.u-slide-on) { display: none !important; }
-body.u-slide #main > .u-slide-on { min-height: 100svh; display: flex !important; flex-direction: column; justify-content: center; }
+body.u-slide #main > .u-slide-on { min-height: 100svh; }
+body.u-slide #main > .u-slide-on.u-slide-center { display: flex !important; flex-direction: column; justify-content: center; }
+body.u-slide.u-opened #main { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.u-hint { position: fixed; z-index: 95; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.92); opacity: 0; pointer-events: none;
+  display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; color: var(--dock-tx);
+  background: color-mix(in srgb, var(--dock-bg) 88%, transparent); border: 1px solid color-mix(in srgb, var(--dock-ac) 50%, transparent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3); font: 600 .8rem/1 system-ui, sans-serif; transition: opacity .35s ease, transform .35s ease; }
+.u-hint.is-on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.u-hint b { font-size: 1.2rem; color: var(--dock-ac); animation: u-nudge 1s ease-in-out infinite; }
+@keyframes u-nudge { 50% { transform: translateX(4px); } }
 body.u-slide.u-opened #cover { display: none !important; }
 body.u-slide #main { padding-bottom: 28px; }
 @keyframes u-in-next { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }

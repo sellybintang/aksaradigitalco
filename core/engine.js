@@ -245,6 +245,9 @@
     const main = document.getElementById('main');
     const slides = main ? [...main.children] : [];
     if (slides.length < 2) return;
+    // Rata tengah vertikal hanya untuk halaman berpenataan biasa (block); sampul/hero yang memakai
+    // grid/flex sendiri dibiarkan agar tata letaknya tidak bergeser.
+    slides.forEach((s) => { if (getComputedStyle(s).display === 'block') s.classList.add('u-slide-center'); });
     document.body.classList.add('u-slide');
     const nav = document.createElement('nav');
     nav.className = 'u-slidenav';
@@ -281,6 +284,31 @@
       const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !e.target.closest('input, textarea, select, iframe')) go(cur + (dx < 0 ? 1 : -1));
     }, { passive: true });
+    // Ketuk layar: sisi kiri (30%) = kembali, sisanya = lanjut — seperti story. Tombol, tautan, form,
+    // foto galeri (data-zoom), peta & teks yang sedang diseleksi tidak ikut memindah halaman.
+    let moved = false;
+    main.addEventListener('touchmove', () => { moved = true; }, { passive: true });
+    main.addEventListener('touchstart', () => { moved = false; }, { passive: true });
+    main.addEventListener('click', (e) => {
+      if (moved || !document.body.classList.contains('u-opened')) return;
+      if (e.target.closest('a, button, input, textarea, select, label, iframe, video, audio, summary, details, [data-zoom], [data-copy], [role="button"], [role="tab"], [contenteditable]')) return;
+      if (String(window.getSelection && window.getSelection()).trim()) return;
+      const r = main.getBoundingClientRect();
+      go(cur + ((e.clientX - r.left) < r.width * 0.3 ? -1 : 1));
+      hideHint();
+    });
+    // petunjuk singkat sekali di awal
+    let hint = null;
+    const hideHint = () => { if (hint) { hint.classList.remove('is-on'); setTimeout(() => hint && hint.remove(), 400); hint = null; } };
+    document.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => {
+      if (hint || sessionStorage.getItem('u-hint')) return;
+      try { sessionStorage.setItem('u-hint', '1'); } catch (err) { /* abaikan */ }
+      hint = document.createElement('div'); hint.className = 'u-hint';
+      hint.innerHTML = '<span>Ketuk layar untuk lanjut</span><b>›</b>';
+      const w = meta.warna || {}; hint.style.cssText = `--dock-bg:${w.bg || '#1d1d1f'};--dock-ac:${w.aksen || '#c9a24a'};--dock-tx:${w.teks || '#fff'}`;
+      document.body.appendChild(hint); requestAnimationFrame(() => setTimeout(() => hint && hint.classList.add('is-on'), 600));
+      setTimeout(hideHint, 4200);
+    }, { once: true }));
     document.addEventListener('keydown', (e) => {
       if (!document.body.classList.contains('u-opened') || e.target.closest('input, textarea, select')) return;
       if (e.key === 'ArrowRight') go(cur + 1);
