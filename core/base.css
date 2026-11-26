@@ -43,6 +43,24 @@ body.u-slide.u-opened .u-slidenav { display: block; }
 .u-slidenav__dots i.is-on { width: 18px; background: #fff; }
 .u-slidenav--nodots .u-slidenav__dots { display: none; }
 
+/* menu bawah mode slide — warna dari meta.json tema (--dock-bg / --dock-ac / --dock-tx) */
+.u-dock { position: fixed; z-index: 90; left: 50%; bottom: max(10px, env(safe-area-inset-bottom)); transform: translate(-50%, 150%); opacity: 0;
+  display: flex; gap: 2px; padding: 5px; max-width: calc(100vw - 16px); overflow-x: auto; scrollbar-width: none; border-radius: 999px;
+  background: var(--dock-bg); background: color-mix(in srgb, var(--dock-bg) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--dock-ac) 45%, transparent); box-shadow: 0 10px 26px rgba(0, 0, 0, .3);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: transform .5s cubic-bezier(.2, .7, .2, 1), opacity .35s ease; }
+.u-dock::-webkit-scrollbar { display: none; }
+body.u-slide.u-opened:not(.u-slide-first) .u-dock { transform: translate(-50%, 0); opacity: 1; }
+.u-dock button { flex: 0 0 auto; display: grid; justify-items: center; gap: 2px; min-width: 46px; padding: 6px 5px 5px; border: 0; border-radius: 999px;
+  background: transparent; color: var(--dock-tx); cursor: pointer; transition: background .25s ease, color .25s ease; }
+.u-dock svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.u-dock span { font: 600 .5rem/1.1 var(--dock-font); letter-spacing: .05em; white-space: nowrap; }
+.u-dock button.is-on { background: var(--dock-ac); color: var(--dock-bg); }
+.u-dock__music.is-playing .u-eq { animation: u-eq 1s ease-in-out infinite; transform-origin: 50% 60%; }
+@keyframes u-eq { 50% { transform: scaleY(.55); } }
+body.u-has-dock #main { padding-bottom: 84px; }
+body.u-dock-music #app [data-music]:not(.u-dock *) { display: none !important; }   /* tombol musik tema pindah ke menu */
+
 /* mode foto katalog */
 .u-shot *, .u-shot *::before, .u-shot *::after { transition: none !important; animation: none !important; }
 .u-shot { scrollbar-width: none; scroll-behavior: auto !important; }

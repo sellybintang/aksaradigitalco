@@ -185,7 +185,63 @@
     return String(d.layout || CFG.tampilan || '').toLowerCase().trim() === 'slide';
   }
 
-  function setupSlides() {
+  // Menu bawah mode slide. Halaman dikenali dari penanda data-shot tema (couple, events, ...),
+  // lalu dari judul halaman, lalu kecocokan cadangan. Urutan baris = prioritas.
+  // [label, regex judul, ikon, regex cadangan, kunci data-shot]
+  const DOCK = [
+    ['Mempelai', /mempelai|pemeran|dua hati|seniman|featuring|starring|dua bintang/i, '<path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.2 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z"/>', null, 'couple'],
+    ['Acara', /rangkaian acara|waktu & tempat|jadwal|agenda|itinerary/i, '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>', /menuju hari|hitung/i, 'events'],
+    ['Lokasi', /lokasi acara|penunjuk arah/i, '<path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>', null, 'maps'],
+    ['Galeri', /galeri|album|photo essay|movie stills/i, '<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M20.5 16l-5-5-8 8.5"/>', null, 'gallery'],
+    ['RSVP', /konfirmasi|kehadiran|rsvp|check-in|reservasi|buku tamu/i, '<path d="M4 5.5h16v11H8.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/>', null, 'rsvp'],
+    ['Hadiah', /amplop|kirim hadiah|tanda kasih|tip jar/i, '<rect x="3.5" y="9" width="17" height="11" rx="1.5"/><path d="M2.5 9h19M12 9v11M12 9S10.5 4 7.8 4.6C5.4 5.2 7 9 12 9zm0 0s1.5-5 4.2-4.4C18.6 5.2 17 9 12 9z"/>', null, 'gift'],
+    ['Ucapan', /ucapan|doa/i, '<path d="M20 12.5a7.5 7.5 0 0 1-11 6.6L4 20l1.1-4.5A7.5 7.5 0 1 1 20 12.5z"/>', null, 'wishes'],
+  ];
+
+  function buildDock(slides, meta, go) {
+    if (document.querySelector('#app > nav')) return null;   // tema sudah punya menu bawah sendiri
+    const items = [];
+    const heads = slides.map((s, i) => { const hd = s.querySelector('h2, h3'); return i && hd ? hd.textContent : ''; });
+    const shots = slides.map((s, i) => (i ? [s.dataset.shot, ...[...s.querySelectorAll('[data-shot]')].map((x) => x.dataset.shot)].filter(Boolean) : []));
+    const free = (label, i) => !items.some((y) => y.label === label || y.i === i);
+    // 1) penanda data-shot, 2) judul halaman, 3) cadangan (mis. jadwal acara yang menyatu dengan hitung mundur)
+    slides.forEach((_, i) => { for (const x of DOCK) if (shots[i].includes(x[4]) && free(x[0], i)) { items.push({ label: x[0], icon: x[2], i }); break; } });
+    for (const pass of [1, 3]) heads.forEach((t, i) => {
+      if (!t) return;
+      const it = DOCK.find((x) => x[pass] && x[pass].test(t) && free(x[0], i));
+      if (it) items.push({ label: it[0], icon: it[2], i });
+    });
+    items.sort((a, b) => a.i - b.i);
+    if (items.length < 3) return null;
+    const w = meta.warna || {}, f = meta.font || {};
+    const dock = document.createElement('nav');
+    dock.className = 'u-dock';
+    dock.setAttribute('aria-label', 'Menu undangan');
+    dock.style.cssText = `--dock-bg:${w.bg || '#1d1d1f'};--dock-ac:${w.aksen || '#c9a24a'};--dock-tx:${w.teks || '#fff'};--dock-font:${f.label || 'system-ui, sans-serif'}`;
+    const svg = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
+    dock.innerHTML = items.map((it) => `<button type="button" data-goto="${it.i}">${svg(it.icon)}<span>${it.label}</span></button>`).join('');
+    const music = document.querySelector('#app [data-music]');
+    if (music) {   // tombol musik tema dipindah ke menu bawah
+      dock.insertAdjacentHTML('beforeend', `<button type="button" class="u-dock__music" aria-label="Putar/hentikan musik">${svg('<path class="u-eq" d="M6 16V9M10 18V6M14 16V9M18 14v-3"/>')}<span>Musik</span></button>`);
+      const mb = dock.querySelector('.u-dock__music');
+      mb.addEventListener('click', () => music.click());
+      const sync = () => mb.classList.toggle('is-playing', music.classList.contains('is-playing'));
+      new MutationObserver(sync).observe(music, { attributes: true, attributeFilter: ['class'] }); sync();
+      document.body.classList.add('u-dock-music');
+    }
+    dock.addEventListener('click', (e) => { const b = e.target.closest('[data-goto]'); if (b) go(Number(b.dataset.goto)); });
+    document.body.appendChild(dock);
+    document.body.classList.add('u-has-dock');
+    const btns = [...dock.querySelectorAll('[data-goto]')];
+    return (cur) => {   // tandai item untuk halaman yang sedang tampil (atau item terakhir sebelum halaman ini)
+      let on = null; btns.forEach((b) => { if (Number(b.dataset.goto) <= cur) on = b; });
+      btns.forEach((b) => b.classList.toggle('is-on', b === on));
+      if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' });
+      document.body.classList.toggle('u-slide-first', cur === 0);
+    };
+  }
+
+  function setupSlides(meta) {
     const main = document.getElementById('main');
     const slides = main ? [...main.children] : [];
     if (slides.length < 2) return;
@@ -196,11 +252,11 @@
     nav.innerHTML = `<button type="button" class="u-slidenav__btn" data-dir="-1" aria-label="Halaman sebelumnya">‹</button>`
       + `<span class="u-slidenav__dots">${slides.map((_, i) => `<i data-i="${i}" title="Halaman ${i + 1}"></i>`).join('')}</span>`
       + `<button type="button" class="u-slidenav__btn" data-dir="1" aria-label="Halaman berikutnya">›</button>`;
-    if (document.querySelector('#app > nav')) nav.classList.add('u-slidenav--nodots');   // tema sudah punya menu bawah sendiri
     document.body.appendChild(nav);
     const dots = [...nav.querySelectorAll('[data-i]')];
     const prev = nav.querySelector('[data-dir="-1"]'), next = nav.querySelector('[data-dir="1"]');
     let cur = -1;
+    let markDock = null;
     const go = (i) => {
       i = Math.max(0, Math.min(slides.length - 1, i));
       if (i === cur) return;
@@ -210,6 +266,7 @@
       s.querySelectorAll('[data-reveal]').forEach((e) => e.classList.add('is-in'));
       cur = i;
       dots.forEach((dt, k) => dt.classList.toggle('is-on', k === i));
+      if (markDock) markDock(i);
       prev.disabled = i === 0; next.disabled = i === slides.length - 1;
       if (document.body.classList.contains('u-opened')) window.scrollTo({ top: main.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
     };
@@ -242,6 +299,9 @@
       const t = document.getElementById(a.getAttribute('href').slice(1)); const k = t ? slideOf(t) : -1;
       if (k >= 0) { e.preventDefault(); go(k); if (t !== slides[k]) origScroll.call(t, { behavior: 'smooth' }); }
     });
+    markDock = buildDock(slides, meta, go);
+    // titik hanya dipakai bila tidak ada menu bawah (menu tema sendiri / judul halaman tidak dikenali)
+    if (markDock || document.querySelector('#app > nav')) nav.classList.add('u-slidenav--nodots');
     go(0);
   }
 
@@ -338,12 +398,12 @@
 
     const Theme = window.UndanganTheme;
     if (!Theme || typeof Theme.render !== 'function') return message('Tema tidak ditemukan', `Tema "${theme}" belum tersedia.`);
+    let meta = {};
+    try { meta = await (await fetch(`/themes/${theme}/meta.json`)).json(); } catch (e) { /* abaikan */ }
     // Kolom musik kosong → lagu default tema (meta.json "musik"), lalu config.musikDefault.
-    if (!d.music && !d.noMusic) {
-      let def = '';
-      try { def = (await (await fetch(`/themes/${theme}/meta.json`)).json()).musik || ''; } catch (e) { /* abaikan */ }
-      d.music = media(def || CFG.musikDefault || '', 'audio');
-    }
+    // Demo yang temanya diganti lewat ?theme= memakai lagu tema itu (bukan lagu data demo umum).
+    const demoTheme = isDemo(slug) && qs.get('theme') && meta.musik;
+    if (!d.noMusic && (!d.music || demoTheme)) d.music = media((demoTheme && meta.musik) || d.music || meta.musik || CFG.musikDefault || '', 'audio');
     document.title = `The Wedding of ${d.groom.nick} & ${d.bride.nick}`;
     document.body.dataset.theme = theme;
     app.innerHTML = Theme.render(d, h);
@@ -354,7 +414,7 @@
     setupWishes(app, d, pack.wishes, Theme, slug);
     setupReveal(app);
     if (Theme.mount) Theme.mount(app, d, h);
-    if (!qs.get('shot') && slideMode(d)) setupSlides();
+    if (!qs.get('shot') && slideMode(d)) setupSlides(meta);
     window.scrollTo(0, 0);
     if (qs.get('shot')) shotMode(qs.get('shot'));
   }
