@@ -25,7 +25,7 @@ const KOLOM = [
 const KOLOM_TANGGAL = ['aktif_sampai', 'akad_mulai', 'akad_selesai', 'resepsi_mulai', 'resepsi_selesai'];
 
 const CONTOH = {
-  slug: 'raka-nadia', template: '01-boarding-pass', status: 'aktif', aktif_sampai: '2027-05-14',
+  slug: 'raka-nadia', template: 'AD002', status: 'aktif', aktif_sampai: '2027-05-14',
   pria_nama: 'Raka Pradipta, S.T.', pria_panggilan: 'Raka', pria_ortu: 'Bapak Hendra Wijaya & Ibu Sari Lestari', pria_ig: 'raka.contoh',
   wanita_nama: 'Nadia Kirana, S.Ds.', wanita_panggilan: 'Nadia', wanita_ortu: 'Bapak Agus Santoso & Ibu Rina Melati', wanita_ig: 'nadia.contoh',
   akad_judul: 'Akad Nikah', akad_mulai: '2027-02-14 08:00', akad_selesai: '2027-02-14 10:00', akad_tempat: 'Masjid Al-Ikhlas', akad_alamat: 'Jl. Melati No. 10, Bandung',

@@ -220,7 +220,12 @@
     if (until && Date.now() > until.getTime() + 86400e3) return message('Undangan telah berakhir', 'Masa aktif undangan ini sudah habis. Terima kasih atas doa dan perhatiannya.');
 
     // Di demo, tema bisa diganti lewat ?theme= agar satu data contoh dipakai semua katalog.
-    let theme = (isDemo(slug) && qs.get('theme')) || d.theme || CFG.defaultTheme;
+    let theme = String((isDemo(slug) && qs.get('theme')) || d.theme || CFG.defaultTheme).trim();
+    // kode SKU (mis. AD002, tidak peka huruf besar/kecil) → nama folder tema (lihat config.js → sku)
+    const SKU = CFG.sku || {};
+    const kode = Object.keys(SKU).find((k) => k.toLowerCase() === theme.toLowerCase());
+    if (kode) theme = SKU[kode];
+    else if (/^ad\d+$/i.test(theme)) return message('Tema tidak ditemukan', `Kode tema "${theme.toUpperCase()}" belum terdaftar.`);
     theme = theme.replace(/[^a-z0-9-]/gi, '');
     try {
       await Promise.all([
@@ -230,6 +235,7 @@
     } catch (e) { return message('Tema tidak ditemukan', `Tema "${theme}" belum tersedia.`); }
 
     const Theme = window.UndanganTheme;
+    if (!Theme || typeof Theme.render !== 'function') return message('Tema tidak ditemukan', `Tema "${theme}" belum tersedia.`);
     document.title = `The Wedding of ${d.groom.nick} & ${d.bride.nick}`;
     document.body.dataset.theme = theme;
     app.innerHTML = Theme.render(d, h);

@@ -7,6 +7,23 @@ window.UNDANGAN_CONFIG = {
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
   defaultTheme: '01-boarding-pass',
 
+  // Kode SKU (sama dengan produk Shopee) → folder tema. Kolom "template" di Sheets & ?theme= di link demo
+  // cukup diisi kodenya (mis. AD002). Nama folder lama (01-boarding-pass) tetap bisa dipakai.
+  // Tema baru: tambahkan kode berikutnya di bawah. Versi tanpa foto: kolom tanpa_foto = ya.
+  sku: {
+    AD001: '03-analog-story',
+    AD002: '01-boarding-pass',
+    AD003: '08-cinema-premiere',
+    AD004: '13-japandi',
+    AD005: '15-cafe-menu',
+    AD006: '18-arabesque',
+    AD007: '09-celestial',
+    AD008: '19-nusantara',
+    AD009: '21-prambanan',
+    AD010: '22-taman-istana',
+    AD011: '23-lembah-wisteria',
+  },
+
   // Pengaturan gambar katalog Shopee (tools/render-mockups.js)
   katalog: {
     // tema yang masuk foto gabungan (produk bundel) — urutan = urutan tampil

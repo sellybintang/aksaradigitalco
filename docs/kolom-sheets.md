@@ -6,7 +6,7 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | Kolom | Contoh | Keterangan |
 |---|---|---|
 | `slug` | `raka-nadia` | Alamat undangan: `domainanda.com/raka-nadia`. Huruf kecil, pakai tanda `-`, tanpa spasi |
-| `template` | `01-boarding-pass` | Nama folder tema |
+| `template` | `AD002` | Kode SKU tema (lihat `config.js` → `sku`: AD001 Analog Story · AD002 Boarding Pass · AD003 Cinema Premiere · AD004 Japandi · AD005 Café Menu · AD006 Arabesque · AD007 Celestial · AD008 Nusantara · AD009 Prambanan · AD010 Taman Istana · AD011 Lembah Wisteria). Nama folder (`01-boarding-pass`) juga masih bisa. |
 | `status` | `aktif` / `draft` | `draft` = belum bisa dibuka (untuk dicek dulu) |
 | `aktif_sampai` | `2027-05-14` | Setelah tanggal ini undangan otomatis berakhir |
 | `pria_nama`, `wanita_nama` | `Raka Pradipta, S.T.` | Nama lengkap + gelar |

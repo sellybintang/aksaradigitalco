@@ -17,20 +17,24 @@ tools/dev-server.js   server pratinjau lokal
 
 ## Daftar tema
 
-| Tema | Status | Demo |
-|---|---|---|
-| 01 Boarding Pass | Dipakai | `/demo` |
-| 03 Analog Story | Dipakai | `/demo-analog-story` |
-| 08 Cinema Premiere | Dipakai | `/demo-cinema-premiere` |
-| 09 Celestial | Baru | `/demo-celestial` |
-| 20 Atlas | Disimpan (tidak dipilih) | `/demo-atlas` |
-| 12 Editorial | Disimpan (tidak dipilih) | `/demo-editorial` |
-| 19 Nusantara (adat) | Baru | `/demo-nusantara` |
-| 13 Japandi | Dipakai | `/demo-japandi` |
-| 15 Café Menu | Dipakai | `/demo-cafe-menu` |
-| 18 Arabesque | Dipakai | `/demo-arabesque` |
-| 04 Vinyl Record | Disimpan (tidak dipilih) | `/demo-vinyl-record` |
-| 06 Art Gallery | Disimpan (tidak dipilih) | `/demo-art-gallery` |
+Kolom `template` di Sheets diisi **kode SKU** (sama dengan produk Shopee); daftarnya di `config.js` → `sku`.
+Demo bisa ganti tema dengan `?theme=AD004`. Tema baru = kode berikutnya (AD012, dst.).
+Nama folder lama (`01-boarding-pass`) tetap bisa dipakai. Versi tanpa foto: kolom `tanpa_foto` = ya.
+
+| SKU | Tema | Folder | Demo |
+|---|---|---|---|
+| AD001 | Analog Story | `03-analog-story` | `/demo-analog-story` |
+| AD002 | Boarding Pass | `01-boarding-pass` | `/demo` |
+| AD003 | Cinema Premiere | `08-cinema-premiere` | `/demo-cinema-premiere` |
+| AD004 | Japandi | `13-japandi` | `/demo-japandi` |
+| AD005 | Café Menu | `15-cafe-menu` | `/demo-cafe-menu` |
+| AD006 | Arabesque | `18-arabesque` | `/demo-arabesque` |
+| AD007 | Celestial | `09-celestial` | `/demo-celestial` |
+| AD008 | Nusantara (+ tanpa foto) | `19-nusantara` | `/demo-nusantara` · `/demo-nusantara-tanpa-foto` |
+| AD009 | Prambanan (+ tanpa foto) | `21-prambanan` | `/demo-prambanan` · `/demo-prambanan-tanpa-foto` |
+| AD010 | Taman Istana | `22-taman-istana` | `/demo-taman-istana` |
+| AD011 | Lembah Wisteria | `23-lembah-wisteria` | `/demo-lembah-wisteria` |
+| – | Simpanan (belum dijual): Vinyl Record, Art Gallery, Editorial, Atlas | `04`, `06`, `12`, `20` | `/demo-vinyl-record` dll. |
 
 Foto demo ada di `demo-data/img-private/` dan ikut di-commit (dipakai demo online).
 
