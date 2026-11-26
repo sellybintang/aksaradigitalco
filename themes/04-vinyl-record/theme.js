@@ -44,7 +44,7 @@
           </div>
           <div class="vr-track__body">
             <p><small>Tanggal</small>${h.esc(h.date(e.start))}</p>
-            <p><small>Waktu</small>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</p>
+            <p><small>Waktu</small>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</p>
             <p><small>Tempat</small><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</p>
             <div class="vr-track__btns">
               ${e.maps ? `<a class="vr-btn vr-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}

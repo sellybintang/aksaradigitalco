@@ -111,7 +111,7 @@
           ${corners}
           <h3>${h.esc(e.title)}</h3>
           <p class="nu-event__date">${h.esc(h.date(e.start))}</p>
-          <p class="nu-event__time">Pukul ${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</p>
+          <p class="nu-event__time">Pukul ${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</p>
           <p><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</p>
           <div class="nu-event__btns">
             ${e.maps ? `<a class="nu-btn nu-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}

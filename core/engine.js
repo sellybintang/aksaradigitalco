@@ -21,6 +21,9 @@
   const CFG = Object.assign({ apiUrl: '', brand: '', timezone: 'Asia/Jakarta', defaultTheme: '01-boarding-pass' }, window.UNDANGAN_CONFIG || {});
   const qs = new URLSearchParams(location.search);
   const app = document.getElementById('app');
+  // Kolom Sheets "zona_waktu": WIB / WITA / WIT (kosong = WIB). Dipakai untuk label jam & tombol kalender.
+  const ZONA = { WIB: 'Asia/Jakarta', WITA: 'Asia/Makassar', WIT: 'Asia/Jayapura' };
+  const zonaOf = (s) => { const z = String(s || '').toUpperCase().trim(); return ZONA[z] ? z : 'WIB'; };
 
   /* ---------- util ---------- */
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -71,7 +74,7 @@
       const st = parseDate(e.start); if (!st) return '#';
       const en = parseDate(e.end) || new Date(st.getTime() + 2 * 3600e3);
       const f = (x) => `${x.getFullYear()}${pad(x.getMonth() + 1)}${pad(x.getDate())}T${pad(x.getHours())}${pad(x.getMinutes())}00`;
-      const p = new URLSearchParams({ action: 'TEMPLATE', text: `${e.title} ${d.groom.nick} & ${d.bride.nick}`, dates: `${f(st)}/${f(en)}`, location: [e.place, e.address].filter(Boolean).join(', '), ctz: CFG.timezone });
+      const p = new URLSearchParams({ action: 'TEMPLATE', text: `${e.title} ${d.groom.nick} & ${d.bride.nick}`, dates: `${f(st)}/${f(en)}`, location: [e.place, e.address].filter(Boolean).join(', '), ctz: ZONA[e.tz] || CFG.timezone });
       return 'https://calendar.google.com/calendar/render?' + p.toString();
     },
     img(url, alt, cls, fallbackText) {
@@ -86,9 +89,10 @@
   // jadi file demo JSON dan Google Sheets memakai format yang sama persis.
   function normalize(r) {
     const person = (p) => ({ name: r[p + '_nama'] || '', nick: r[p + '_panggilan'] || (r[p + '_nama'] || '').split(' ')[0], parents: r[p + '_ortu'] || '', photo: media(r[p + '_foto']), ig: (r[p + '_ig'] || '').replace(/^@/, '') });
-    const event = (k, def) => ({ key: k, title: r[k + '_judul'] || def, start: r[k + '_mulai'], end: r[k + '_selesai'], place: r[k + '_tempat'] || '', address: r[k + '_alamat'] || '', maps: r[k + '_maps'] || '' });
+    const tz = zonaOf(r.zona_waktu);
+    const event = (k, def) => ({ key: k, title: r[k + '_judul'] || def, start: r[k + '_mulai'], end: r[k + '_selesai'], place: r[k + '_tempat'] || '', address: r[k + '_alamat'] || '', maps: r[k + '_maps'] || '', tz });
     return {
-      slug: r.slug, theme: r.template, until: r.aktif_sampai,
+      slug: r.slug, theme: r.template, until: r.aktif_sampai, tz,
       groom: person('pria'), bride: person('wanita'),
       events: [event('akad', 'Akad Nikah'), event('resepsi', 'Resepsi')].filter((e) => parseDate(e.start)),
       story: split(r.cerita, /\r?\n/).map((l) => { const [date, title, text] = l.split('|').map((s) => (s || '').trim()); return { date, title, text }; }),

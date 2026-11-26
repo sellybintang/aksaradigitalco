@@ -43,7 +43,7 @@
           <div>
             <h3>${h.esc(e.title)}</h3>
             <p class="jp-event__date">${h.esc(h.date(e.start))}</p>
-            <p class="jp-event__time">${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</p>
+            <p class="jp-event__time">${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</p>
             <p class="jp-event__place"><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</p>
             <div class="jp-event__btns">
               ${e.maps ? `<a class="jp-btn jp-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}

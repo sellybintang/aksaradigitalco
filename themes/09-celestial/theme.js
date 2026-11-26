@@ -97,7 +97,7 @@
         <article class="cl-event" data-reveal>
           <small>${h.esc(h.date(e.start))}</small>
           <h3>${h.esc(e.title)}</h3>
-          <p class="cl-event__time">${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</p>
+          <p class="cl-event__time">${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</p>
           <p><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</p>
           <div class="cl-event__btns">
             ${e.maps ? `<a class="cl-btn cl-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}

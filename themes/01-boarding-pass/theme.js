@@ -38,7 +38,7 @@
           <header><span>${PLANE} ${h.esc(e.title)}</span><span>GATE ${String.fromCharCode(65 + i)}${i + 1}</span></header>
           <div class="bp-mini__grid">
             <div><small>TANGGAL</small><b>${h.esc(h.date(e.start))}</b></div>
-            <div><small>WAKTU</small><b>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</b></div>
+            <div><small>WAKTU</small><b>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</b></div>
             <div class="bp-span"><small>TEMPAT</small><b>${h.esc(e.place)}</b>${e.address ? `<p>${h.esc(e.address)}</p>` : ''}</div>
           </div>
           <footer>

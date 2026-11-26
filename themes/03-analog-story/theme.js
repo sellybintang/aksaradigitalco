@@ -36,7 +36,7 @@
           <h3>${h.esc(e.title)}</h3>
           <dl>
             <div><dt>Tanggal</dt><dd>${h.esc(h.date(e.start))}</dd></div>
-            <div><dt>Waktu</dt><dd>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</dd></div>
+            <div><dt>Waktu</dt><dd>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</dd></div>
             <div><dt>Tempat</dt><dd><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</dd></div>
           </dl>
           <footer>

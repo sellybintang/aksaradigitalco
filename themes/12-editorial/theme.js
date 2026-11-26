@@ -47,7 +47,7 @@
           <div class="ed-agenda__body">
             <small>${h.esc(h.date(e.start))}</small>
             <h3>${h.esc(e.title)}</h3>
-            <p>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</p>
+            <p>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</p>
             <p><b>${h.esc(e.place)}</b>${e.address ? `<br>${h.esc(e.address)}` : ''}</p>
             <div class="ed-agenda__btns">
               ${e.maps ? `<a class="ed-btn ed-btn--line" href="${h.esc(h.mapsUrl(e))}" target="_blank" rel="noopener">Lihat Peta</a>` : ''}

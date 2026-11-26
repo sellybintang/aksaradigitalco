@@ -36,7 +36,7 @@
             <h3>${h.esc(e.title)}</h3>
             <div class="cp-ticket__grid">
               <div><small>Tanggal</small><b>${h.esc(h.date(e.start))}</b></div>
-              <div><small>Jam Tayang</small><b>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} WIB</b></div>
+              <div><small>Jam Tayang</small><b>${h.esc(h.time(e.start))}${e.end ? ' – ' + h.esc(h.time(e.end)) : ''} ${h.esc(e.tz || 'WIB')}</b></div>
               <div class="cp-span"><small>Lokasi</small><b>${h.esc(e.place)}</b>${e.address ? `<span>${h.esc(e.address)}</span>` : ''}</div>
             </div>
             <div class="cp-ticket__btns">
