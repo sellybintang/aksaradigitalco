@@ -36,26 +36,15 @@ Sheet **"Klien"** dan **"Ucapan"** dibuat otomatis dengan fungsi `siapkanSheet()
 
 ## Foto & musik dari Google Drive
 
-Kolom foto (, , , , ) dan  boleh diisi **link share Google Drive**
+Kolom foto (`pria_foto`, `wanita_foto`, `foto_sampul`, `foto_berdua`, `galeri`) dan `musik` boleh diisi **link share Google Drive**
 (klik kanan file → Bagikan → Akses umum: *Siapa saja yang memiliki link* → Salin link). Website mengubahnya otomatis
-menjadi gambar/audio. Link langsung lain (Cloudinary, dll.) dan alamat pendek file di situs (,
-) juga bisa.
+menjadi gambar/audio. Link langsung lain (Cloudinary, dll.) dan alamat pendek file di situs (`/assets/music/cipaa.mp3`,
+`/demo-data/img-private/bp-01.jpg`) juga bisa.
 
 ## Baris demo katalog (ad001 … ad011)
 
-Demo per produk juga berupa baris di sheet Klien: slug = kode SKU huruf kecil (), template = SKU (),
- = . Link demo: . Foto, musik, nama & ucapan contoh cukup diubah di Sheets.
-RSVP di link demo tidak dicatat. Baris demo diisi sekali dengan fungsi  di Apps Script
-(sumber: , dibuat AD001  Analog Story      /ad001  musik: /assets/music/undangan-digital.mp3
-AD002  Boarding Pass     /ad002  musik: /assets/music/pasuruan-sidoarjo.mp3
-AD003  Cinema Premiere   /ad003  musik: /assets/music/atenaproject.mp3
-AD004  Japandi           /ad004  musik: /assets/music/atenaproject.mp3
-AD005  Café Menu         /ad005  musik: /assets/music/cipaa.mp3
-AD006  Arabesque         /ad006  musik: /assets/music/wcc-lampung.mp3
-AD007  Celestial         /ad007  musik: /assets/music/rona-cinta.mp3
-AD008  Nusantara         /ad008  musik: /assets/music/srie-wedding.mp3
-AD009  Prambanan         /ad009  musik: /assets/music/senarai-vite.mp3
-AD010  Taman Istana      /ad010  musik: /assets/music/princess-draft.mp3
-AD011  Lembah Wisteria   /ad011  musik: /assets/music/srie-wedding.mp3
-✓ demo-data/sheet-demo.json: 11 baris demo, 33 ucapan contoh); fungsi ini hanya menambah slug yang belum ada.
+Demo per produk juga berupa baris di sheet Klien: slug = kode SKU huruf kecil (`ad011`), template = SKU (`AD011`),
+`aktif_sampai` = `2099-12-31`. Link demo: `…/aksaradigitalco/ad011`. Foto, musik, nama & ucapan contoh cukup diubah di Sheets.
+RSVP di link demo tidak dicatat. Baris demo diisi sekali dengan fungsi `imporDemo()` di Apps Script
+(sumber: `demo-data/sheet-demo.json`, dibuat dengan `node tools/sheet-demo.js`); fungsi ini hanya menambah slug yang belum ada.
 Bila baris demo belum ada / Sheets gagal dimuat, website memakai data demo bawaan tema.
