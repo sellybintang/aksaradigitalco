@@ -3,7 +3,7 @@
 window.UNDANGAN_CONFIG = {
   apiUrl: 'https://script.google.com/macros/s/AKfycbygb6WUZUU9MsdT9HKMSZNLtZX0U5YOu0s2VvNXQzmat8BznOeKDYksaTVckUgs0kcB-w/exec',
   brand: 'Aksara Digital',      // muncul kecil di footer & gambar katalog
-  domain: 'sellybintang.github.io/aksaradigitalco', // contoh link di gambar katalog "nama tamu"
+  domain: 'aksaradigitalco.netlify.app', // contoh link di gambar katalog "nama tamu"
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
   defaultTheme: '01-boarding-pass',
 
