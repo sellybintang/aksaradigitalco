@@ -32,7 +32,11 @@
 
   function getSlug() {
     if (qs.get('id')) return qs.get('id');
-    const p = location.pathname.replace(/^\/+|\/+$/g, '');
+    // CFG.base: situs di subfolder (mis. GitHub Pages "/aksaradigitalco"), diisi otomatis saat build
+    const base = String(CFG.base || '').replace(/\/+$/, '');
+    let path = location.pathname;
+    if (base && (path === base || path.startsWith(base + '/'))) path = path.slice(base.length);
+    const p = path.replace(/^\/+|\/+$/g, '');
     if (!p || p === 'index.html') return 'demo';
     return decodeURIComponent(p.split('/')[0]).toLowerCase();
   }

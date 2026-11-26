@@ -50,7 +50,13 @@ Buka `http://localhost:5173/demo?to=Budi`. Ganti tema demo dengan `&theme=01-boa
 2. Isi `slug`, `template`, `aktif_sampai`, set `status` = `draft`, lalu cek.
 3. Ubah `status` jadi `aktif` → kirim link ke pembeli. Tanpa perlu upload ulang website.
 
-## Deploy ke Netlify (dipakai sekarang)
+## Deploy ke GitHub Pages (dipakai sekarang)
+1. Repo public: github.com/sellybintang/aksaradigitalco. Settings → Pages → Source: **GitHub Actions** (sekali saja).
+2. Setiap `git push` ke `main` menjalankan `.github/workflows/pages.yml`: `node tools/deploy.js --cek --base aksaradigitalco`
+   (alamat file disesuaikan ke subfolder, `404.html` = `index.html` untuk alamat `/<slug>`).
+3. Link: `https://sellybintang.github.io/aksaradigitalco/<slug>?to=Nama+Tamu` · demo: `.../aksaradigitalco/demo`.
+
+## Deploy ke Netlify (alternatif)
 1. Repo: github.com/sellybintang/aksaradigitalco (private).
 2. Netlify → Add new site → Import from GitHub → pilih repo. Pengaturan build dibaca otomatis dari `netlify.toml`
    (build: `node tools/deploy.js --cek`, publish: `.dist`, semua alamat diarahkan ke `index.html`).

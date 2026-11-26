@@ -1,0 +1,38 @@
+# Deploy otomatis ke GitHub Pages setiap push ke main.
+# Link: https://sellybintang.github.io/aksaradigitalco/<slug>?to=Nama+Tamu
+# Sekali di awal: repo Settings -> Pages -> Build and deployment -> Source: GitHub Actions
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # salin file publik ke .dist, alamat disesuaikan ke subfolder /aksaradigitalco, 404.html untuk alamat /<slug>
+      - run: node tools/deploy.js --cek --base "${{ github.event.repository.name }}"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
