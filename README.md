@@ -1,7 +1,7 @@
 # Undangan Digital
 
 Satu website untuk semua klien: data di Google Sheets, tema di folder `themes/`,
-di-hosting gratis di Cloudflare Pages.
+di-hosting gratis di GitHub Pages (sellybintang.github.io/aksaradigitalco).
 
 ```
 index.html            pemuat: baca slug → ambil data → muat tema
@@ -32,8 +32,7 @@ tools/dev-server.js   server pratinjau lokal
 | 04 Vinyl Record | Disimpan (tidak dipilih) | `/demo-vinyl-record` |
 | 06 Art Gallery | Disimpan (tidak dipilih) | `/demo-art-gallery` |
 
-Foto demo ada di `demo-data/img-private/` dan **tidak ikut di-commit** (belum ada izin publikasi
-dari fotografer). Setelah clone di komputer lain, salin folder itu secara manual.
+Foto demo ada di `demo-data/img-private/` dan ikut di-commit (dipakai demo online).
 
 ## Pratinjau di komputer
 ```

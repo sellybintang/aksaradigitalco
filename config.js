@@ -1,7 +1,7 @@
 // Pengaturan global. Isi apiUrl dengan URL Web App Google Apps Script setelah di-deploy.
 // Selama apiUrl kosong, hanya undangan demo (folder demo-data/) yang bisa dibuka.
 window.UNDANGAN_CONFIG = {
-  apiUrl: '',
+  apiUrl: 'https://script.google.com/macros/s/AKfycbygb6WUZUU9MsdT9HKMSZNLtZX0U5YOu0s2VvNXQzmat8BznOeKDYksaTVckUgs0kcB-w/exec',
   brand: 'Aksara Digital',      // muncul kecil di footer & gambar katalog
   domain: 'sellybintang.github.io/aksaradigitalco', // contoh link di gambar katalog "nama tamu"
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
