@@ -2,6 +2,7 @@
   "nama": "Taman Istana",
   "tagline": "Gapura berukir, taman istana & mawar merah muda",
   "demo": "demo-taman-istana",
+  "musik": "/assets/music/princess-draft.mp3",
   "warna": { "bg": "#1a332a", "bg2": "#2f4f40", "kertas": "#f7f2ec", "aksen": "#b86b77", "teks": "#f9f5ef", "teksRedup": "rgba(249,245,239,.75)" },
   "font": { "judul": "'Cormorant Garamond', Georgia, serif", "label": "'Plus Jakarta Sans', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500&display=swap" },
   "layar": { "utama": "cover", "kolase": ["hero", "couple", "events", "gallery", "story", "rsvp", "gift", "wishes"], "tampilan": [["hero", "Pembuka"], ["couple", "Mempelai"], ["events", "Acara"], ["gallery", "Galeri"]], "fitur": ["events", "hero", "couple"] },

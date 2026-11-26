@@ -2,6 +2,7 @@
   "nama": "Boarding Pass",
   "tagline": "Undangan bertema tiket pesawat",
   "demo": "demo",
+  "musik": "/assets/music/pasuruan-sidoarjo.mp3",
   "warna": {
     "bg": "#0f2a44",
     "bg2": "#1f4a72",

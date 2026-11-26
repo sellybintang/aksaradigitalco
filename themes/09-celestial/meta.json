@@ -2,6 +2,7 @@
   "nama": "Celestial",
   "tagline": "Undangan bertema langit malam & peta bintang",
   "demo": "demo-celestial",
+  "musik": "/assets/music/rona-cinta.mp3",
   "warna": { "bg": "#0b1026", "bg2": "#1d2756", "kertas": "#f4efe1", "aksen": "#d8b46a", "teks": "#f4efe1", "teksRedup": "rgba(244,239,225,.7)" },
   "font": { "judul": "'Cormorant Garamond', Georgia, serif", "label": "'Raleway', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Raleway:wght@400;600&display=swap" },
   "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["countdown", "hero", "gallery"] }

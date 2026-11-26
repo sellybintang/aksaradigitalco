@@ -2,6 +2,7 @@
   "nama": "Cinema Premiere",
   "tagline": "Undangan bertema pemutaran perdana film",
   "demo": "demo-cinema-premiere",
+  "musik": "/assets/music/atenaproject.mp3",
   "warna": { "bg": "#0a0a0b", "bg2": "#3a0d10", "kertas": "#f4efe6", "aksen": "#f5b942", "teks": "#f4efe6", "teksRedup": "rgba(244,239,230,.7)" },
   "font": { "judul": "'Bebas Neue', Impact, sans-serif", "label": "'Inter', sans-serif", "url": "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" },
   "layar": { "utama": "cover", "kolase": ["hero", "gallery", "events", "countdown", "couple", "story", "rsvp", "wishes"], "fitur": ["events", "hero", "gallery"] }

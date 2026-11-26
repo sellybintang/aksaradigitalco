@@ -5,6 +5,7 @@ window.UNDANGAN_CONFIG = {
   brand: 'Aksara Digital',      // muncul kecil di footer & gambar katalog
   domain: 'aksaradigitalco.netlify.app', // contoh link di gambar katalog "nama tamu"
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
+  musikDefault: '/assets/music/undangan-digital.mp3',   // dipakai bila kolom musik kosong & tema tidak punya musik bawaan
   defaultTheme: '01-boarding-pass',
 
   // Kode SKU (sama dengan produk Shopee) → folder tema. Kolom "template" di Sheets & ?theme= di link demo

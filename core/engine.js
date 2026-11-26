@@ -99,7 +99,8 @@
       gallery: split(r.galeri, /[\r\n,]+/).map((u) => media(u)),
       gifts: split(r.rekening, /\r?\n/).map((l) => { const [bank, number, name] = l.split('|').map((s) => (s || '').trim()); return { bank, number, name }; }).filter((g) => g.number),
       giftAddress: r.alamat_kado || '',
-      cover: media(r.foto_sampul), couplephoto: media(r.foto_berdua), music: media(r.musik, 'audio'),
+      cover: media(r.foto_sampul), couplephoto: media(r.foto_berdua), music: /^(-|tidak|tanpa)$/i.test(String(r.musik || '').trim()) ? '' : media(r.musik, 'audio'),
+      noMusic: /^(-|tidak|tanpa)$/i.test(String(r.musik || '').trim()),   // "-" / "tidak" = tanpa musik
       photoCredit: r.kredit_foto || '',
       quote: r.kutipan || '', quoteSource: r.kutipan_sumber || '',
       showStats: String(r.tampilkan_jumlah_tamu || '').toLowerCase() === 'ya',
@@ -265,6 +266,12 @@
 
     const Theme = window.UndanganTheme;
     if (!Theme || typeof Theme.render !== 'function') return message('Tema tidak ditemukan', `Tema "${theme}" belum tersedia.`);
+    // Kolom musik kosong → lagu default tema (meta.json "musik"), lalu config.musikDefault.
+    if (!d.music && !d.noMusic) {
+      let def = '';
+      try { def = (await (await fetch(`/themes/${theme}/meta.json`)).json()).musik || ''; } catch (e) { /* abaikan */ }
+      d.music = media(def || CFG.musikDefault || '', 'audio');
+    }
     document.title = `The Wedding of ${d.groom.nick} & ${d.bride.nick}`;
     document.body.dataset.theme = theme;
     app.innerHTML = Theme.render(d, h);
