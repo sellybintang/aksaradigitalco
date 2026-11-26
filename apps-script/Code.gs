@@ -19,7 +19,7 @@ const KOLOM = [
   'akad_judul', 'akad_mulai', 'akad_selesai', 'akad_tempat', 'akad_alamat', 'akad_maps',
   'resepsi_judul', 'resepsi_mulai', 'resepsi_selesai', 'resepsi_tempat', 'resepsi_alamat', 'resepsi_maps',
   'kutipan', 'kutipan_sumber', 'cerita', 'galeri', 'foto_sampul', 'foto_berdua', 'musik',
-  'rekening', 'alamat_kado', 'kredit_foto', 'tanpa_foto', 'zona_waktu',
+  'rekening', 'alamat_kado', 'kredit_foto', 'tanpa_foto', 'zona_waktu', 'tampilan',
   '_no_pesanan', '_kontak', '_paket', '_catatan',
 ];
 const KOLOM_TANGGAL = ['aktif_sampai', 'akad_mulai', 'akad_selesai', 'resepsi_mulai', 'resepsi_selesai'];

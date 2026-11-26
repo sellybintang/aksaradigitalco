@@ -287,7 +287,9 @@ ${secs}
       if (dock) {
         const btns = [...dock.querySelectorAll('[data-go]')];
         const target = (k) => root.querySelector(k.startsWith('sec-') ? '#' + k : '[data-shot="' + k + '"]');
-        btns.forEach((bt) => bt.addEventListener('click', () => { const el = target(bt.dataset.go); if (el) scrollTo({ top: el.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }));
+        btns.forEach((bt) => bt.addEventListener('click', () => { const el = target(bt.dataset.go); if (!el) return;
+          if (document.body.classList.contains('u-slide')) return el.scrollIntoView({ behavior: 'smooth' });   // mode slide: pindah halaman
+          scrollTo({ top: el.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }));
         const mark = () => { let on = null; for (const bt of btns) { const el = target(bt.dataset.go); if (el && el.getBoundingClientRect().top < innerHeight * .45) on = bt; } btns.forEach((x) => x.classList.toggle('is-on', x === on)); };
         addEventListener('scroll', mark, { passive: true }); mark();
       }

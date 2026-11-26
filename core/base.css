@@ -18,6 +18,31 @@ button { font: inherit; cursor: pointer; }
 [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
 [data-reveal].is-in { opacity: 1; transform: none; }
 
+/* mode slide: satu section = satu halaman (core/engine.js → setupSlides) */
+body.u-slide #main > :not(.u-slide-on) { display: none !important; }
+body.u-slide #main > .u-slide-on { min-height: 100svh; display: flex !important; flex-direction: column; justify-content: center; }
+body.u-slide.u-opened #cover { display: none !important; }
+body.u-slide #main { padding-bottom: 28px; }
+@keyframes u-in-next { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+@keyframes u-in-prev { from { opacity: 0; transform: translateX(-32px); } to { opacity: 1; transform: none; } }
+body.u-slide .u-slide-in-next { animation: u-in-next .45s ease both; }
+body.u-slide .u-slide-in-prev { animation: u-in-prev .45s ease both; }
+/* panah di sisi kiri/kanan, titik tipis di bawah: tidak menutupi isi halaman */
+.u-slidenav { display: none; }
+body.u-slide.u-opened .u-slidenav { display: block; }
+.u-slidenav__btn { position: fixed; top: 50%; z-index: 90; width: 34px; height: 34px; margin-top: -17px; border: 0; border-radius: 50%;
+  background: rgba(18, 18, 22, .38); color: #fff; font-size: 22px; line-height: 1; padding: 0 0 3px;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 3px 12px rgba(0, 0, 0, .2); transition: opacity .2s ease; }
+.u-slidenav__btn[data-dir="-1"] { left: max(6px, calc(50vw - 240px)); }
+.u-slidenav__btn[data-dir="1"] { right: max(6px, calc(50vw - 240px)); }
+.u-slidenav__btn:disabled { opacity: 0; pointer-events: none; }
+.u-slidenav__dots { position: fixed; left: 50%; bottom: max(8px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 90;
+  display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 999px; background: rgba(18, 18, 22, .38);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.u-slidenav__dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .45); cursor: pointer; transition: width .25s ease, background .25s ease; }
+.u-slidenav__dots i.is-on { width: 18px; background: #fff; }
+.u-slidenav--nodots .u-slidenav__dots { display: none; }
+
 /* mode foto katalog */
 .u-shot *, .u-shot *::before, .u-shot *::after { transition: none !important; animation: none !important; }
 .u-shot { scrollbar-width: none; scroll-behavior: auto !important; }

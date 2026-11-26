@@ -26,6 +26,7 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | `foto_berdua` | URL | Foto pasangan di bagian pembuka (opsional, dipakai sebagian tema) |
 | `kredit_foto` | `@namafotografer` | Kredit fotografer di footer (opsional) |
 | `zona_waktu` | `WIB` / `WITA` / `WIT` | Label jam acara & zona tombol "Simpan ke Kalender". Kosong = WIB. Kolom boleh diletakkan di mana saja (dibaca dari nama kolom) |
+| `tampilan` | `slide` / kosong | `slide` = undangan per halaman (geser kiri/kanan, tombol ‹ ›, titik); kosong = gulir biasa. Pratinjau tanpa mengubah Sheets: tambahkan `&tampilan=slide` di link |
 | `tanpa_foto` | `ya` / kosong | Versi tanpa foto: foto diganti ilustrasi beranimasi (tema Nusantara: wayang). Otomatis aktif juga bila tidak ada foto sama sekali |
 | `musik` | URL file .mp3 / link Google Drive / `/assets/music/nama.mp3` | Opsional. Kosong = lagu bawaan tema (`themes/<tema>/meta.json` → `musik`, cadangan `config.js` → `musikDefault`). Isi `-` atau `tidak` untuk tanpa musik |
 | `rekening` | `BCA\|1234567890\|Raka Pradipta` | Satu rekening per baris |
