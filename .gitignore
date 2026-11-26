@@ -3,8 +3,10 @@ node_modules/
 Thumbs.db
 .claude/settings.local.json
 
-# Foto pratinjau pribadi (belum ada izin publikasi) - jangan di-commit
-demo-data/img-private/
+# Foto demo (demo-data/img-private/) sengaja di-commit: repo private, dipakai demo online
 
 # Gambar katalog hasil render
 output/
+
+# Folder siap-upload Cloudflare Pages (tools/deploy.js)
+.dist/

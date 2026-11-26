@@ -19,7 +19,11 @@
     const [id, v] = t.split('~');
     const base = await (await fetch(`/themes/${id}/meta.json`)).json();
     const extra = v ? await (await fetch(`/themes/${id}/meta.${v}.json`)).json() : {};
-    return Object.assign(base, extra, { id, layar: Object.assign({}, base.layar, extra.layar) });
+    const m = Object.assign(base, extra, { id, layar: Object.assign({}, base.layar, extra.layar) });
+    // contoh link mengikuti nama panggilan mempelai di data demo
+    try { const d = await (await fetch(`/demo-data/${m.demo}.json`)).json(); const k = (x) => String(x || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+      if (d.pria_panggilan && d.wanita_panggilan) m.slugContoh = k(d.pria_panggilan) + '-' + k(d.wanita_panggilan); } catch (e) { /* pakai bawaan */ }
+    return m;
   };
 
   // satu layar undangan (iframe) — sebagai kartu atau ponsel berbingkai
@@ -105,8 +109,8 @@
         <p>Satu undangan, setiap tamu mendapat link dengan namanya sendiri.</p>
       </header>
       <div class="nt-pair">
-        <figure class="nt-back">${screen(meta, 'cover', .56, { phone: true, guest: 'Keluarga Bpk. Ahmad' })}<figcaption>${esc(domain)}/raka-nadia?to=<b>Keluarga+Bpk.+Ahmad</b></figcaption></figure>
-        <figure class="nt-front">${screen(meta, 'cover', .66, { phone: true, guest: 'Budi Santoso' })}<figcaption>${esc(domain)}/raka-nadia?to=<b>Budi+Santoso</b></figcaption></figure>
+        <figure class="nt-back">${screen(meta, 'cover', .56, { phone: true, guest: 'Keluarga Bpk. Ahmad' })}<figcaption>${esc(domain)}/${esc(meta.slugContoh || 'raka-nadia')}?to=<b>Keluarga+Bpk.+Ahmad</b></figcaption></figure>
+        <figure class="nt-front">${screen(meta, 'cover', .66, { phone: true, guest: 'Budi Santoso' })}<figcaption>${esc(domain)}/${esc(meta.slugContoh || 'raka-nadia')}?to=<b>Budi+Santoso</b></figcaption></figure>
       </div>
       <footer class="nt-foot">Tinggal salin &amp; kirim lewat WhatsApp ${brand ? '· ' + brand : ''}</footer>`,
     tampilan: () => {

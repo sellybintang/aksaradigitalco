@@ -3,7 +3,7 @@
 window.UNDANGAN_CONFIG = {
   apiUrl: '',
   brand: 'Aksara Digital',      // muncul kecil di footer & gambar katalog
-  domain: 'aksaradigital.pages.dev', // contoh link di gambar katalog "nama tamu"
+  domain: 'aksaradigitalco.pages.dev', // contoh link di gambar katalog "nama tamu"
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
   defaultTheme: '01-boarding-pass',
 

@@ -1,0 +1,53 @@
+{
+  "slug": "demo-lembah-wisteria",
+  "template": "23-lembah-wisteria",
+  "status": "aktif",
+  "aktif_sampai": "2027-12-31",
+  "pria_nama": "Arya Mahendra Putra, S.Kom.",
+  "pria_panggilan": "Arya",
+  "pria_ortu": "Bapak Sutrisno Mahendra & Ibu Dewi Lestari",
+  "pria_ig": "arya.contoh",
+  "wanita_nama": "Nayla Anindita Rahma, S.Psi.",
+  "wanita_panggilan": "Nayla",
+  "wanita_ortu": "Bapak Agus Setiawan & Ibu Rina Marlina",
+  "wanita_ig": "nayla.contoh",
+  "akad_judul": "Akad Nikah",
+  "akad_mulai": "2027-05-15 08:00",
+  "akad_selesai": "2027-05-15 10:00",
+  "akad_tempat": "Pendopo Lembah Wisteria",
+  "akad_alamat": "Jl. Dago Giri No. 99, Lembang, Bandung Barat",
+  "resepsi_judul": "Resepsi Pernikahan",
+  "resepsi_mulai": "2027-05-15 11:00",
+  "resepsi_selesai": "2027-05-15 14:00",
+  "resepsi_tempat": "Taman Air Terjun & Lembah Mawar",
+  "resepsi_alamat": "Jl. Raya Lembang No. 120, Bandung Barat",
+  "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
+  "kutipan_sumber": "QS. Ar-Rum: 21",
+  "cerita": "2019|Di Bawah Rimbun Wisteria|Bertemu pertama kali di sebuah kebun bunga saat liburan kampus; obrolan ringan yang ternyata menjadi awal segalanya.\n2021|Tumbuh Bersama|Jarak dan waktu menguji, namun rasa nyaman dan saling percaya tumbuh perlahan seperti bunga yang mekar di musimnya.\n2026|Lamaran|Dengan restu kedua orang tua, keluarga Arya datang melamar Nayla dalam suasana hangat dan penuh haru.\n2027|Menuju Pelaminan|Menyatukan hati dalam ikatan suci, diiringi doa keluarga dan sahabat tercinta.",
+  "foto_sampul": "/demo-data/img-private/pb-4.jpg",
+  "foto_berdua": "/demo-data/img-private/pb-1.jpg",
+  "galeri": "/demo-data/img-private/pb-4.jpg, /demo-data/img-private/pb-2.jpg, /demo-data/img-private/pb-1.jpg, /demo-data/img-private/pb-3.jpg, /demo-data/img-private/pb-5.jpg",
+  "kredit_foto": "@studiofoto_gresik · FR Studio",
+  "musik": "/assets/music/srie-wedding.mp3",
+  "rekening": "BCA|1234567890|Arya Mahendra\nMandiri|0987654321|Nayla Anindita",
+  "alamat_kado": "Jl. Dago Giri No. 99, Lembang, Bandung Barat 40391",
+  "_ucapan": [
+    {
+      "nama": "Fajar & Keluarga",
+      "kehadiran": "Hadir",
+      "ucapan": "Selamat menempuh hidup baru Arya & Nayla! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah."
+    },
+    {
+      "nama": "Salsa",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Bahagia selalu kalian berdua, semoga langgeng sampai kakek nenek."
+    },
+    {
+      "nama": "Tante Mira",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian."
+    }
+  ],
+  "pria_foto": "/demo-data/img-private/pb-pria.jpg",
+  "wanita_foto": "/demo-data/img-private/pb-wanita.jpg"
+}

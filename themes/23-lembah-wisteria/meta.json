@@ -1,0 +1,57 @@
+{
+  "nama": "Lembah Wisteria",
+  "tagline": "Air terjun, kanopi wisteria, merpati putih & lili merah muda",
+  "demo": "demo-lembah-wisteria",
+  "warna": {
+    "bg": "#1e2c27",
+    "bg2": "#34473f",
+    "kertas": "#f7efea",
+    "aksen": "#a95a6b",
+    "teks": "#f9f4f0",
+    "teksRedup": "rgba(249,244,240,.75)"
+  },
+  "font": {
+    "judul": "'Pinyon Script', 'Cormorant Garamond', cursive",
+    "label": "'Plus Jakarta Sans', sans-serif",
+    "url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500&display=swap"
+  },
+  "layar": {
+    "utama": "cover",
+    "kolase": [
+      "hero",
+      "couple",
+      "events",
+      "gallery",
+      "story",
+      "rsvp",
+      "gift",
+      "wishes"
+    ],
+    "tampilan": [
+      [
+        "hero",
+        "Pembuka"
+      ],
+      [
+        "couple",
+        "Mempelai"
+      ],
+      [
+        "events",
+        "Acara"
+      ],
+      [
+        "gallery",
+        "Galeri"
+      ]
+    ],
+    "fitur": [
+      "events",
+      "hero",
+      "couple"
+    ]
+  },
+  "video": {
+    "sampul": 7600
+  }
+}
