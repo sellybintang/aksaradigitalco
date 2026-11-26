@@ -23,6 +23,11 @@ body.u-slide #main > :not(.u-slide-on) { display: none !important; }
 body.u-slide #main > .u-slide-on { min-height: 100svh; }
 body.u-slide #main > .u-slide-on.u-slide-center { display: flex !important; flex-direction: column; justify-content: center; }
 body.u-slide.u-opened #main { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* garis progres slide otomatis (warna aksen tema) */
+.u-progress { position: fixed; z-index: 96; left: 0; right: 0; top: 0; height: 3px; background: rgba(255, 255, 255, .18); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+.u-progress.is-on { opacity: 1; }
+.u-progress.is-paused { opacity: .45; }
+.u-progress i { display: block; height: 100%; background: var(--dock-ac); transform-origin: 0 50%; transform: scaleX(0); }
 .u-hint { position: fixed; z-index: 95; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.92); opacity: 0; pointer-events: none;
   display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; color: var(--dock-tx);
   background: color-mix(in srgb, var(--dock-bg) 88%, transparent); border: 1px solid color-mix(in srgb, var(--dock-ac) 50%, transparent);

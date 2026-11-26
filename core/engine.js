@@ -179,11 +179,9 @@
    * Setiap anak langsung <main id="main"> (section/footer) jadi satu halaman. Pindah halaman lewat
    * tombol ‹ ›, titik, geser kiri/kanan, atau panah keyboard. Section yang lebih panjang dari layar
    * tetap bisa digulir di dalam halamannya sendiri. */
-  function slideMode(d) {
-    const q = (qs.get('tampilan') || '').toLowerCase().trim();
-    if (q) return q === 'slide';
-    return String(d.layout || CFG.tampilan || '').toLowerCase().trim() === 'slide';
-  }
+  // "slide" = per halaman & berjalan otomatis; "slide-manual" = per halaman tanpa otomatis.
+  const layoutOf = (d) => (qs.get('tampilan') || d.layout || CFG.tampilan || '').toLowerCase().trim();
+  function slideMode(d) { return /^slide(-manual)?$/.test(layoutOf(d)); }
 
   // Menu bawah mode slide. Halaman dikenali dari penanda data-shot tema (couple, events, ...),
   // lalu dari judul halaman, lalu kecocokan cadangan. Urutan baris = prioritas.
@@ -241,7 +239,7 @@
     };
   }
 
-  function setupSlides(meta) {
+  function setupSlides(meta, auto) {
     const main = document.getElementById('main');
     const slides = main ? [...main.children] : [];
     if (slides.length < 2) return;
@@ -272,7 +270,9 @@
       if (markDock) markDock(i);
       prev.disabled = i === 0; next.disabled = i === slides.length - 1;
       if (document.body.classList.contains('u-opened')) window.scrollTo({ top: main.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
+      elapsed = 0; userScrolled = false;   // slide otomatis mulai dari awal untuk halaman ini
     };
+    let elapsed = 0, userScrolled = false, holdUntil = 0;
     nav.addEventListener('click', (e) => {
       const b = e.target.closest('[data-dir]'); if (b) return go(cur + Number(b.dataset.dir));
       const dt = e.target.closest('[data-i]'); if (dt) go(Number(dt.dataset.i));
@@ -331,6 +331,55 @@
     // titik hanya dipakai bila tidak ada menu bawah (menu tema sendiri / judul halaman tidak dikenali)
     if (markDock || document.querySelector('#app > nav')) nav.classList.add('u-slidenav--nodots');
     go(0);
+    if (auto) setupAutoSlide();
+
+    /* Slide otomatis: tiap halaman tampil ±7 detik (+ waktu tambahan untuk halaman yang lebih panjang dari
+     * layar; halaman panjang digulir pelan ke bawah), lalu pindah sendiri. Berhenti di halaman terakhir.
+     * Jeda bila tamu sedang berinteraksi: menggulir, mengisi form, membuka foto, atau tab tidak aktif. */
+    function setupAutoSlide() {
+      const BASE = (Number(CFG.slideDetik) || 7) * 1000;
+      const bar = document.createElement('div');
+      bar.className = 'u-progress';
+      const w = meta.warna || {}; bar.style.setProperty('--dock-ac', w.aksen || '#fff');
+      bar.innerHTML = '<i></i>';
+      document.body.appendChild(bar);
+      const fill = bar.firstChild;
+      const hold = (ms) => { holdUntil = Math.max(holdUntil, performance.now() + ms); };
+      const userScroll = () => { userScrolled = true; hold(6000); };
+      addEventListener('wheel', userScroll, { passive: true });
+      main.addEventListener('touchmove', userScroll, { passive: true });
+      addEventListener('keydown', (e) => { if (/Arrow(Up|Down)|Page|Home|End|Space/.test(e.code)) userScroll(); });
+      const busy = () => {
+        const a = document.activeElement;
+        if (a && a.matches && a.matches('input, textarea, select')) return true;   // sedang mengisi RSVP
+        if ([...document.querySelectorAll('[class*="lightbox"]')].some((l) => !l.hidden && l.offsetParent !== null)) return true;   // melihat foto
+        return false;
+      };
+      let last = performance.now();
+      const tick = (now) => {
+        const dt = Math.min(100, now - last); last = now;
+        const s = slides[cur];
+        const opened = document.body.classList.contains('u-opened');
+        const lastSlide = cur >= slides.length - 1;
+        const extra = Math.max(0, s.offsetHeight - innerHeight);
+        const dur = BASE + (extra / innerHeight) * 5000;
+        const paused = !opened || document.hidden || busy() || now < holdUntil;
+        if (!paused && !lastSlide) elapsed += dt;
+        const p = Math.min(1, elapsed / dur);
+        bar.classList.toggle('is-on', opened && !lastSlide);
+        bar.classList.toggle('is-paused', paused);
+        fill.style.transform = `scaleX(${p})`;
+        // halaman panjang: gulir pelan dari atas ke bawah (kecuali tamu sudah menggulir sendiri)
+        if (!paused && extra > 0 && !userScrolled) {
+          const top = main.getBoundingClientRect().top + window.scrollY;
+          const q = Math.min(1, Math.max(0, (p - 0.12) / 0.78));
+          window.scrollTo({ top: top + extra * q, behavior: 'instant' });
+        }
+        if (p >= 1 && !lastSlide) go(cur + 1);
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
   }
 
   function setupCountdown(root) {
@@ -442,7 +491,7 @@
     setupWishes(app, d, pack.wishes, Theme, slug);
     setupReveal(app);
     if (Theme.mount) Theme.mount(app, d, h);
-    if (!qs.get('shot') && slideMode(d)) setupSlides(meta);
+    if (!qs.get('shot') && slideMode(d)) setupSlides(meta, layoutOf(d) !== 'slide-manual' && qs.get('otomatis') !== '0');
     window.scrollTo(0, 0);
     if (qs.get('shot')) shotMode(qs.get('shot'));
   }
