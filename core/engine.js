@@ -506,10 +506,12 @@
     if (!Theme || typeof Theme.render !== 'function') return message('Tema tidak ditemukan', `Tema "${theme}" belum tersedia.`);
     let meta = {};
     try { meta = await (await fetch(`/themes/${theme}/meta.json`)).json(); } catch (e) { /* abaikan */ }
-    // Kolom musik kosong → lagu default tema (meta.json "musik"), lalu config.musikDefault.
-    // Demo yang temanya diganti lewat ?theme= memakai lagu tema itu (bukan lagu data demo umum).
-    const demoTheme = isDemo(slug) && qs.get('theme') && meta.musik;
-    if (!d.noMusic && (!d.music || demoTheme)) d.music = media((demoTheme && meta.musik) || d.music || meta.musik || CFG.musikDefault || '', 'audio');
+    // Klien: kolom musik kosong → lagu default tema (meta.json "musik"), lalu config.musikDefault.
+    // Demo (/demo, /demo-…, /ad0…) TIDAK diubah: tampil persis seperti datanya (musik, peta, dll.).
+    if (isDemo(slug)) {
+      // tombol peta di demo tetap tampil seperti dulu (link dibuat dari alamat bila kolom maps kosong)
+      d.events.forEach((e) => { if (!e.maps && (e.place || e.address)) e.maps = h.mapsUrl(e); });
+    } else if (!d.noMusic && !d.music) d.music = media(meta.musik || CFG.musikDefault || '', 'audio');
     document.title = `The Wedding of ${d.groom.nick} & ${d.bride.nick}`;
     document.body.dataset.theme = theme;
     app.innerHTML = Theme.render(d, h);
