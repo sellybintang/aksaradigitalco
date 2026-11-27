@@ -57,3 +57,24 @@ Demo per produk juga berupa baris di sheet Klien: slug = kode SKU huruf kecil (`
 RSVP di link demo tidak dicatat. Baris demo diisi sekali dengan fungsi `imporDemo()` di Apps Script
 (sumber: `demo-data/sheet-demo.json`, dibuat dengan `node tools/sheet-demo.js`); fungsi ini hanya menambah slug yang belum ada.
 Bila baris demo belum ada / Sheets gagal dimuat, website memakai data demo bawaan tema.
+
+## Dropdown pilihan (pasangPilihan)
+
+Jalankan `pasangPilihan()` sekali dari editor Apps Script (juga otomatis di `siapkanSheet()` dan `imporDemo()`). Hasilnya:
+
+| Kolom Klien | Pilihan | Wajib dari daftar? |
+|---|---|---|
+| `template` | `AD001 · Analog Story` … `AD011 · Lembah Wisteria` | ya |
+| `status` | `aktif`, `draft` | ya |
+| `zona_waktu` | `WIB`, `WITA`, `WIT` | ya |
+| `tanpa_foto` | `ya`, `tidak` | ya |
+| `musik` | nama musik bawaan (`cipaa`, `srie-wedding`, …) | tidak — boleh tempel link Google Drive |
+| `akad_judul`, `resepsi_judul` | Akad Nikah, Pemberkatan Nikah, Resepsi Pernikahan, Ngunduh Mantu, … | tidak — boleh ketik sendiri |
+| `_paket` | Dengan Foto, Tanpa Foto, DEMO | tidak |
+
+- Daftar pilihan ada di tab **Pilihan** dan boleh ditambah sendiri (mis. tema baru `AD012 · Nama Tema`, musik baru) —
+  dropdown langsung ikut. Tema baru tetap perlu didaftarkan juga di `config.js` → `sku`.
+- Website hanya membaca kode tema (`AD011`), jadi label di belakang kode boleh berbeda.
+- Musik cukup nama file di `assets/music/` tanpa `.mp3`.
+- Kepala kolom (baris 1) diberi catatan format: arahkan kursor ke sel judul kolom untuk melihatnya.
+- Kolom yang belum ada di sheet (mis. `zona_waktu`) otomatis ditambahkan di ujung kanan.

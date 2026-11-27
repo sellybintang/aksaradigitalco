@@ -58,7 +58,117 @@ function siapkanSheet() {
   sheet_(SHEET_UCAPAN, ['waktu', 'slug', 'nama', 'kehadiran', 'jumlah', 'ucapan']).setFrozenRows(1);
   const awal = ss.getSheetByName('Sheet1') || ss.getSheetByName('Lembar1');
   if (awal && awal.getLastRow() === 0 && ss.getSheets().length > 2) ss.deleteSheet(awal);
+  pasangPilihan();
   Logger.log('Sheet siap. Cek tab "Klien" dan "Ucapan".');
+}
+
+/* ---------- dropdown pilihan ---------- */
+
+const SHEET_PILIHAN = 'Pilihan';
+// Tema: kode SKU · nama (sama dengan config.js → sku). Website hanya membaca kodenya (AD011).
+const TEMA = [
+  ['AD001', '03-analog-story', 'Analog Story'], ['AD002', '01-boarding-pass', 'Boarding Pass'],
+  ['AD003', '08-cinema-premiere', 'Cinema Premiere'], ['AD004', '13-japandi', 'Japandi'],
+  ['AD005', '15-cafe-menu', 'Café Menu'], ['AD006', '18-arabesque', 'Arabesque'],
+  ['AD007', '09-celestial', 'Celestial'], ['AD008', '19-nusantara', 'Nusantara'],
+  ['AD009', '21-prambanan', 'Prambanan'], ['AD010', '22-taman-istana', 'Taman Istana'],
+  ['AD011', '23-lembah-wisteria', 'Lembah Wisteria'],
+];
+const label_ = (t) => t[0] + ' · ' + t[2];
+// isi awal tab "Pilihan" — tab ini boleh kamu tambah sendiri (mis. tema baru, musik baru)
+const PILIHAN = {
+  tema: TEMA.map(label_),
+  status: ['aktif', 'draft'],
+  zona_waktu: ['WIB', 'WITA', 'WIT'],
+  ya_tidak: ['ya', 'tidak'],
+  musik: ['srie-wedding', 'pasuruan-sidoarjo', 'undangan-digital', 'atenaproject', 'cipaa', 'wcc-lampung', 'rona-cinta', 'senarai-vite', 'princess-draft', 'gending-manten'],
+  judul_acara: ['Akad Nikah', 'Pemberkatan Nikah', 'Resepsi Pernikahan', 'Ngunduh Mantu', 'Tasyakuran Pernikahan', "Walimatul 'Ursy", 'Unduh Mantu'],
+  paket: ['Dengan Foto', 'Tanpa Foto', 'DEMO'],
+};
+// kolom Klien → [daftar di tab Pilihan, wajib dari daftar?, keterangan]
+const DROPDOWN = {
+  template: ['tema', true, 'Pilih tema (kode SKU sama dengan produk Shopee).'],
+  status: ['status', true, 'aktif = link bisa dibuka · draft = disembunyikan.'],
+  zona_waktu: ['zona_waktu', true, 'Zona waktu acara. Kosong = WIB.'],
+  tanpa_foto: ['ya_tidak', true, 'ya = versi tanpa foto (ilustrasi).'],
+  musik: ['musik', false, 'Pilih musik bawaan, atau tempel link Google Drive (akses: siapa saja yang memiliki link).'],
+  akad_judul: ['judul_acara', false, 'Pilih atau ketik judul acara sendiri.'],
+  resepsi_judul: ['judul_acara', false, 'Pilih atau ketik judul acara sendiri.'],
+  _paket: ['paket', false, 'Catatan admin (tidak tampil di undangan).'],
+};
+const CATATAN = {
+  slug: 'Alamat link: huruf kecil, tanpa spasi, pakai tanda - (mis. dimas-dian). Harus unik.',
+  aktif_sampai: 'Tanggal terakhir link bisa dibuka. Format: 2027-05-14',
+  akad_mulai: 'Format: 2027-02-14 08:00', akad_selesai: 'Format: 2027-02-14 10:00',
+  resepsi_mulai: 'Format: 2027-02-14 11:00', resepsi_selesai: 'Format: 2027-02-14 14:00',
+  cerita: 'Satu baris per kisah: tahun|judul|cerita (Alt+Enter untuk baris baru).',
+  rekening: 'Satu baris per rekening: BANK|nomor|atas nama (Alt+Enter untuk baris baru).',
+  galeri: 'Beberapa foto dipisah koma / baris baru. Boleh link Google Drive.',
+  foto_sampul: 'Link foto (boleh link share Google Drive).',
+};
+
+/**
+ * Memasang dropdown & keterangan di sheet Klien, membuat/menambah tab "Pilihan".
+ * Aman dijalankan ulang: isian tab Pilihan yang kamu tambahkan sendiri tidak dihapus.
+ */
+function pasangPilihan() {
+  const ss = SpreadsheetApp.getActive();
+  // 1) tab Pilihan: satu kolom per daftar; nilai bawaan yang belum ada ditambahkan di bawahnya
+  let pl = ss.getSheetByName(SHEET_PILIHAN);
+  if (!pl) { pl = ss.insertSheet(SHEET_PILIHAN); pl.setTabColor('#b89150'); }
+  const nama = Object.keys(PILIHAN);
+  const kol = {};
+  nama.forEach((n, i) => {
+    const c = i + 1;
+    pl.getRange(1, c).setValue(n).setFontWeight('bold').setBackground('#f3ede3');
+    const last = Math.max(pl.getLastRow(), 1);
+    const ada = last > 1 ? pl.getRange(2, c, last - 1, 1).getDisplayValues().map((x) => x[0]).filter(String) : [];
+    const kurang = PILIHAN[n].filter((v) => ada.indexOf(v) < 0);
+    if (kurang.length) pl.getRange(ada.length + 2, c, kurang.length, 1).setNumberFormat('@').setValues(kurang.map((v) => [v]));
+    kol[n] = c;
+  });
+  pl.setFrozenRows(1);
+
+  // 2) sheet Klien: kolom yang belum ada (mis. zona_waktu) ditambahkan di kanan
+  const sh = sheet_(SHEET_KLIEN);
+  let head = sh.getRange(1, 1, 1, Math.max(sh.getLastColumn(), 1)).getDisplayValues()[0].map((h) => String(h).trim());
+  const baru = KOLOM.filter((k) => head.indexOf(k) < 0);
+  if (baru.length) { sh.getRange(1, head.length + 1, 1, baru.length).setValues([baru]).setFontWeight('bold').setBackground('#f3ede3'); head = head.concat(baru); }
+  const baris = Math.max(sh.getMaxRows() - 1, 1);
+
+  // 3) isi template lama (AD011 / 23-lembah-wisteria) → "AD011 · Lembah Wisteria" agar cocok dengan dropdown
+  const iT = head.indexOf('template');
+  if (iT >= 0 && sh.getLastRow() > 1) {
+    const rg = sh.getRange(2, iT + 1, sh.getLastRow() - 1, 1);
+    rg.setValues(rg.getDisplayValues().map(([v]) => {
+      const s = String(v).trim().toLowerCase();
+      const t = TEMA.find((x) => s === x[0].toLowerCase() || s === x[1] || s.indexOf(x[0].toLowerCase() + ' ') === 0);
+      return [t ? label_(t) : v];
+    }));
+  }
+  // musik lama "/assets/music/cipaa.mp3" → "cipaa"
+  const iM = head.indexOf('musik');
+  if (iM >= 0 && sh.getLastRow() > 1) {
+    const rg = sh.getRange(2, iM + 1, sh.getLastRow() - 1, 1);
+    rg.setValues(rg.getDisplayValues().map(([v]) => [String(v).replace(/^\/assets\/music\/([\w-]+)\.mp3$/i, '$1')]));
+  }
+
+  // 4) dropdown + keterangan kolom
+  Object.keys(DROPDOWN).forEach((k) => {
+    const i = head.indexOf(k); if (i < 0) return;
+    const [daftar, wajib, ket] = DROPDOWN[k];
+    const sumber = pl.getRange(2, kol[daftar], pl.getMaxRows() - 1, 1);
+    const rule = SpreadsheetApp.newDataValidation().requireValueInRange(sumber, true)
+      .setAllowInvalid(!wajib).setHelpText(ket).build();
+    sh.getRange(2, i + 1, baris, 1).setDataValidation(rule);
+    sh.getRange(1, i + 1).setNote(ket);
+  });
+  Object.keys(CATATAN).forEach((k) => { const i = head.indexOf(k); if (i >= 0) sh.getRange(1, i + 1).setNote(CATATAN[k]); });
+  // kolom tanggal & slug tetap teks biasa
+  head.forEach((h, i) => { if (KOLOM_TANGGAL.indexOf(h) >= 0 || h === 'slug') sh.getRange(2, i + 1, baris, 1).setNumberFormat('@'); });
+
+  ss.setActiveSheet(sh);
+  Logger.log('Dropdown terpasang di %s kolom. Daftar pilihan bisa ditambah di tab "%s".', Object.keys(DROPDOWN).filter((k) => head.indexOf(k) >= 0).length, SHEET_PILIHAN);
 }
 
 /**
@@ -89,6 +199,7 @@ function imporDemo() {
   const ucapan = src.wishes.filter((w) => punya.indexOf(w.slug) < 0).reverse()
     .map((w) => [new Date(), w.slug, w.nama, w.kehadiran, w.jumlah, w.ucapan]);
   if (ucapan.length) uc.getRange(uc.getLastRow() + 1, 1, ucapan.length, 6).setValues(ucapan);
+  pasangPilihan();   // template "AD011" → "AD011 · Lembah Wisteria", musik → nama pendek
   Logger.log('Demo: %s baris ditambahkan, %s sudah ada. Ucapan contoh: %s.', tambah.length, src.rows.length - tambah.length, ucapan.length);
 }
 

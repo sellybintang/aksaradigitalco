@@ -36,7 +36,9 @@
   const isDemo = (slug) => slug === 'demo' || slug.startsWith('demo-') || isSkuDemo(slug);
   const BASE = String(CFG.base || '').replace(/\/+$/, '');
   // kode SKU (mis. AD002, tidak peka huruf besar/kecil) → nama folder tema (lihat config.js → sku)
-  const skuTheme = (v) => { const k = Object.keys(CFG.sku || {}).find((x) => x.toLowerCase() === String(v || '').trim().toLowerCase()); return k ? CFG.sku[k] : ''; };
+  // Dropdown Sheets berisi "AD011 · Lembah Wisteria" → yang dibaca hanya kodenya.
+  const skuCode = (v) => { const m = String(v || '').match(/^\s*(ad\d+)/i); return m ? m[1].toUpperCase() : ''; };
+  const skuTheme = (v) => { const c = skuCode(v); const k = c && Object.keys(CFG.sku || {}).find((x) => x.toUpperCase() === c); return k ? CFG.sku[k] : ''; };
 
   // Alamat foto/musik dari data: link Google Drive (dibagikan "siapa saja yang memiliki link") diubah jadi
   // gambar/audio langsung; alamat pendek "/assets/..." diberi awalan subfolder situs bila perlu.
@@ -45,6 +47,8 @@
     if (!u) return '';
     const m = u.match(/(?:drive|docs)\.google\.com\/(?:file\/d\/|open\?(?:[^#]*&)?id=|uc\?(?:[^#]*&)?id=)([\w-]{20,})/);
     if (m) return kind === 'audio' ? `https://drive.google.com/uc?export=download&id=${m[1]}` : `https://lh3.googleusercontent.com/d/${m[1]}=w1600`;
+    // musik bawaan situs cukup ditulis namanya (dropdown Sheets): "cipaa" → /assets/music/cipaa.mp3
+    if (kind === 'audio' && /^[\w-]+(\.mp3)?$/i.test(u)) return media('/assets/music/' + u.replace(/\.mp3$/i, '') + '.mp3');
     if (BASE && u.startsWith('/') && !u.startsWith('//') && !u.startsWith(BASE + '/')) return BASE + u;
     return u;
   }
@@ -489,7 +493,7 @@
     // Di demo, tema bisa diganti lewat ?theme= agar satu data contoh dipakai semua katalog.
     let theme = String((isDemo(slug) && qs.get('theme')) || d.theme || CFG.defaultTheme).trim();
     if (skuTheme(theme)) theme = skuTheme(theme);
-    else if (/^ad\d+$/i.test(theme)) return message('Tema tidak ditemukan', `Kode tema "${theme.toUpperCase()}" belum terdaftar.`);
+    else if (skuCode(theme)) return message('Tema tidak ditemukan', `Kode tema "${skuCode(theme)}" belum terdaftar.`);
     theme = theme.replace(/[^a-z0-9-]/gi, '');
     try {
       await Promise.all([
