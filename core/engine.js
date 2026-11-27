@@ -167,11 +167,24 @@
       btn.disabled = true;
       if (audio) audio.play().catch(() => {});
       if (Theme.onOpen) await Theme.onOpen(root);
+      const main = document.getElementById('main');
+      const slide = document.body.classList.contains('u-slide');
+      const cover = document.getElementById('cover');
+      const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Mode slide: sampul dibekukan di posisinya lalu memudar pelan, halaman pertama muncul dari baliknya.
+      if (slide && cover && !calm) {
+        const r = cover.getBoundingClientRect();
+        Object.assign(cover.style, { top: '0px', left: r.left + 'px', width: r.width + 'px', height: Math.max(r.height, innerHeight) + 'px' });
+        cover.classList.add('u-cover-out');
+        setTimeout(() => cover.classList.add('u-cover-gone'), 1300);
+      }
       document.body.classList.remove('u-locked');
       document.body.classList.add('u-opened');
-      const main = document.getElementById('main');
-      if (document.body.classList.contains('u-slide')) window.scrollTo({ top: 0, behavior: 'instant' });
-      else if (main) main.scrollIntoView({ behavior: 'smooth' });
+      if (slide) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        const first = main && main.querySelector(':scope > .u-slide-on');
+        if (first && !calm) { first.classList.remove('u-slide-in-next', 'u-slide-in-prev', 'u-slide-first-in'); void first.offsetWidth; first.classList.add('u-slide-first-in'); }
+      } else if (main) main.scrollIntoView({ behavior: 'smooth' });
     }));
   }
 
@@ -259,7 +272,7 @@
     let cur = -1;
     let markDock = null;
     // Transisi halus dua tahap: halaman lama memudar keluar (OUT ms), lalu halaman baru masuk pelan.
-    const OUT = 380;
+    const OUT = 500;
     const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let leaving = null;   // { timer, finish } selama halaman lama sedang memudar
     const swap = (i, dir) => {
@@ -280,7 +293,7 @@
       prev.disabled = i === 0; next.disabled = i === slides.length - 1;
       userScrolled = false;
       const animate = old && !calm && document.body.classList.contains('u-opened');
-      elapsed = animate ? -(OUT + 700) : 0;   // slide otomatis mulai menghitung setelah transisi masuk hampir selesai
+      elapsed = animate ? -(OUT + 850) : 0;   // slide otomatis mulai menghitung setelah transisi masuk hampir selesai
       if (!animate) return swap(i, dir);
       old.classList.add('u-slide-out-' + dir);
       const finish = () => { leaving = null; swap(i, dir); };
@@ -311,6 +324,8 @@
       go(cur + ((e.clientX - r.left) < r.width * 0.3 ? -1 : 1));
       hideHint();
     });
+    // halaman pertama: slide otomatis mulai menghitung setelah animasi buka undangan selesai
+    document.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => { elapsed = -1400; }, { once: true }));
     // petunjuk singkat sekali di awal
     let hint = null;
     const hideHint = () => { if (hint) { hint.classList.remove('is-on'); setTimeout(() => hint && hint.remove(), 400); hint = null; } };

@@ -35,17 +35,23 @@ body.u-slide.u-opened #main { cursor: pointer; -webkit-tap-highlight-color: tran
 .u-hint.is-on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 .u-hint b { font-size: 1.2rem; color: var(--dock-ac); animation: u-nudge 1s ease-in-out infinite; }
 @keyframes u-nudge { 50% { transform: translateX(4px); } }
-body.u-slide.u-opened #cover { display: none !important; }
+body.u-slide.u-opened #cover:not(.u-cover-out), #cover.u-cover-gone { display: none !important; }
+/* buka undangan (mode slide): sampul memudar sambil sedikit membesar, halaman pertama muncul pelan */
+#cover.u-cover-out { position: fixed !important; z-index: 85; margin: 0 !important; pointer-events: none;
+  animation: u-cover-out 1.2s cubic-bezier(.4, 0, .2, 1) forwards; }
+@keyframes u-cover-out { 0% { opacity: 1; transform: none; filter: none; } 100% { opacity: 0; transform: scale(1.06); filter: blur(6px); } }
+body.u-slide .u-slide-first-in { animation: u-first-in 1.4s cubic-bezier(.22, .61, .36, 1) both; }
+@keyframes u-first-in { from { opacity: 0; transform: scale(.97); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 body.u-slide #main { padding-bottom: 28px; }
 /* transisi halus: keluar memudar (.38s) lalu masuk pelan (1s) dengan sedikit geser & zoom */
-@keyframes u-in-next { from { opacity: 0; transform: translateX(26px) scale(.985); } to { opacity: 1; transform: none; } }
-@keyframes u-in-prev { from { opacity: 0; transform: translateX(-26px) scale(.985); } to { opacity: 1; transform: none; } }
-@keyframes u-out-next { to { opacity: 0; transform: translateX(-18px) scale(.99); } }
-@keyframes u-out-prev { to { opacity: 0; transform: translateX(18px) scale(.99); } }
-body.u-slide .u-slide-in-next { animation: u-in-next 1s cubic-bezier(.22, .61, .36, 1) both; }
-body.u-slide .u-slide-in-prev { animation: u-in-prev 1s cubic-bezier(.22, .61, .36, 1) both; }
-body.u-slide .u-slide-out-next { animation: u-out-next .38s cubic-bezier(.55, 0, .45, 1) both; pointer-events: none; }
-body.u-slide .u-slide-out-prev { animation: u-out-prev .38s cubic-bezier(.55, 0, .45, 1) both; pointer-events: none; }
+@keyframes u-in-next { from { opacity: 0; transform: translateX(18px) scale(.985); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes u-in-prev { from { opacity: 0; transform: translateX(-18px) scale(.985); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes u-out-next { to { opacity: 0; transform: translateX(-12px) scale(.99); filter: blur(2px); } }
+@keyframes u-out-prev { to { opacity: 0; transform: translateX(12px) scale(.99); filter: blur(2px); } }
+body.u-slide .u-slide-in-next { animation: u-in-next 1.2s cubic-bezier(.16, .84, .3, 1) both; }
+body.u-slide .u-slide-in-prev { animation: u-in-prev 1.2s cubic-bezier(.16, .84, .3, 1) both; }
+body.u-slide .u-slide-out-next { animation: u-out-next .5s cubic-bezier(.45, 0, .55, 1) both; pointer-events: none; }
+body.u-slide .u-slide-out-prev { animation: u-out-prev .5s cubic-bezier(.45, 0, .55, 1) both; pointer-events: none; }
 /* panah di sisi kiri/kanan, titik tipis di bawah: tidak menutupi isi halaman */
 .u-slidenav { display: none; }
 body.u-slide.u-opened .u-slidenav { display: block; }
