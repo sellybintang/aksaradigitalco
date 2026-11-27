@@ -26,7 +26,6 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | `foto_berdua` | URL | Foto pasangan di bagian pembuka (opsional, dipakai sebagian tema) |
 | `kredit_foto` | `@namafotografer` | Kredit fotografer di footer (opsional) |
 | `zona_waktu` | `WIB` / `WITA` / `WIT` | Label jam acara & zona tombol "Simpan ke Kalender". Kosong = WIB. Kolom boleh diletakkan di mana saja (dibaca dari nama kolom) |
-| `tampilan` | `slide` / `slide-manual` / `gulir` / kosong | **Kosong = slide** (bawaan klien, `config.js` → `tampilan`). `slide` = per halaman yang **berjalan otomatis** (±3 detik per halaman, halaman panjang digulir pelan, jeda saat tamu berinteraksi). `slide-manual` = per halaman tanpa otomatis. `gulir` = gulir biasa. Pindah halaman: ketuk kanan/kiri layar, geser, panah ‹ ›, atau menu bawah. Demo (`/demo`, `/demo-…`, `/ad0…`) selalu gulir kecuali ada `&tampilan=slide` di link. Lama per halaman: `config.js` → `slideDetik` |
 | `tanpa_foto` | `ya` / kosong | Versi tanpa foto: foto diganti ilustrasi beranimasi (tema Nusantara: wayang). Otomatis aktif juga bila tidak ada foto sama sekali |
 | `musik` | URL file .mp3 / link Google Drive / `/assets/music/nama.mp3` | Opsional. Kosong = lagu bawaan tema (`themes/<tema>/meta.json` → `musik`, cadangan `config.js` → `musikDefault`). Isi `-` atau `tidak` untuk tanpa musik |
 | `rekening` | `BCA\|1234567890\|Raka Pradipta` | Satu rekening per baris |
@@ -35,6 +34,14 @@ Format kolom tanggal sebagai **Teks biasa** (Format → Angka → Teks biasa).
 | `_no_pesanan`, `_kontak`, `_paket`, `_catatan` | bebas | **Catatan admin, privat.** Semua kolom berawalan `_` tidak pernah dikirim ke website |
 
 Sheet **"Klien"** dan **"Ucapan"** dibuat otomatis dengan fungsi `siapkanSheet()` — lihat `docs/panduan-google-sheets.md`.
+
+## Tampilan undangan
+
+Semua undangan & demo tampil **per halaman (slide) yang berjalan otomatis**: ±3 detik per halaman
+(`config.js` → `slideDetik`), halaman yang lebih panjang dari layar digulir pelan, dan otomatisnya berjeda
+saat tamu berinteraksi. Pindah halaman: ketuk kanan/kiri layar, geser, panah ‹ ›, atau menu bawah
+(warna mengikuti tema). Tidak ada kolom pengaturan tampilan. Alat katalog memakai `?shot=` (foto) dan
+`?rekam=1` (video) untuk mendapat halaman utuh.
 
 ## Foto & musik dari Google Drive
 

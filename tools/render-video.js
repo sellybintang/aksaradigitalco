@@ -103,7 +103,8 @@ async function record(cdp, theme, outFile) {
     cdp.send('Page.screencastFrameAck', { sessionId: p.sessionId }).catch(() => {});
   });
 
-  await cdp.send('Page.navigate', { url: `http://localhost:${PORT}/${meta.demo}?theme=${id}&to=${encodeURIComponent('Budi Santoso')}` });
+  // rekam=1: tampilan gulir utuh (video menggulir halaman), bukan mode slide
+  await cdp.send('Page.navigate', { url: `http://localhost:${PORT}/${meta.demo}?theme=${id}&rekam=1&to=${encodeURIComponent('Budi Santoso')}` });
   // tunggu halaman & gambar siap
   for (let i = 0; i < 60; i++) {
     await sleep(300);

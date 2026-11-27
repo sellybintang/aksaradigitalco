@@ -100,9 +100,7 @@
       gifts: split(r.rekening, /\r?\n/).map((l) => { const [bank, number, name] = l.split('|').map((s) => (s || '').trim()); return { bank, number, name }; }).filter((g) => g.number),
       giftAddress: r.alamat_kado || '',
       cover: media(r.foto_sampul), couplephoto: media(r.foto_berdua), music: /^(-|tidak|tanpa)$/i.test(String(r.musik || '').trim()) ? '' : media(r.musik, 'audio'),
-      noMusic: /^(-|tidak|tanpa)$/i.test(String(r.musik || '').trim()),   // "-" / "tidak" = tanpa musik
-      layout: r.tampilan || '',   // "slide" = per halaman, kosong = gulir biasa
-      photoCredit: r.kredit_foto || '',
+      noMusic: /^(-|tidak|tanpa)$/i.test(String(r.musik || '').trim()),   // "-" / "tidak" = tanpa musik      photoCredit: r.kredit_foto || '',
       quote: r.kutipan || '', quoteSource: r.kutipan_sumber || '',
       showStats: String(r.tampilkan_jumlah_tamu || '').toLowerCase() === 'ya',
       noPhoto: String(r.tanpa_foto || '').toLowerCase() === 'ya',   // versi tanpa foto (ilustrasi)
@@ -188,15 +186,11 @@
     }));
   }
 
-  /* ---------- mode slide (kolom Sheets "tampilan" = slide, atau ?tampilan=slide) ----------
-   * Setiap anak langsung <main id="main"> (section/footer) jadi satu halaman. Pindah halaman lewat
-   * tombol ‹ ›, titik, geser kiri/kanan, atau panah keyboard. Section yang lebih panjang dari layar
-   * tetap bisa digulir di dalam halamannya sendiri. */
-  // "slide" = per halaman & berjalan otomatis; "slide-manual" = per halaman tanpa otomatis; "gulir" = gulir biasa.
-  // Urutan: ?tampilan= di link → kolom Sheets "tampilan" → bawaan. Bawaan klien = config.tampilan (slide),
-  // bawaan demo (/demo, /demo-…, /ad0…) = gulir, supaya link demo yang sudah tersebar tidak berubah.
-  const layoutOf = (d, slug) => (qs.get('tampilan') || d.layout || (isDemo(slug) ? 'gulir' : CFG.tampilan) || 'gulir').toLowerCase().trim();
-  function slideMode(d, slug) { return /^slide(-manual)?$/.test(layoutOf(d, slug)); }
+  /* ---------- mode slide: tampilan tunggal untuk semua undangan & demo ----------
+   * Setiap anak langsung <main id="main"> (section/footer) jadi satu halaman yang berjalan otomatis.
+   * Pindah halaman lewat ketuk kanan/kiri, geser, tombol ‹ ›, menu bawah, atau panah keyboard.
+   * Section yang lebih panjang dari layar digulir pelan di dalam halamannya sendiri.
+   * Pengecualian hanya untuk alat foto & video katalog (?shot=… / ?rekam=1), yang butuh halaman utuh. */
 
   // Menu bawah mode slide. Halaman dikenali dari penanda data-shot tema (couple, events, ...),
   // lalu dari judul halaman, lalu kecocokan cadangan. Urutan baris = prioritas.
@@ -524,7 +518,7 @@
     setupWishes(app, d, pack.wishes, Theme, slug);
     setupReveal(app);
     if (Theme.mount) Theme.mount(app, d, h);
-    if (!qs.get('shot') && slideMode(d, slug)) setupSlides(meta, layoutOf(d, slug) !== 'slide-manual' && qs.get('otomatis') !== '0');
+    if (!qs.get('shot') && !qs.get('rekam')) setupSlides(meta, true);   // ?shot / ?rekam = alat foto & video katalog
     window.scrollTo(0, 0);
     if (qs.get('shot')) shotMode(qs.get('shot'));
   }
