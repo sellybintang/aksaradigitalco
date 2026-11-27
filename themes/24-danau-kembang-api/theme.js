@@ -237,6 +237,9 @@
   ${panels()}
 </section>
 
+<!-- satu ruang danau yang sama di belakang semua halaman: kamera bergerak masuk tiap pindah halaman -->
+<div class="dk-world" aria-hidden="true">${back()}${front()}</div>
+
 <main id="main">
   <section class="nu-hero" data-shot="hero">
     <div class="nu-hero__top">${strip('top')}</div>
@@ -294,6 +297,36 @@ ${secs}
           scrollTo({ top: el.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }));
         const mark = () => { let on = null; for (const bt of btns) { const el = target(bt.dataset.go); if (el && el.getBoundingClientRect().top < innerHeight * .45) on = bt; } btns.forEach((x) => x.classList.toggle('is-on', x === on)); };
         addEventListener('scroll', mark, { passive: true }); mark();
+      }
+
+      // kamera "masuk ke dalam" panorama: tiap halaman (slide / bagian yang sedang dibaca) punya zoom & arah sorot
+      // sendiri; latar danau bergeser halus ke sana, bingkai bunga & lampu melebar ke tepi seolah kita melangkah masuk.
+      const world = root.querySelector('.dk-world');
+      if (world) {
+        const halaman = [...root.querySelectorAll('#main > *')];
+        const KAMERA = [[1, 0], [1.14, -7], [1.24, 6], [1.32, -5], [1.2, 8], [1.28, -8], [1.12, 4], [1.36, 0]];
+        const diam = document.documentElement.classList.contains('u-shot') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const aktif = () => {
+          if (document.body.classList.contains('u-slide')) return Math.max(0, halaman.findIndex((s) => s.classList.contains('u-slide-on')));
+          let best = 0, jarak = 1e9;
+          halaman.forEach((s, i) => { const r = s.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - innerHeight / 2); if (d < jarak) { jarak = d; best = i; } });
+          return best;
+        };
+        let z = 1, x = 0, px = 0, py = 0, tpx = 0, tpy = 0;
+        addEventListener('pointermove', (e) => { tpx = e.clientX / innerWidth * 2 - 1; tpy = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+        addEventListener('deviceorientation', (e) => { if (e.gamma != null) { tpx = Math.max(-1, Math.min(1, e.gamma / 25)); tpy = Math.max(-1, Math.min(1, (e.beta - 45) / 30)); } }, { passive: true });
+        const kamera = () => {
+          const i = aktif(), [tz, tx] = KAMERA[i % KAMERA.length];
+          const k = diam ? 1 : .035;
+          z += (tz - z) * k; x += (tx - x) * k; px += (tpx * 8 - px) * .06; py += (tpy * 6 - py) * .06;
+          world.style.setProperty('--cz', z.toFixed(4));
+          world.style.setProperty('--cx', x.toFixed(2) + '%');
+          world.style.setProperty('--buka', ((z - 1) / .36).toFixed(3));
+          world.style.setProperty('--px', px.toFixed(2)); world.style.setProperty('--py', py.toFixed(2));
+          if (!diam) requestAnimationFrame(kamera);
+        };
+        kamera();
+        if (diam) { addEventListener('scroll', kamera, { passive: true }); }
       }
 
       // efek 2.5D: lapisan bergeser sesuai kedalaman (--d) mengikuti kemiringan HP / gerak jari / scroll.

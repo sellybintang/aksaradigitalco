@@ -979,3 +979,56 @@ body[data-theme="24-danau-kembang-api"] { background: #0f1614; }
 .lw-dock { background: rgba(23,48,42,.92); border-color: rgba(232,202,148,.42); }
 .ti-map { background: rgba(18,40,34,.86); }
 .dk-lay--kolibri { top: -5%; z-index: 3 !important; }  /* di belakang teks agar nama tetap terbaca */
+
+/* =====================================================================
+   Satu ruang danau berkelanjutan (bukan ganti halaman): panorama tetap di belakang,
+   kamera zoom & geser per halaman, isi di atas panel kaca transparan
+   ===================================================================== */
+.dk-world { position: fixed; z-index: 0; top: 0; left: 50%; width: min(100vw, 450px); height: 100vh; height: 100svh;
+  transform: translateX(-50%); overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 1.4s ease; background: #cfe5df; }
+body.u-opened .dk-world, .u-shot .dk-world { opacity: 1; }
+.dk-world .nu-lay { object-fit: cover; object-position: 50% 50%; }
+/* latar danau: kamera menyorot lebih dalam */
+.dk-world .dk-lay--danau { transform-origin: 50% 58%; transform: translateX(var(--cx, 0%)) scale(var(--cz, 1)); }
+.dk-world .dk-veil { opacity: .55; }
+/* bingkai melebar keluar tepi saat kamera masuk */
+.dk-world .dk-lay--kanopi { transform-origin: 50% 0; transform: scale(calc(1 + var(--buka, 0) * .32)); rotate: 0deg; animation: dk-sway2 6.5s ease-in-out infinite; }
+.dk-world .dk-lay--lampu, .dk-world .dk-lay--kembang { transform-origin: 50% 66%; transform: scale(calc(1 + var(--buka, 0) * .34)); }
+.dk-world .dk-lay--kembang { animation: dk-twinkle 2.6s ease-in-out infinite; }
+.dk-world .dk-lay--bunga { transform-origin: 50% 100%; transform: scale(calc(1 + var(--buka, 0) * .22)); }
+.dk-world .dk-lay--kolibri { top: -5%; transform: translateY(calc(var(--buka, 0) * -5%)) scale(calc(1 + var(--buka, 0) * .2)); animation: dk-bob2 3.4s ease-in-out infinite; }
+@keyframes dk-sway2 { 0%, 100% { rotate: -.4deg; } 50% { rotate: .4deg; } }
+@keyframes dk-bob2 { 0%, 100% { top: -5%; } 50% { top: -6.4%; } }
+
+/* halaman isi transparan: panorama tetap terlihat; isi di atas kaca yang memudar di atas & bawah */
+#app { background: transparent; }
+#main { position: relative; z-index: 1; }
+.nu-hero, .nu-sec, .has-bg-terang .nu-sec--cream, .has-bg-gelap .nu-sec--dark { background: transparent !important; }
+.has-bg-terang .nu-sec--cream, .has-bg-gelap .nu-sec--dark, .nu-sec { padding: 92px 30px 104px !important; }
+.nu-sec::before, .nu-hero::before { content: ''; position: absolute; z-index: 0; inset: 0 12px; border-radius: 28px; pointer-events: none;
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.nu-sec--cream::before, .nu-hero::before {
+  background: linear-gradient(rgba(248,243,236,0) 0, rgba(248,243,236,.84) 13%, rgba(248,243,236,.86) 87%, rgba(248,243,236,0) 100%); }
+.nu-sec--dark::before {
+  background: linear-gradient(rgba(20,40,34,0) 0, rgba(20,40,34,.8) 13%, rgba(20,40,34,.82) 87%, rgba(20,40,34,0) 100%); }
+.nu-sec > *, .nu-hero > * { position: relative; z-index: 1; }
+/* pembuka (setelah sampul): tanpa potongan ilustrasi terpisah, cukup panorama yang sama */
+.nu-hero { padding: 96px 30px 110px; }
+.nu-hero__top, .nu-hero__bottom { display: none !important; }
+.nu-hero__arch { margin-top: 0 !important; }
+/* penutup tetap memakai lukisan utuhnya sendiri */
+.nu-footer { position: relative; z-index: 1; }
+/* kaca buram lebih tembus pandang: warna danau & bunga tetap terasa di balik isi */
+.nu-sec::before, .nu-hero::before { inset: 0 16px; -webkit-backdrop-filter: blur(5px) saturate(1.1); backdrop-filter: blur(5px) saturate(1.1); }
+.nu-sec--cream::before, .nu-hero::before {
+  background: linear-gradient(rgba(248,243,236,0) 0, rgba(248,243,236,.68) 12%, rgba(248,243,236,.72) 88%, rgba(248,243,236,0) 100%); }
+.nu-sec--dark::before {
+  background: linear-gradient(rgba(20,40,34,0) 0, rgba(20,40,34,.62) 12%, rgba(20,40,34,.66) 88%, rgba(20,40,34,0) 100%); }
+.nu-sec--dark .nu-title, .nu-sec--dark .nu-lead { text-shadow: 0 1px 8px rgba(10,24,20,.55); }
+.nu-sec--cream .nu-title, .nu-sec--cream .nu-lead, .nu-hero h1, .nu-hero__kicker, .nu-hero__date { text-shadow: 0 1px 8px rgba(252,249,244,.8); }
+/* tanpa blur (ringan di HP kelas bawah & rekaman video); kaca sedikit lebih pekat sebagai gantinya */
+.nu-sec::before, .nu-hero::before { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.nu-sec--cream::before, .nu-hero::before {
+  background: linear-gradient(rgba(248,243,236,0) 0, rgba(248,243,236,.76) 12%, rgba(248,243,236,.8) 88%, rgba(248,243,236,0) 100%); }
+.nu-sec--dark::before {
+  background: linear-gradient(rgba(20,40,34,0) 0, rgba(20,40,34,.7) 12%, rgba(20,40,34,.74) 88%, rgba(20,40,34,0) 100%); }
