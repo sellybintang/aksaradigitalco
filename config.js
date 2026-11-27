@@ -6,6 +6,7 @@ window.UNDANGAN_CONFIG = {
   domain: 'aksaradigitalco.netlify.app', // contoh link di gambar katalog "nama tamu"
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
   musikDefault: '/assets/music/undangan-digital.mp3',   // dipakai bila kolom musik kosong & tema tidak punya musik bawaan
+  tampilan: 'slide',            // bawaan undangan klien: 'slide' | 'slide-manual' | 'gulir' (demo selalu gulir; kolom Sheets "tampilan" menimpa)
   slideDetik: 3,                // mode slide otomatis: lama tiap halaman (detik); halaman panjang dapat tambahan
   defaultTheme: '01-boarding-pass',
 

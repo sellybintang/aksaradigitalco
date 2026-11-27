@@ -192,9 +192,11 @@
    * Setiap anak langsung <main id="main"> (section/footer) jadi satu halaman. Pindah halaman lewat
    * tombol ‹ ›, titik, geser kiri/kanan, atau panah keyboard. Section yang lebih panjang dari layar
    * tetap bisa digulir di dalam halamannya sendiri. */
-  // "slide" = per halaman & berjalan otomatis; "slide-manual" = per halaman tanpa otomatis.
-  const layoutOf = (d) => (qs.get('tampilan') || d.layout || CFG.tampilan || '').toLowerCase().trim();
-  function slideMode(d) { return /^slide(-manual)?$/.test(layoutOf(d)); }
+  // "slide" = per halaman & berjalan otomatis; "slide-manual" = per halaman tanpa otomatis; "gulir" = gulir biasa.
+  // Urutan: ?tampilan= di link → kolom Sheets "tampilan" → bawaan. Bawaan klien = config.tampilan (slide),
+  // bawaan demo (/demo, /demo-…, /ad0…) = gulir, supaya link demo yang sudah tersebar tidak berubah.
+  const layoutOf = (d, slug) => (qs.get('tampilan') || d.layout || (isDemo(slug) ? 'gulir' : CFG.tampilan) || 'gulir').toLowerCase().trim();
+  function slideMode(d, slug) { return /^slide(-manual)?$/.test(layoutOf(d, slug)); }
 
   // Menu bawah mode slide. Halaman dikenali dari penanda data-shot tema (couple, events, ...),
   // lalu dari judul halaman, lalu kecocokan cadangan. Urutan baris = prioritas.
@@ -522,7 +524,7 @@
     setupWishes(app, d, pack.wishes, Theme, slug);
     setupReveal(app);
     if (Theme.mount) Theme.mount(app, d, h);
-    if (!qs.get('shot') && slideMode(d)) setupSlides(meta, layoutOf(d) !== 'slide-manual' && qs.get('otomatis') !== '0');
+    if (!qs.get('shot') && slideMode(d, slug)) setupSlides(meta, layoutOf(d, slug) !== 'slide-manual' && qs.get('otomatis') !== '0');
     window.scrollTo(0, 0);
     if (qs.get('shot')) shotMode(qs.get('shot'));
   }
