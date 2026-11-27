@@ -1,0 +1,53 @@
+{
+  "slug": "demo-danau-kembang-api",
+  "template": "24-danau-kembang-api",
+  "status": "aktif",
+  "aktif_sampai": "2027-12-31",
+  "pria_nama": "Rizky Ananda Putra, S.E.",
+  "pria_panggilan": "Rizky",
+  "pria_ortu": "Bapak Hadi Santoso & Ibu Wulan Sari",
+  "pria_ig": "rizky.contoh",
+  "wanita_nama": "Aulia Rahmawati, S.Ked.",
+  "wanita_panggilan": "Aulia",
+  "wanita_ortu": "Bapak Darmawan & Ibu Siti Aminah",
+  "wanita_ig": "aulia.contoh",
+  "akad_judul": "Akad Nikah",
+  "akad_mulai": "2027-06-20 08:00",
+  "akad_selesai": "2027-06-20 10:00",
+  "akad_tempat": "Paviliun Taman Danau",
+  "akad_alamat": "Jl. Danau Sunter Utara No. 12, Jakarta Utara",
+  "resepsi_judul": "Resepsi Pernikahan",
+  "resepsi_mulai": "2027-06-20 11:00",
+  "resepsi_selesai": "2027-06-20 14:00",
+  "resepsi_tempat": "Taman Bunga Tepi Danau",
+  "resepsi_alamat": "Jl. Danau Indah Raya No. 5, Jakarta Utara",
+  "kutipan": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya.",
+  "kutipan_sumber": "QS. Ar-Rum: 21",
+  "cerita": "2020|Bertemu di Tepi Danau|Pertemuan pertama di sebuah acara komunitas di taman kota; percakapan singkat yang berlanjut hingga senja.\n2022|Saling Menguatkan|Jarak dan kesibukan tidak menyurutkan langkah; kami belajar saling percaya dan menjaga.\n2026|Lamaran|Dengan restu kedua keluarga, Rizky datang meminang Aulia dalam suasana hangat penuh syukur.\n2027|Hari Bahagia|Kami melangkah bersama menuju ikatan suci, diiringi doa keluarga dan sahabat tercinta.",
+  "foto_sampul": "/demo-data/img-private/ap-3.jpg",
+  "foto_berdua": "/demo-data/img-private/ap-3.jpg",
+  "galeri": "/demo-data/img-private/ap-3.jpg, /demo-data/img-private/ap-1.jpg, /demo-data/img-private/ap-2.jpg, /demo-data/img-private/ap-pria.jpg, /demo-data/img-private/ap-wanita.jpg",
+  "kredit_foto": "@ai_prewedding",
+  "musik": "/assets/music/rona-cinta.mp3",
+  "rekening": "BCA|1234567890|Rizky Ananda Putra\nMandiri|0987654321|Aulia Rahmawati",
+  "alamat_kado": "Jl. Danau Sunter Utara No. 12, Jakarta Utara 14350",
+  "_ucapan": [
+    {
+      "nama": "Keluarga Bpk. Ahmad",
+      "kehadiran": "Hadir",
+      "ucapan": "Selamat menempuh hidup baru Rizky & Aulia! Semoga menjadi keluarga sakinah, mawaddah, warahmah."
+    },
+    {
+      "nama": "Nisa",
+      "kehadiran": "Masih Ragu",
+      "ucapan": "Bahagia selalu kalian berdua, semoga langgeng sampai tua."
+    },
+    {
+      "nama": "Om Gilang",
+      "kehadiran": "Tidak Hadir",
+      "ucapan": "Mohon maaf belum bisa hadir, doa terbaik dari jauh untuk kalian."
+    }
+  ],
+  "pria_foto": "/demo-data/img-private/ap-pria.jpg",
+  "wanita_foto": "/demo-data/img-private/ap-wanita.jpg"
+}

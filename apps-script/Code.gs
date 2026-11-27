@@ -72,7 +72,7 @@ const TEMA = [
   ['AD005', '15-cafe-menu', 'Café Menu'], ['AD006', '18-arabesque', 'Arabesque'],
   ['AD007', '09-celestial', 'Celestial'], ['AD008', '19-nusantara', 'Nusantara'],
   ['AD009', '21-prambanan', 'Prambanan'], ['AD010', '22-taman-istana', 'Taman Istana'],
-  ['AD011', '23-lembah-wisteria', 'Lembah Wisteria'],
+  ['AD011', '23-lembah-wisteria', 'Lembah Wisteria'], ['AD012', '24-danau-kembang-api', 'Danau Kembang Api'],
 ];
 const label_ = (t) => t[0] + ' · ' + t[2];
 // isi awal tab "Pilihan" — tab ini boleh kamu tambah sendiri (mis. tema baru, musik baru)

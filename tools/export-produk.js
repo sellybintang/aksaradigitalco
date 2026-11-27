@@ -55,6 +55,7 @@ const PRODUK = {
   'jawa/hijau/tf': '21-prambanan~tanpa-foto',
   'istana/hijau/df': '22-taman-istana',
   'wisteria/ungu/df': '23-lembah-wisteria',
+  'danau/tosca/df': '24-danau-kembang-api',
 };
 
 // keunikan tiap tema (untuk deskripsi)
@@ -70,6 +71,7 @@ const KHAS = {
   '21-prambanan': ['Nuansa keraton Jawa: hijau zamrud, emas & krem', 'Opening segel lilin di gunungan yang terbelah saat dibuka', 'Sampul ilustrasi 3D berlapis: candi Prambanan, gebyok, kuluk & ronce melati yang bergerak', 'Bingkai gebyok emas dengan anggrek & pakis bergaya ukiran klasik'],
   '22-taman-istana': ['Nuansa taman istana: hijau botani, krem & mawar merah muda', 'Opening tirai belah dua dengan segel lilin mawar', 'Sampul ilustrasi 3D berlapis: gapura berukir, istana, bunga gantung & rumpun mawar yang bergerak', 'Halaman isi selang-seling terang & gelap berbingkai gapura dan taman istana'],
   '23-lembah-wisteria': ['Nuansa lembah air terjun: krem, hijau botani, plum & mawar', 'Sampul ilustrasi 3D berlapis: air terjun, kanopi wisteria, merpati putih, kunang-kunang & lili yang bergerak', 'Navigasi bawah mengambang (Mempelai, Acara, Kisah, Maps, RSVP) + tombol musik', 'Tombol Tambah ke Kalender (.ics), Google Maps & salin alamat; kisah cinta berbentuk kartu kubah'],
+  '24-danau-kembang-api': ['Nuansa taman danau pastel: tosca, mawar & emas', 'Sampul ilustrasi 3D berlapis: danau berangsa & landmark kota, lampu taman, kembang api berkelip, kolibri & mawar', 'Kamera menyapu danau lalu mundur memperlihatkan bingkai bunga saat sampul dibuka', 'Navigasi bawah mengambang, Google Maps & salin alamat, tombol Tambah ke Kalender'],
   '21-prambanan~tanpa-foto': ['Versi TANPA FOTO: cocok untuk mempelai yang tidak ingin memajang foto', 'Foto diganti ilustrasi pasangan berbusana adat Jawa yang bergerak halus', 'Opening segel lilin di gunungan yang terbelah saat dibuka', 'Tetap mewah: hijau zamrud & emas, sampul candi Prambanan 3D berlapis'],
   '09-celestial': ['Langit malam berbintang yang berkelip', 'Peta bintang berbentuk hati, unik untuk setiap pasangan', 'Fase bulan asli pada malam pernikahan Anda', 'Efek melesat ke bintang saat undangan dibuka'],
 };

@@ -3,7 +3,7 @@
 window.UNDANGAN_CONFIG = {
   apiUrl: 'https://script.google.com/macros/s/AKfycbygb6WUZUU9MsdT9HKMSZNLtZX0U5YOu0s2VvNXQzmat8BznOeKDYksaTVckUgs0kcB-w/exec',
   brand: 'Aksara Digital',      // muncul kecil di footer & gambar katalog
-  domain: 'aksaradigitalco.netlify.app', // contoh link di gambar katalog "nama tamu"
+  domain: 'aksaradigitalco.pages.dev', // contoh link di gambar katalog "nama tamu"
   timezone: 'Asia/Jakarta',     // untuk tombol "Simpan ke Kalender"
   musikDefault: '/assets/music/undangan-digital.mp3',   // dipakai bila kolom musik kosong & tema tidak punya musik bawaan
   slideDetik: 3,                // mode slide otomatis: lama tiap halaman (detik); halaman panjang dapat tambahan
@@ -24,6 +24,7 @@ window.UNDANGAN_CONFIG = {
     AD009: '21-prambanan',
     AD010: '22-taman-istana',
     AD011: '23-lembah-wisteria',
+    AD012: '24-danau-kembang-api',
   },
 
   // Pengaturan gambar katalog Shopee (tools/render-mockups.js)
