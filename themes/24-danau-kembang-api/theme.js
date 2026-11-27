@@ -295,8 +295,23 @@ ${secs}
         btns.forEach((bt) => bt.addEventListener('click', () => { const el = target(bt.dataset.go); if (!el) return;
           if (document.body.classList.contains('u-slide')) return el.scrollIntoView({ behavior: 'smooth' });   // mode slide: pindah halaman
           scrollTo({ top: el.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }));
-        const mark = () => { let on = null; for (const bt of btns) { const el = target(bt.dataset.go); if (el && el.getBoundingClientRect().top < innerHeight * .45) on = bt; } btns.forEach((x) => x.classList.toggle('is-on', x === on)); };
+        // tandai menu: mode slide → halaman yang sedang tampil (atau menu terakhir sebelum halaman itu); mode gulir → posisi baca
+        const mark = () => {
+          let on = null;
+          if (document.body.classList.contains('u-slide')) {
+            const hal = [...root.querySelectorAll('#main > *')];
+            const cur = hal.findIndex((s) => s.classList.contains('u-slide-on'));
+            for (const bt of btns) { const el = target(bt.dataset.go); const k = el ? hal.findIndex((s) => s === el || s.contains(el)) : -1; if (k >= 0 && k <= cur) on = bt; }
+          } else {
+            for (const bt of btns) { const el = target(bt.dataset.go); if (el && el.getBoundingClientRect().top < innerHeight * .45) on = bt; }
+          }
+          btns.forEach((x) => x.classList.toggle('is-on', x === on));
+        };
         addEventListener('scroll', mark, { passive: true }); mark();
+        const utama = root.querySelector('#main');
+        if (utama) new MutationObserver(mark).observe(utama, { attributes: true, attributeFilter: ['class'], subtree: false, childList: false });
+        if (utama) [...utama.children].forEach((s) => new MutationObserver(mark).observe(s, { attributes: true, attributeFilter: ['class'] }));
+        new MutationObserver(mark).observe(document.body, { attributes: true, attributeFilter: ['class'] });
       }
 
       // kamera "masuk ke dalam" panorama: tiap halaman (slide / bagian yang sedang dibaca) punya zoom & arah sorot
