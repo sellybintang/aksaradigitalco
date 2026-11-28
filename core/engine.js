@@ -326,18 +326,8 @@
     });
     // halaman pertama: slide otomatis mulai menghitung setelah animasi buka undangan selesai
     document.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => { elapsed = -1400; }, { once: true }));
-    // petunjuk singkat sekali di awal
-    let hint = null;
-    const hideHint = () => { if (hint) { hint.classList.remove('is-on'); setTimeout(() => hint && hint.remove(), 400); hint = null; } };
-    document.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => {
-      if (hint || sessionStorage.getItem('u-hint')) return;
-      try { sessionStorage.setItem('u-hint', '1'); } catch (err) { /* abaikan */ }
-      hint = document.createElement('div'); hint.className = 'u-hint';
-      hint.innerHTML = '<span>Ketuk layar untuk lanjut</span><b>›</b>';
-      const w = meta.warna || {}; hint.style.cssText = `--dock-bg:${w.bg || '#1d1d1f'};--dock-ac:${w.aksen || '#c9a24a'};--dock-tx:${w.teks || '#fff'}`;
-      document.body.appendChild(hint); requestAnimationFrame(() => setTimeout(() => hint && hint.classList.add('is-on'), 600));
-      setTimeout(hideHint, 4200);
-    }, { once: true }));
+    // (petunjuk "Ketuk layar untuk lanjut" sengaja tidak ditampilkan di semua tema)
+    const hideHint = () => {};
     document.addEventListener('keydown', (e) => {
       if (!document.body.classList.contains('u-opened') || e.target.closest('input, textarea, select')) return;
       if (e.key === 'ArrowRight') go(cur + 1);
